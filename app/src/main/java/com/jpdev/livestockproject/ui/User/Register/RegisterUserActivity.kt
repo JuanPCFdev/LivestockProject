@@ -1,4 +1,4 @@
-package com.jpdev.proyectoganadero.ui.User.Register
+package com.jpdev.livestockproject.ui.User.Register
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,11 +9,11 @@ import android.widget.Toast
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import com.jpdev.proyectoganadero.data.network.FirebaseInstance
-import com.jpdev.proyectoganadero.databinding.ActivityRegisterUserBinding
-import com.jpdev.proyectoganadero.domain.model.Farm
-import com.jpdev.proyectoganadero.domain.model.User
-import com.jpdev.proyectoganadero.ui.User.LogIn.LogInActivity
+import com.jpdev.livestockproject.data.network.FirebaseInstance
+import com.jpdev.livestockproject.databinding.ActivityRegisterUserBinding
+import com.jpdev.livestockproject.domain.model.Farm
+import com.jpdev.livestockproject.domain.model.User
+import com.jpdev.livestockproject.ui.User.LogIn.LogInActivity
 
 class RegisterUserActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterUserBinding

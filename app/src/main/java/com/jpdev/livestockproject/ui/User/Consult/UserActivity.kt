@@ -1,14 +1,14 @@
-package com.jpdev.proyectoganadero.ui.User.Consult
+package com.jpdev.livestockproject.ui.User.Consult
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.jpdev.proyectoganadero.R
-import com.jpdev.proyectoganadero.data.network.FirebaseInstance
-import com.jpdev.proyectoganadero.databinding.ActivityUserBinding
-import com.jpdev.proyectoganadero.domain.model.User
-import com.jpdev.proyectoganadero.ui.Home.HomePageActivity
+import com.jpdev.livestockproject.R
+import com.jpdev.livestockproject.data.network.FirebaseInstance
+import com.jpdev.livestockproject.databinding.ActivityUserBinding
+import com.jpdev.livestockproject.domain.model.User
+import com.jpdev.livestockproject.ui.Home.HomePageActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
