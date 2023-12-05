@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cvFarm"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:backgroundTint="@color/homepage_card"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="25dp">
+
+    <TextView
+        android:id="@+id/tvFarm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textSize="25dp"
+        tools:text="Finca xxxxxx"/>
+
+</androidx.cardview.widget.CardView>
