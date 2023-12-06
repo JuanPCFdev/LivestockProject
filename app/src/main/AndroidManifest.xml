@@ -15,6 +15,18 @@
         android:theme="@style/Theme.LivestockProject"
         tools:targetApi="31">
         <activity
+            android:name=".ui.Finance.SellCowActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Finance.ReceiptHistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Finance.FinanceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Finance.BuyActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.Home.HomePageActivity"
             android:exported="false" />
         <activity
