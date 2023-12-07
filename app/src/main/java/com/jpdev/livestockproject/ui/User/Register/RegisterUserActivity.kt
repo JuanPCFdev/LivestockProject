@@ -22,6 +22,7 @@ class RegisterUserActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterUserBinding.inflate(layoutInflater)
+        supportActionBar?.hide()
         setContentView(binding.root)
         firebaseInstance = FirebaseInstance(this)
         getId()

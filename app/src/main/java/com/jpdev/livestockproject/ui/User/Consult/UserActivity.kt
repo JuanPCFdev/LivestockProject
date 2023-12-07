@@ -20,6 +20,7 @@ class UserActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUserBinding.inflate(layoutInflater)
+        supportActionBar?.hide()
         setContentView(binding.root)
         firebaseInstance = FirebaseInstance(this)
 

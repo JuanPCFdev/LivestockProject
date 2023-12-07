@@ -8,7 +8,8 @@ import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityConsultCowsBinding
 import com.jpdev.livestockproject.domain.model.Cattle
 import com.jpdev.livestockproject.ui.Cow.Consult.Adapter.CowAdapter
-import com.jpdev.livestockproject.ui.Cow.Register.RegisterCowActivity
+import com.jpdev.livestockproject.ui.Cow.HomeCow.HomeCowActivity
+import com.jpdev.livestockproject.ui.Cow.Lifting.Register.RegisterCowActivity
 import com.jpdev.livestockproject.ui.Home.HomePageActivity
 
 class ConsultCowsActivity : AppCompatActivity() {
@@ -20,6 +21,7 @@ class ConsultCowsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityConsultCowsBinding.inflate(layoutInflater)
+        supportActionBar?.hide()
         setContentView(binding.root)
         firebaseInstance = FirebaseInstance(this)
 
@@ -32,7 +34,7 @@ class ConsultCowsActivity : AppCompatActivity() {
     private fun initListeners(user:String?,farm:String?){
         getListCows(user,farm)
         binding.btnRegisterCow.setOnClickListener {
-            val intent = Intent(this, RegisterCowActivity::class.java)
+            val intent = Intent(this, HomeCowActivity::class.java)
             intent.putExtra("userKey",user.toString())
             intent.putExtra("farmKey",farm.toString())
             startActivity(intent)

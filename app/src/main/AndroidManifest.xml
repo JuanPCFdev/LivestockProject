@@ -15,6 +15,9 @@
         android:theme="@style/Theme.LivestockProject"
         tools:targetApi="31">
         <activity
+            android:name=".ui.Cow.HomeCow.HomeCowActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.Cow.Consult.ConsultCowsActivity"
             android:exported="false" />
         <activity
@@ -30,7 +33,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.Cow.Register.RegisterCowActivity"
+            android:name=".ui.Cow.Lifting.Register.RegisterCowActivity"
             android:exported="false" />
         <activity
             android:name=".ui.User.Consult.UserActivity"

@@ -1,4 +1,4 @@
-package com.jpdev.livestockproject.ui.Cow.Register
+package com.jpdev.livestockproject.ui.Cow.Lifting.Register
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +14,7 @@ class RegisterCowActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterCowBinding.inflate(layoutInflater)
+        supportActionBar?.hide()
         setContentView(binding.root)
         firebaseInstance = FirebaseInstance(this)
 
