@@ -103,6 +103,7 @@
                 android:id="@+id/etPrecioProducto"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:inputType="number"
                 android:maxLines="1"
                 android:singleLine="true" />
 
@@ -130,6 +131,7 @@
             <EditText
                 android:id="@+id/etTelProveedor"
                 android:layout_width="match_parent"
+                android:inputType="number"
                 android:layout_height="50dp"
                 android:maxLines="1"
                 android:singleLine="true" />
