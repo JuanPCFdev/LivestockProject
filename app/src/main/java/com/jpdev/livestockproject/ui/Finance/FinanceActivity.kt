@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.jpdev.livestockproject.R
 import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityFinanceBinding
+import com.jpdev.livestockproject.ui.Home.HomePageActivity
 
 class FinanceActivity : AppCompatActivity() {
 
@@ -38,6 +39,13 @@ class FinanceActivity : AppCompatActivity() {
         }
         binding.ventas.setOnClickListener {
             val intent = Intent(this, SellCowActivity::class.java)
+            intent.putExtra("userKey",key)
+            intent.putExtra("farmKey",farmKey)
+            startActivity(intent)
+            finish()
+        }
+        binding.btnReturnHome.setOnClickListener {
+            val intent = Intent(this, HomePageActivity::class.java)
             intent.putExtra("userKey",key)
             intent.putExtra("farmKey",farmKey)
             startActivity(intent)

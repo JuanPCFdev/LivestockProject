@@ -1,5 +1,6 @@
 package com.jpdev.livestockproject.ui.Finance
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.jpdev.livestockproject.R
@@ -20,6 +21,12 @@ class SellCowActivity : AppCompatActivity() {
     }
 
     private fun initComponents(key: String?, farmKey: String?) {
-
+        binding.btnReturnHome.setOnClickListener {
+            val intent = Intent(this, FinanceActivity::class.java)
+            intent.putExtra("userKey",key)
+            intent.putExtra("farmKey",farmKey)
+            startActivity(intent)
+            finish()
+        }
     }
 }
