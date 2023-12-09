@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityHomeCowBinding
+import com.jpdev.livestockproject.ui.Cow.Breeding.Consult.ConsultCowBreedingActivity
+import com.jpdev.livestockproject.ui.Cow.Breeding.Register.RegisterCowBreedingActivity
 import com.jpdev.livestockproject.ui.Cow.Consult.ConsultCowsActivity
+import com.jpdev.livestockproject.ui.Cow.Lifting.Consult.ConsultCowLiftingActivity
 import com.jpdev.livestockproject.ui.Cow.Lifting.Register.RegisterCowActivity
 import com.jpdev.livestockproject.ui.Home.HomePageActivity
 
@@ -44,14 +47,14 @@ class HomeCowActivity : AppCompatActivity() {
         }
         //Consult
         binding.btnConsultBreeding.setOnClickListener {
-            val intent = Intent(this,HomePageActivity::class.java) //Consultar Cría
+            val intent = Intent(this,ConsultCowBreedingActivity::class.java) //Consultar Cría
             intent.putExtra("userKey",key)
             intent.putExtra("farmKey",farmKey)
             startActivity(intent)
             finish()
         }
         binding.btnConsultLifting.setOnClickListener {
-            val intent = Intent(this,HomePageActivity::class.java) //Consultar Levante
+            val intent = Intent(this,ConsultCowLiftingActivity::class.java) //Consultar Levante
             intent.putExtra("userKey",key)
             intent.putExtra("farmKey",farmKey)
             startActivity(intent)
@@ -59,7 +62,7 @@ class HomeCowActivity : AppCompatActivity() {
         }
         //Register
         binding.btnRegisterBreeding.setOnClickListener {
-            val intent = Intent(this,HomePageActivity::class.java) //Registrar Cría
+            val intent = Intent(this,RegisterCowBreedingActivity::class.java) //Registrar Cría
             intent.putExtra("userKey",key)
             intent.putExtra("farmKey",farmKey)
             startActivity(intent)
