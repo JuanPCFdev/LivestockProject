@@ -10,6 +10,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
 import com.jpdev.livestockproject.domain.model.Cattle
 import com.jpdev.livestockproject.domain.model.Farm
+import com.jpdev.livestockproject.domain.model.Receipt
 import com.jpdev.livestockproject.domain.model.User
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
@@ -237,6 +238,25 @@ class FirebaseInstance(context: Context) {
                 if (snapshot.exists()) {
                     val existingUser = snapshot.getValue(User::class.java)
                     existingUser?.farms?.get(farm.toString().toInt())?.cattles?.add(cow)
+                    userReference.setValue(existingUser)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.i("Algo fallo", error.details)
+            }
+        })
+    }
+
+    //metodo para registrar un recibo de compra
+    fun registerReceiptBuy(receipt: Receipt, user: String?, farm: String?) {
+        val userReference = myRef.child(user.toString())
+
+        userReference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    val existingUser = snapshot.getValue(User::class.java)
+                    existingUser?.farms?.get(farm.toString().toInt())?.receipts?.add(receipt)
                     userReference.setValue(existingUser)
                 }
             }
