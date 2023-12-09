@@ -11,6 +11,7 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:layout_marginHorizontal="60dp"
         android:text="@string/Buy_title"
         android:textColor="@color/black"
@@ -44,10 +45,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
                 android:gravity="center"
                 android:text="@string/Buy_description"
-                android:textSize="15dp"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -137,9 +137,11 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:orientation="horizontal">
 
                 <Button
+                    android:id="@+id/btnSaveBuy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="10dp"
@@ -148,14 +150,21 @@
                     android:text="@string/Buy_saveBuy" />
 
                 <Button
+                    android:id="@+id/btnBuyCow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:backgroundTint="@color/button_red"
                     android:text="@string/Buy_buyCow" />
             </LinearLayout>
-
-
+            <Button
+                android:id="@+id/btnReturnHome"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/button_red"
+                android:layout_gravity="center"
+                android:text="@string/ReceiptHistory_return"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
