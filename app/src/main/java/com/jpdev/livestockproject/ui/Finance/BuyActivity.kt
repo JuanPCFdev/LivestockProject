@@ -41,24 +41,29 @@ class BuyActivity : AppCompatActivity() {
             finish()
         }
         binding.btnSaveBuy.setOnClickListener {
-            if(validateCredentials()){
-                val receipt = Receipt(
-                    0,
-                    binding.etNameProducto.text.toString(),
-                    binding.etPrecioProducto.text.toString().toDouble(),
-                    binding.etFechaCompra.text.toString(),
-                    receiptType = "ReceiptBuyProduct",
-                )
+            createReceipt(key,farmKey)
+        }
+    }
 
-                firebaseInstance.registerReceiptBuy(receipt,key,farmKey)
-                val intent = Intent(this, HomePageActivity::class.java)
-                intent.putExtra("userKey",key)
-                intent.putExtra("farmKey",farmKey)
-                startActivity(intent)
-                finish()
-            }else{
-                Toast.makeText(this, "Falta por llenar algun dato", Toast.LENGTH_SHORT).show()
-            }
+    private fun createReceipt(key: String?, farmKey: String?){
+        if(validateCredentials()){
+            val receipt = Receipt(
+                0,
+                binding.etNameProducto.text.toString(),
+                binding.etPrecioProducto.text.toString().toDouble(),
+                binding.etFechaCompra.text.toString(),
+                receiptType = "ReceiptBuyProduct",
+            )
+
+            firebaseInstance.registerReceiptBuy(receipt,key,farmKey)
+            Toast.makeText(this, "Se creo el recibo correctamente", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, HomePageActivity::class.java)
+            intent.putExtra("userKey",key)
+            intent.putExtra("farmKey",farmKey)
+            startActivity(intent)
+            finish()
+        }else{
+            Toast.makeText(this, "Falta por llenar algun dato", Toast.LENGTH_SHORT).show()
         }
     }
     private fun validateCredentials():Boolean {

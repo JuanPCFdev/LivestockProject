@@ -16,11 +16,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="30dp"
-            android:textColor="@color/black"
+            android:layout_margin="20dp"
             android:gravity="center"
             android:text="@string/Finance_title"
-            android:textSize="40dp"
+            android:textColor="@color/black"
+            android:textSize="30sp"
             android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
@@ -51,27 +51,20 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/ganancias"
+                        android:id="@+id/btnEarningsLost"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@color/button_red"
                         android:layout_marginHorizontal="16dp"
-                        android:text="@string/Finance_earnings" />
-
-                    <Button
-                        android:id="@+id/perdidas"
                         android:backgroundTint="@color/button_red"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/Finance_lost" />
+                        android:text="@string/Finance_earnings_lost" />
 
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/historialRecibo"
-                    android:backgroundTint="@color/button_red"
+                    android:id="@+id/btnHistoryReceipt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/button_red"
                     android:text="@string/Finance_receipt" />
             </LinearLayout>
 
@@ -105,18 +98,18 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/compras"
-                        android:backgroundTint="@color/button_red"
+                        android:id="@+id/btnBuy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="16dp"
+                        android:backgroundTint="@color/button_red"
                         android:text="@string/Finance_receiptBuy" />
 
                     <Button
-                        android:id="@+id/ventas"
-                        android:backgroundTint="@color/button_red"
+                        android:id="@+id/btnSold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:backgroundTint="@color/button_red"
                         android:text="@string/Finance_receiptSell" />
 
                 </LinearLayout>
@@ -127,12 +120,12 @@
 
         <Button
             android:id="@+id/btnReturnHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/button_red"
-            android:layout_gravity="center"
-            android:text="@string/ReceiptHistory_return"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:text="@string/ReceiptHistory_return" />
 
         <ImageView
             android:layout_width="wrap_content"

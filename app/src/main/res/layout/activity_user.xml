@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:textColor="@color/black"
-            android:textSize="25dp"
+            android:textSize="25sp"
             tools:text="Nombre de Usuario" />
     </androidx.cardview.widget.CardView>
 
@@ -61,7 +61,7 @@
         android:layout_gravity="start"
         android:layout_margin="20dp"
         android:text="@string/RegisterUser_Phone"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:textStyle="bold" />
 
     <androidx.cardview.widget.CardView
@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:textColor="@color/black"
-            android:textSize="25dp"
+            android:textSize="25sp"
             tools:text="999999999" />
     </androidx.cardview.widget.CardView>
 

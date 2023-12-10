@@ -37,7 +37,6 @@ class SellCowActivity : AppCompatActivity() {
         }
     }
     private fun getListCows(user:String?,farm:String?){
-
         firebaseInstance.getUserCows(user.toString(),farm.toString()){ cows, keys ->
             if (cows != null) {
                 cows?.let {
