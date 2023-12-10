@@ -72,10 +72,10 @@
     <string name="ReceiptHistory_title">Historial de recibos</string>
     <string name="ReceiptHistory_return">Volver</string>
     <string name="SellCow_title">Recibo Venta</string>
+    <string name="SellCow_Description">Seleccione el animal que desea vender</string>
     <string name="SellCow_Dialing">Marcación del animal</string>
-    <string name="SellCow_Weight">Recibo Venta</string>
+    <string name="SellCow_Weight">Peso del animal</string>
     <string name="SellCow_Price">Precio del animal</string>
-    <string name="SellCow_Race">Raza</string>
     <string name="SellCow_NameBuyer">Nombre del comprador</string>
     <string name="SellCow_TelBuyer">Telefono del comprador</string>
     <string name="SellCow_Save">Guardar recibo de venta</string>
