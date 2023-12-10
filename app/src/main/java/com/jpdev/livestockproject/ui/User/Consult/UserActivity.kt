@@ -9,6 +9,7 @@ import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityUserBinding
 import com.jpdev.livestockproject.domain.model.User
 import com.jpdev.livestockproject.ui.Home.HomePageActivity
+import com.jpdev.livestockproject.ui.User.UserEditDeleteActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -33,10 +34,11 @@ class UserActivity : AppCompatActivity() {
 
     private fun initListeners(key: String?,keyFarm:String?){
         binding.btnEditInfo.setOnClickListener {
-            //Go to edit info
-        }
-        binding.btnChangePassword.setOnClickListener {
-            //Go to change password
+            val intent = Intent(this,UserEditDeleteActivity::class.java)
+            intent.putExtra("userKey",key)
+            intent.putExtra("farmKey",keyFarm)
+            startActivity(intent)
+            finish()
         }
         binding.btnGoToHome.setOnClickListener {
             val intent = Intent(this,HomePageActivity::class.java)

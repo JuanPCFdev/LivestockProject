@@ -266,4 +266,40 @@ class FirebaseInstance(context: Context) {
             }
         })
     }
+
+    fun editUser(user: User, key: String?) {
+        if (key != null) {
+            val userReference = myRef.child(key)
+
+            userReference.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        val existingUser = snapshot.getValue(User::class.java)
+
+                        existingUser?.apply {
+                            this.name = user.name
+                            this.password = user.password
+                            this.phone = user.phone
+                        }
+
+                        userReference.setValue(existingUser)
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.i("Algo fallo", error.details)
+                }
+            })
+        }
+    }
+
+    fun deleteUser(key: String?) {
+        if (key != null) {
+            val userReference = myRef.child(key)
+
+            userReference.removeValue()
+
+        }
+    }
+
 }

@@ -84,17 +84,8 @@
         android:id="@+id/btnEditInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@android:color/transparent"
+        android:backgroundTint="@color/button_red"
         android:text="@string/User_EditInfo"
-        android:textColor="@color/background_app" />
-
-    <Button
-        android:id="@+id/btnChangePassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:backgroundTint="@android:color/transparent"
-        android:text="@string/User_ChangePassword"
         android:textColor="@color/background_app" />
 
     <Button
