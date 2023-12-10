@@ -38,8 +38,10 @@
     <string name="Finance_description">Dependiendo de la acción que desea realizar de click en el botón correspondiente</string>
     <string name="Finance_receiptBuy">Recibo de compra</string>
     <string name="Finance_receiptSell">Recibo de venta</string>
-    <string name="Finance_earnings">Ganancias</string>
-    <string name="Finance_lost">Perdidas</string>
+    <string name="Finance_earnings_lost">Ganancias y perdidas</string>
+    <string name="Finance_earnings_lost_in">Total invertido</string>
+    <string name="Finance_earnings_lost_abstract">Resumen</string>
+    <string name="Finance_earnings_lost_won">Total ganado</string>
     <string name="Finance_receipt">Historial de recibos</string>
     <string name="Finance_description2">Los botones mostrados a continuación le permiten realizar el registro de un recibo de compra en caso de adquirir un nuevo producto o un recibo de venta en caso de vender ganado </string>
     <string name="User_EditInfo">Editar mi información</string>

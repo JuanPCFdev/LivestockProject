@@ -20,22 +20,21 @@ class FinanceActivity : AppCompatActivity() {
     }
 
     private fun initComponents(key: String?, farmKey: String? ){
-
-        binding.historialRecibo.setOnClickListener{
+        binding.btnHistoryReceipt.setOnClickListener{
             val intent = Intent(this, ReceiptHistoryActivity::class.java)
             intent.putExtra("userKey",key)
             intent.putExtra("farmKey",farmKey)
             startActivity(intent)
             finish()
         }
-        binding.compras.setOnClickListener {
+        binding.btnBuy.setOnClickListener {
             val intent = Intent(this, BuyActivity::class.java)
             intent.putExtra("userKey",key)
             intent.putExtra("farmKey",farmKey)
             startActivity(intent)
             finish()
         }
-        binding.ventas.setOnClickListener {
+        binding.btnSold.setOnClickListener {
             val intent = Intent(this, SellCowActivity::class.java)
             intent.putExtra("userKey",key)
             intent.putExtra("farmKey",farmKey)
@@ -44,6 +43,13 @@ class FinanceActivity : AppCompatActivity() {
         }
         binding.btnReturnHome.setOnClickListener {
             val intent = Intent(this, HomePageActivity::class.java)
+            intent.putExtra("userKey",key)
+            intent.putExtra("farmKey",farmKey)
+            startActivity(intent)
+            finish()
+        }
+        binding.btnEarningsLost.setOnClickListener {
+            val intent = Intent(this, EarningLostReceiptActivity::class.java)
             intent.putExtra("userKey",key)
             intent.putExtra("farmKey",farmKey)
             startActivity(intent)

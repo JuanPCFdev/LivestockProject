@@ -29,6 +29,29 @@ class FarmEditDeleteActivity : AppCompatActivity() {
             showInformation(key, farmKey)
         }
     }
+    private fun initListeners(key:String, farmKey: String){
+
+        binding.btnEdit.setOnClickListener {
+            editFarm(key, farmKey)
+        }
+
+        binding.btnDelete.setOnClickListener{
+            deleteFarm(key, farmKey)
+        }
+        binding.btnRegisterFarm.setOnClickListener{
+            val intent = Intent(this, FarmRegisterActivity::class.java)
+            intent.putExtra("userKey",key)
+            startActivity(intent)
+            finish()
+        }
+        binding.btnHomePage.setOnClickListener{
+            val intent = Intent(this, HomePageActivity::class.java)
+            intent.putExtra("userKey",key)
+            intent.putExtra("farmKey",farmKey)
+            startActivity(intent)
+            finish()
+        }
+    }
     private fun showInformation(key: String, farmKey: String) {
         val etFarmName = binding.etFarmName
         val etFarmHectares = binding.etFarmHectares
@@ -50,60 +73,42 @@ class FarmEditDeleteActivity : AppCompatActivity() {
         }
     }
 
-    private fun initListeners(key:String, farmKey: String){
+    private fun editFarm(key: String, farmKey: String){
         val etFarmName = binding.etFarmName
         val etFarmHectares = binding.etFarmHectares
         val etFarmNumCows = binding.etFarmCapacity
         val etFarmAddress = binding.etFarmAddres
 
-        binding.btnEdit.setOnClickListener {
+        val updatedFarm = Farm(
+            etFarmName.text.toString(),
+            etFarmHectares.text.toString().toDouble(),
+            etFarmNumCows.text.toString().toInt(),
+            etFarmAddress.text.toString()
+            )
+        firebaseInstance.editFarm(updatedFarm, key, farmKey)
 
-            val newName = etFarmName.text.toString()
-            val newHectares = etFarmHectares.text.toString().toDouble()
-            val newNumCows = etFarmNumCows.text.toString().toInt()
-            val newAddress = etFarmAddress.text.toString()
-
-            val updatedFarm = Farm(newName, newHectares, newNumCows, newAddress)
-            firebaseInstance.editFarm(updatedFarm, key, farmKey)
-
-
-            Toast.makeText(
-                this@FarmEditDeleteActivity,
-                "Información de la finca actualizada exitosamente",
-                Toast.LENGTH_SHORT
-            ).show()
-            val intent = Intent(this, HomePageActivity::class.java)
-            intent.putExtra("userKey",key)
-            intent.putExtra("farmKey",farmKey)
-            startActivity(intent)
-            finish()
-        }
-
-        binding.btnDelete.setOnClickListener{
-            firebaseInstance.deleteFarm(key,farmKey)
-            Toast.makeText(
-                this@FarmEditDeleteActivity,
-                "Finca eliminada exitosamente",
-                Toast.LENGTH_SHORT
-            ).show()
-            val intent = Intent(this, FarmActivity::class.java)
-            intent.putExtra("userKey",key)
-            startActivity(intent)
-            finish()
-        }
-        binding.btnRegisterFarm.setOnClickListener{
-            val intent = Intent(this, FarmRegisterActivity::class.java)
-            intent.putExtra("userKey",key)
-            startActivity(intent)
-            finish()
-        }
-        binding.btnHomePage.setOnClickListener{
-            val intent = Intent(this, HomePageActivity::class.java)
-            intent.putExtra("userKey",key)
-            intent.putExtra("farmKey",farmKey)
-            startActivity(intent)
-            finish()
-        }
+        Toast.makeText(
+            this@FarmEditDeleteActivity,
+            "Información de la finca actualizada exitosamente",
+            Toast.LENGTH_SHORT
+        ).show()
+        val intent = Intent(this, HomePageActivity::class.java)
+        intent.putExtra("userKey",key)
+        intent.putExtra("farmKey",farmKey)
+        startActivity(intent)
+        finish()
     }
 
+    private fun deleteFarm(key: String, farmKey: String){
+        firebaseInstance.deleteFarm(key,farmKey)
+        Toast.makeText(
+            this@FarmEditDeleteActivity,
+            "Finca eliminada exitosamente",
+            Toast.LENGTH_SHORT
+        ).show()
+        val intent = Intent(this, FarmActivity::class.java)
+        intent.putExtra("userKey",key)
+        startActivity(intent)
+        finish()
+    }
 }
