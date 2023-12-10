@@ -10,7 +10,7 @@
     app:cardCornerRadius="25dp">
 
     <TextView
-        android:id="@+id/tvFarm"
+        android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="15dp"

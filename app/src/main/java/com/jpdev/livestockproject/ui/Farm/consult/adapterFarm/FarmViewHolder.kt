@@ -11,7 +11,7 @@ class FarmViewHolder(view: View): RecyclerView.ViewHolder(view){
 
     private var binding = ItemFarmBinding.bind(view)
     fun bind(farm: Farm,farmKey:String,userKey:String){
-        binding.tvFarm.text = farm.nameFarm
+        binding.tvTitle.text = farm.nameFarm
 
         val context = binding.cvFarm.context
 
