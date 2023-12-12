@@ -1,9 +1,11 @@
 package com.jpdev.livestockproject.ui.Cow.Consult.Adapter
 
+import android.content.Intent
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.jpdev.livestockproject.databinding.ItemCowBinding
 import com.jpdev.livestockproject.domain.model.Cattle
+import com.jpdev.livestockproject.ui.Cow.Consult.CowDetailsActivity
 
 class CowViewHolder(view: View) : ViewHolder(view) {
 
@@ -24,13 +26,13 @@ class CowViewHolder(view: View) : ViewHolder(view) {
 //            context.startActivity(intent)
 //        }
 //
-//        binding.consult.setOnClickListener {
-//            val intent = Intent(context, RegisterCowActivity::class.java)
-//            intent.putExtra("userKey",user)
-//            intent.putExtra("farmKey",farmKey)
-//            intent.putExtra("cowKey",cowKey)
-//            context.startActivity(intent)
-//        }
+        binding.consult.setOnClickListener {
+            val intent = Intent(context, CowDetailsActivity::class.java)
+            intent.putExtra("userKey",user)
+            intent.putExtra("farmKey",farmKey)
+            intent.putExtra("cowKey",cowKey)
+            context.startActivity(intent)
+        }
 //
 //        binding.edit.setOnClickListener {
 //            val intent = Intent(context, RegisterCowActivity::class.java)
