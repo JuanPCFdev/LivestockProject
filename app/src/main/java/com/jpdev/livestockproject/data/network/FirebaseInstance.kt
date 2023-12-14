@@ -6,6 +6,8 @@ import com.google.firebase.Firebase
 import com.google.firebase.FirebaseApp
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.MutableData
+import com.google.firebase.database.Transaction
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
 import com.jpdev.livestockproject.domain.model.Cattle
@@ -263,6 +265,33 @@ class FirebaseInstance(context: Context) {
 
             override fun onCancelled(error: DatabaseError) {
                 Log.i("Algo fallo", error.details)
+            }
+        })
+    }
+    fun registerCowAndReceipt(cow: Cattle, receipt: Receipt, user: String?, farm: String?) {
+        val userReference = myRef.child(user.toString())
+
+        userReference.runTransaction(object : Transaction.Handler {
+            override fun doTransaction(mutableData: MutableData): Transaction.Result {
+                val existingUser = mutableData.getValue(User::class.java)
+
+                if (existingUser != null) {
+                    existingUser.farms?.get(farm.toString().toInt())?.receipts?.add(receipt)
+
+                    existingUser.farms?.get(farm.toString().toInt())?.cattles?.add(cow)
+
+                    mutableData.value = existingUser
+                }
+
+                return Transaction.success(mutableData)
+            }
+
+            override fun onComplete(databaseError: DatabaseError?, committed: Boolean, dataSnapshot: DataSnapshot?) {
+                if (databaseError != null || !committed) {
+                    Log.e("FirebaseTransaction", "Error: ${databaseError?.message}")
+                } else {
+                    Log.d("FirebaseTransaction", "Transacción completada con éxito")
+                }
             }
         })
     }

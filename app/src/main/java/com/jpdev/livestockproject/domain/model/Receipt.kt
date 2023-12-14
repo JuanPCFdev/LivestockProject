@@ -7,7 +7,7 @@ data class Receipt(
     @SerializedName("nameReceipt") var nameReceipt: String = "",
     @SerializedName("amountPaid") var amountPaid:Double = 0.0,
     @SerializedName("date") var date: String = "",
-    @SerializedName("receiptType") var receiptType:String = "",
-    @SerializedName("buyer") var buyer: Buyer? = null,
-    @SerializedName("seller") var seller: Seller? = null
+    @SerializedName("receiptType") var receiptType:String = ""
+   // @SerializedName("buyer") var buyer: Buyer? = null,
+    //@SerializedName("seller") var seller: Seller? = null
 )
