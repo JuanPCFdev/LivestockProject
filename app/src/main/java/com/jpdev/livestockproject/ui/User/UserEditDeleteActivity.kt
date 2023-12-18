@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.jpdev.livestockproject.R
 import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityUserEditDeleteBinding
 import com.jpdev.livestockproject.domain.model.Farm
 import com.jpdev.livestockproject.domain.model.User
+import com.jpdev.livestockproject.ui.Farm.consult.FarmActivity
 import com.jpdev.livestockproject.ui.Home.HomePageActivity
 import com.jpdev.livestockproject.ui.User.LogIn.LogInActivity
 import kotlinx.coroutines.Dispatchers
@@ -42,12 +44,10 @@ class UserEditDeleteActivity : AppCompatActivity() {
             finish()
         }
         binding.btnSaveChanges.setOnClickListener {
-            saveChanges(key,farmKey)
+            saveChanges(key, farmKey)
         }
         binding.btnDeleteUser.setOnClickListener {
             deleteUser(key)
-            startActivity(Intent(this, LogInActivity::class.java))
-            finish()
         }
     }
 
@@ -69,8 +69,28 @@ class UserEditDeleteActivity : AppCompatActivity() {
         finish()
     }
 
+
+
     private fun deleteUser(key:String?){
-        firebaseInstance.deleteUser(key)
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Eliminar Usuario")
+        builder.setMessage("¿Estás seguro de que quieres eliminar este usuario?")
+
+        builder.setPositiveButton("Sí") { _, _ ->
+            firebaseInstance.deleteUser(key)
+            startActivity(Intent(this, LogInActivity::class.java))
+            finish()
+            Toast.makeText(
+                this@UserEditDeleteActivity,
+                "Usuario eliminado exitosamente",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        builder.setNegativeButton("No") { _, _ ->
+            // No hace nada
+        }
+        val alertDialog: AlertDialog = builder.create()
+        alertDialog.show()
     }
 
     private fun getUserData(key: String?) {
