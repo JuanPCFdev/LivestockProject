@@ -23,6 +23,7 @@ class CowAdapter(
     override fun onBindViewHolder(holder: CowViewHolder, position: Int) {
         val item = cowsList[position]
         val key = Keys[position]
-        holder.bind(item, key, userKey, farmKey)
+        val type = cowsList[position].type
+        holder.bind(item, key, userKey, farmKey, type)
     }
 }
