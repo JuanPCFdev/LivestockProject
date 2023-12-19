@@ -69,8 +69,6 @@ class UserEditDeleteActivity : AppCompatActivity() {
         finish()
     }
 
-
-
     private fun deleteUser(key:String?){
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Eliminar Usuario")

@@ -268,6 +268,7 @@ class FirebaseInstance(context: Context) {
             }
         })
     }
+
     fun registerCowAndReceipt(cow: Cattle, receipt: Receipt, user: String?, farm: String?) {
         val userReference = myRef.child(user.toString())
 
@@ -286,7 +287,11 @@ class FirebaseInstance(context: Context) {
                 return Transaction.success(mutableData)
             }
 
-            override fun onComplete(databaseError: DatabaseError?, committed: Boolean, dataSnapshot: DataSnapshot?) {
+            override fun onComplete(
+                databaseError: DatabaseError?,
+                committed: Boolean,
+                dataSnapshot: DataSnapshot?
+            ) {
                 if (databaseError != null || !committed) {
                     Log.e("FirebaseTransaction", "Error: ${databaseError?.message}")
                 } else {
@@ -331,6 +336,51 @@ class FirebaseInstance(context: Context) {
         }
     }
 
+    fun deleteCow(key: String?, farmKey: String?, cowKey: String?) {
+        if (key != null && farmKey != null && cowKey != null) {
+            val userReference =
+                myRef.child(key).child("farms").child(farmKey).child("cattles").child(cowKey)
+
+            userReference.removeValue()
+
+        }
+    }
+
+    fun editCow(cow: Cattle, key: String?, farmKey: String?, cowKey: String?) {
+        if (key != null && farmKey != null && cowKey != null) {
+            val userReference =
+                myRef.child(key).child("farms").child(farmKey).child("cattles").child(cowKey)
+
+            userReference.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        val existingUser = snapshot.getValue(Cattle::class.java)
+
+                        existingUser?.apply {
+                            this.marking = cow.marking
+                            this.birthdate = cow.birthdate
+                            this.weight = cow.weight
+                            this.age = cow.age
+                            this.breed = cow.breed
+                            this.state = cow.state
+                            this.gender = cow.gender
+                            this.type = cow.type
+                            this.motherMark = cow.motherMark
+                            this.fatherMark = cow.fatherMark
+                            this.cost = cow.cost
+                        }
+
+                        userReference.setValue(existingUser)
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.i("Algo fallo", error.details)
+                }
+            })
+        }
+    }
+
     fun getCowDetails(
         user: String?,
         farmKey: String?,
@@ -348,9 +398,9 @@ class FirebaseInstance(context: Context) {
             override fun onDataChange(snapshot: DataSnapshot) {
                 var cow = snapshot.getValue(Cattle::class.java)
 
-                if(cow!=null){
+                if (cow != null) {
                     callback(cow)
-                }else{
+                } else {
                     callback(Cattle())
                 }
 

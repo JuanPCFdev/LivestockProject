@@ -36,13 +36,14 @@ class CowDetailsActivity : AppCompatActivity() {
             intent.putExtra("userKey", user)
             intent.putExtra("farmKey", farmKey)
             startActivity(intent)
+            finish()
         }
     }
 
     private fun printInfo(user: String?, farmKey: String?, cowKey: String?) {
         firebaseInstance.getCowDetails(user,farmKey,cowKey){
-            if(it != null){
-                var details = "Marcación : ${it.marking}\n" +
+
+                val details = "Marcación : ${it.marking}\n" +
                         "Edad : ${it.age}\n" +
                         "F-Nacimiento : ${it.birthdate}\n" +
                         "Raza : ${it.breed}\n" +
@@ -55,7 +56,6 @@ class CowDetailsActivity : AppCompatActivity() {
 
                 binding.cowDetails.text = details
 
-            }
         }
     }
 
