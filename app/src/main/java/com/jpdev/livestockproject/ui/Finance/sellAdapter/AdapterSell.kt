@@ -17,7 +17,7 @@ class AdapterSell (private val cowsList: List<Cattle>, val Keys: List<String>, v
     override fun onBindViewHolder(holder: SellViewHolder, position: Int) {
         val item = cowsList[position]
         val key = Keys[position]
-        holder.bind(item, key)
+        holder.bind(item, key, userKey, farmKey)
     }
 
 }
