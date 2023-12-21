@@ -13,9 +13,9 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="60dp"
         android:text="@string/SellCow_title"
+        android:textColor="@color/black"
         android:textSize="30dp"
         android:textStyle="bold"
-        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@id/card"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,6 +67,7 @@
                 android:id="@+id/etPeso"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:inputType="number"
                 android:maxLines="1"
                 android:singleLine="true" />
 
@@ -81,6 +82,7 @@
                 android:id="@+id/etPrecioVenta"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:inputType="number"
                 android:maxLines="1"
                 android:singleLine="true" />
 
@@ -92,7 +94,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/etNombreProveedor"
+                android:id="@+id/etNombreComprador"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:maxLines="1"
@@ -106,20 +108,23 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/etTelProveedor"
+                android:id="@+id/etTelComprador"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:inputType="number"
                 android:maxLines="1"
                 android:singleLine="true" />
 
             <Button
+                android:id="@+id/btnSaveSell"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
                 android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="15dp"
                 android:backgroundTint="@color/button_red"
                 android:text="@string/SellCow_Save" />
+
             <Button
                 android:id="@+id/btnHomePage"
                 android:layout_width="wrap_content"
