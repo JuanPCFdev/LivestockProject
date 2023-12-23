@@ -52,7 +52,9 @@ class BuyActivity : AppCompatActivity() {
                 binding.etNameProducto.text.toString(),
                 binding.etPrecioProducto.text.toString().toDouble(),
                 binding.etFechaCompra.text.toString(),
-                receiptType = "ReceiptBuyProduct",
+                receiptType = "Compra producto",
+                binding.etNombreProveedor.text.toString(),
+                binding.etTelProveedor.text.toString()
             )
 
             firebaseInstance.registerReceiptBuy(receipt,key,farmKey)

@@ -64,7 +64,9 @@ class RegisterCowActivity : AppCompatActivity() {
             binding.etMarking.text.toString(),
             binding.etCost.text.toString().toDouble(),
             formattedDate,
-            "lifting"
+            "Compra ganado",
+            "",
+            ""
         )
         val cow = Cattle(
             0,

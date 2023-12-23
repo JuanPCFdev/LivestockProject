@@ -37,7 +37,7 @@ class EditDeleteLiftingActivity : AppCompatActivity() {
             saveChanges(user, farmKey, cowKey)
         }
         binding.btnDeleteCow.setOnClickListener {
-
+            deleteCow(user,farmKey,cowKey)
         }
     }
 

@@ -8,6 +8,7 @@ import com.jpdev.livestockproject.R
 import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityCowDetailsBinding
 import com.jpdev.livestockproject.databinding.ActivityRegisterSellCowBinding
+import com.jpdev.livestockproject.domain.model.Cattle
 import com.jpdev.livestockproject.domain.model.Receipt
 import com.jpdev.livestockproject.ui.Home.HomePageActivity
 import java.text.SimpleDateFormat
@@ -42,6 +43,7 @@ class RegisterSellCowActivity : AppCompatActivity() {
     private fun initListeners(user: String?, farmKey: String?, cowKey: String?) {
         binding.btnSaveSell.setOnClickListener {
             createReceipt(user, farmKey)
+            updateCow(user, farmKey, cowKey)
         }
         binding.btnHomePage.setOnClickListener {
             val intent = Intent(this, HomePageActivity::class.java)
@@ -62,7 +64,9 @@ class RegisterSellCowActivity : AppCompatActivity() {
                 binding.etMarcacion.text.toString(),
                 binding.etPrecioVenta.text.toString().toDouble(),
                 formattedDate,
-                receiptType = "ReceiptSellCow",
+                "Venta ganado",
+                binding.etNombreComprador.text.toString(),
+                binding.etTelComprador.text.toString()
             )
 
             firebaseInstance.registerReceiptBuy(receipt,key,farmKey)
@@ -75,6 +79,27 @@ class RegisterSellCowActivity : AppCompatActivity() {
         }else{
             Toast.makeText(this, "Falta por llenar algun dato", Toast.LENGTH_SHORT).show()
         }
+    }
+  private fun updateCow(user : String?, farmKey: String?, cowKey: String?){
+        firebaseInstance.getCowDetails(user, farmKey, cowKey) {
+            val updatedCow = Cattle(
+                0,
+                it.marking,
+                it.birthdate,
+                binding.etPeso.text.toString().toInt(),
+                it.age,
+                it.breed,
+                "vendido",
+                it.gender,
+                it.type,
+                it.motherMark,
+                it.fatherMark,
+                it.cost
+            )
+
+            firebaseInstance.editCow(updatedCow, user, farmKey, cowKey)
+        }
+
     }
     private fun validateCredentials():Boolean {
         var success = false
