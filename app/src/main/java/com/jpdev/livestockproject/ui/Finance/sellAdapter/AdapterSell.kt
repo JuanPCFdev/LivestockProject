@@ -1,6 +1,7 @@
 package com.jpdev.livestockproject.ui.Finance.sellAdapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jpdev.livestockproject.R
@@ -17,7 +18,10 @@ class AdapterSell (private val cowsList: List<Cattle>, val Keys: List<String>, v
     override fun onBindViewHolder(holder: SellViewHolder, position: Int) {
         val item = cowsList[position]
         val key = Keys[position]
-        holder.bind(item, key, userKey, farmKey)
+        val state = cowsList[position].state
+        if(state != "vendido"){
+            holder.bind(item, key, userKey, farmKey)
+        }else{holder.itemView.visibility = View.GONE}
     }
 
 }

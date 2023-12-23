@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import com.jpdev.livestockproject.databinding.ItemFarmBinding
 import com.jpdev.livestockproject.domain.model.Cattle
-import com.jpdev.livestockproject.ui.Cow.Lifting.EditDelete.EditDeleteLiftingActivity
 import com.jpdev.livestockproject.ui.Finance.RegisterSellCowActivity
 
 class SellViewHolder(view: View) : RecyclerView.ViewHolder(view){
