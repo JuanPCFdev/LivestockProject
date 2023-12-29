@@ -25,7 +25,6 @@ class ReceiptHistoryActivity : AppCompatActivity() {
         firebaseInstance = FirebaseInstance(this)
         val key = intent.extras?.getString("userKey")
         val farmKey = intent.extras?.getString("farmKey")
-        val receiptKey = intent.extras?.getString("ReceiptKey")
         initComponents(key, farmKey)
     }
 

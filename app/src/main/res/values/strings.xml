@@ -81,4 +81,9 @@
     <string name="SellCow_NameBuyer">Nombre del comprador</string>
     <string name="SellCow_TelBuyer">Telefono del comprador</string>
     <string name="SellCow_Save">Guardar recibo de venta</string>
+    <string name="EditDeleteReceipt_name">Nombre del recibo</string>
+    <string name="EditDeleteReceipt_price">valor del recibo</string>
+    <string name="EditDeleteReceipt_date">Fecha de recibo</string>
+    <string name="EditDeleteReceipt_edit">Editar Recibo</string>
+    <string name="EditDeleteReceipt_delete">Eliminar Recibo</string>
 </resources>
