@@ -170,8 +170,8 @@ class FirebaseInstance(context: Context) {
     fun getCleanSnapshot(snapshot: DataSnapshot): List<Pair<String, User>> {
         val list = snapshot.children.map { user ->
             Pair(user.key!!, user.getValue(User::class.java)!!)
-        }
-        return list
+      }
+       return list
     }
 
     fun getFarmDetails(userKey: String, farmKey: String, callback: (Farm?) -> Unit) {
@@ -426,7 +426,7 @@ class FirebaseInstance(context: Context) {
                 val receiptKey = mutableListOf<String>()
 
                 for (receiptSnapshot in snapshot.children) {
-                    // Obtiene cada finca y la convierte a la clase Farm
+
                     val key = receiptSnapshot.key.toString()
                     val receipt = receiptSnapshot.getValue(Receipt::class.java)
 
@@ -444,5 +444,73 @@ class FirebaseInstance(context: Context) {
             }
         })
     }
+    fun getReceiptDetails(
+        user: String?,
+        farmKey: String?,
+        receiptKey: String?,
+        callback: (Receipt) -> Unit
+    ) {
+        val userReference = myRef.child(user.orEmpty()).child("farms")
+            .child(farmKey.orEmpty())
+            .child("receipts")
+            .child(receiptKey.orEmpty())
+
+        userReference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    val receipt = snapshot.getValue(Receipt::class.java)
+                    callback(receipt ?: Receipt())
+                } else {
+                    callback(Receipt())
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("Firebase", "Error en la lectura de datos: ${error.details}")
+                callback(Receipt())
+            }
+        })
+    }
+
+    fun deleteReceipt(key: String?, farmKey: String?, receiptKey: String?) {
+          if (key != null && farmKey != null && receiptKey != null) {
+              val userReference =
+                  myRef.child(key).child("farms").child(farmKey).child("receipts").child(receiptKey)
+
+              userReference.removeValue()
+          }
+      }
+      fun editReceipt(receipt: Receipt, key: String?, farmKey: String?, receiptKey: String?) {
+          if (key != null && farmKey != null && receiptKey != null) {
+              val userReference =
+                  myRef.child(key).child("farms").child(farmKey).child("receipts").child(receiptKey)
+
+              userReference.addListenerForSingleValueEvent(object : ValueEventListener {
+                  override fun onDataChange(snapshot: DataSnapshot) {
+                      if (snapshot.exists()) {
+                          val existingUser = snapshot.getValue(Receipt::class.java)
+
+                          existingUser?.apply {
+                              this.idReceipt = receipt.idReceipt
+                              this.nameReceipt = receipt.nameReceipt
+                              this.amountPaid = receipt.amountPaid
+                              this.date = receipt.date
+                              this.receiptType = receipt.receiptType
+                              this.name = receipt.name
+                              this.tel = receipt.tel
+                          }
+
+                          userReference.setValue(existingUser)
+                      }
+                  }
+
+                  override fun onCancelled(error: DatabaseError) {
+                      Log.i("Algo fallo", error.details)
+                  }
+              })
+          }
+      }
+
+
 
 }
