@@ -19,7 +19,7 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
-@Suppress("UNCHECKED_CAST")
+@Suppress("UNCHECKED_CAST", "NAME_SHADOWING")
 class FirebaseInstance(context: Context) {
 
     private val database = Firebase.database
@@ -140,11 +140,21 @@ class FirebaseInstance(context: Context) {
 
                 // Itera sobre los hijos (fincas) del nodo "farms"
                 for (farmSnapshot in snapshot.children) {
-                    // Obtiene cada finca y la convierte a la clase Farm
-                    val key = farmSnapshot.key.toString()
-                    val farm = farmSnapshot.getValue(Farm::class.java)
+                    val key = farmSnapshot.key ?: ""
+                    val farmData: Map<String, Any>? = farmSnapshot.getValue(object : GenericTypeIndicator<Map<String, Any>>() {})
 
-                    if (farm != null && key != null) {
+                    if (farmData != null) {
+
+                        val farm = Farm(
+                            nameFarm = farmData["nameFarm"] as? String ?: "",
+                            hectares = farmData["hectares"] as? Double ?: 0.0,
+                            numCows = farmData["numCows"] as? Int ?: 0,
+                            address = farmData["address"] as? String ?: "",
+                            cattles = farmData["cattles"] as? MutableList<Cattle> ?: mutableListOf(),
+                            receipts = farmData["receipts"] as? MutableList<Receipt> ?: mutableListOf()
+                        )
+
+
                         farms.add(farm)
                         farmKeys.add(key)
                     }
@@ -361,7 +371,7 @@ class FirebaseInstance(context: Context) {
             val userReference =
                 myRef.child(key).child("farms").child(farmKey).child("cattles").child(cowKey)
 
-            userReference.child(cowKey).setValue(null)
+            userReference.setValue(null)
         }
     }
 
