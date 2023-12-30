@@ -27,7 +27,6 @@ class LogInActivity : AppCompatActivity() {
         firebaseInstance = FirebaseInstance(this)
         getUsers()
         initListeners()
-
     }
 
     private fun initListeners(){
@@ -62,9 +61,14 @@ class LogInActivity : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val list = firebaseInstance.getCleanSnapshot(snapshot)
                 userList = list
+
+                if (userList == null) {
+                    userList = emptyList()
+                }
             }
             override fun onCancelled(error: DatabaseError) {
                 Log.i("Algo fallo :p", error.details)
+                userList = emptyList()
             }
         }
         firebaseInstance.setupDatabaseListener(postListener)

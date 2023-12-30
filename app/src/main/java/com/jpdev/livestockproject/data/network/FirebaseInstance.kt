@@ -6,6 +6,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.FirebaseApp
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.GenericTypeIndicator
 import com.google.firebase.database.MutableData
 import com.google.firebase.database.Transaction
 import com.google.firebase.database.ValueEventListener
@@ -18,6 +19,7 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
+@Suppress("UNCHECKED_CAST")
 class FirebaseInstance(context: Context) {
 
     private val database = Firebase.database
@@ -168,10 +170,28 @@ class FirebaseInstance(context: Context) {
     }
 
     fun getCleanSnapshot(snapshot: DataSnapshot): List<Pair<String, User>> {
-        val list = snapshot.children.map { user ->
-            Pair(user.key!!, user.getValue(User::class.java)!!)
-      }
-       return list
+        val list = mutableListOf<Pair<String, User>>()
+
+        for (userSnapshot in snapshot.children) {
+            val userKey = userSnapshot.key ?: ""
+
+            // Intenta obtener un objeto genérico de Firebase (en este caso, un Map)
+            val userData: Map<String, Any>? = userSnapshot.getValue(object : GenericTypeIndicator<Map<String, Any>>() {})
+
+            // Verifica si los datos son válidos y luego crea un objeto User
+            if (userData != null) {
+                val user = User(
+                    userId = userData["userId"] as? Int ?: 0,
+                    name = userData["name"] as? String ?: "",
+                    password = userData["password"] as? String ?: "",
+                    phone = userData["phone"] as? String ?: "",
+                    farms = userData["farms"] as? MutableList<Farm> ?: mutableListOf()
+                )
+                list.add(Pair(userKey, user))
+            }
+        }
+
+        return list
     }
 
     fun getFarmDetails(userKey: String, farmKey: String, callback: (Farm?) -> Unit) {
@@ -341,8 +361,7 @@ class FirebaseInstance(context: Context) {
             val userReference =
                 myRef.child(key).child("farms").child(farmKey).child("cattles").child(cowKey)
 
-            userReference.removeValue()
-
+            userReference.child(cowKey).setValue(null)
         }
     }
 
