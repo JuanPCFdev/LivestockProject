@@ -17,9 +17,10 @@ class CowViewHolder(view: View) : ViewHolder(view) {
 
         val context = binding.cvCow.context
 
+        binding.tvWeight.text = cow.weight.toString()
         binding.tvMarking.text = cow.marking
         binding.tvGender.text = cow.gender
-        binding.tvWeight.text = cow.weight.toString()
+
 
 //        binding.delete.setOnClickListener {
 //            val intent = Intent(context, RegisterCowActivity::class.java)
