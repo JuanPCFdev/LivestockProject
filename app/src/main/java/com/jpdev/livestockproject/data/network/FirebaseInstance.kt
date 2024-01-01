@@ -109,9 +109,10 @@ class FirebaseInstance(context: Context) {
 
         val valueEventListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val userData: Map<String, Any>? = snapshot.getValue(object : GenericTypeIndicator<Map<String, Any>>() {})
+                val userData: Map<String, Any>? =
+                    snapshot.getValue(object : GenericTypeIndicator<Map<String, Any>>() {})
 
-                if(userData != null){
+                if (userData != null) {
                     val user = User(
                         userId = userData["userId"].toString().toInt() as? Int ?: 0,
                         name = userData["name"] as? String ?: "",
@@ -306,25 +307,15 @@ class FirebaseInstance(context: Context) {
         })
     }
 
-    fun registerCow(cow: Cattle, user: String?, farm: String?) {
-        val userReference = myRef.child(user.toString())
+    fun registerCow(cow: Cattle, userKey: String?, farm: String?) {
+        val userReference = myRef.child(userKey.toString())
 
         userReference.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
-                    val userData: Map<String, Any>? = snapshot.getValue(object : GenericTypeIndicator<Map<String, Any>>() {})
-
-                    if(userData != null){
-                        val user = User(
-                            userId = userData["userId"].toString().toInt() as? Int ?: 0,
-                            name = userData["name"] as? String ?: "",
-                            password = userData["password"] as? String ?: "",
-                            phone = userData["phone"] as? String ?: "",
-                            farms = userData["farms"] as? MutableList<Farm> ?: mutableListOf()
-                        )
-                        user?.farms?.get(farm.toString().toInt())?.cattles?.add(cow)
-                        userReference.setValue(user)
-                    }
+                    val existingUser = snapshot.getValue(User::class.java)
+                    existingUser?.farms?.get(farm.toString().toInt())?.cattles?.add(cow)
+                    userReference.setValue(existingUser)
                 }
             }
 
@@ -420,10 +411,27 @@ class FirebaseInstance(context: Context) {
 
     fun deleteCow(key: String?, farmKey: String?, cowKey: String?) {
         if (key != null && farmKey != null && cowKey != null) {
-            val userReference =
-                myRef.child(key).child("farms").child(farmKey).child("cattles").child(cowKey)
-            userReference.setValue(null)
+            val userReference = myRef.child(key)
+
+            userReference.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        val existingUser = snapshot.getValue(User::class.java)
+
+                        val cattleRemove = existingUser?.farms?.get(farmKey.toString().toInt())?.cattles?.get(cowKey.toString().toInt())
+                        existingUser?.farms?.get(farmKey.toString().toInt())?.cattles?.remove(cattleRemove)
+
+                        userReference.setValue(existingUser)
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.i("Algo fallo", error.details)
+                }
+            })
+
         }
+
     }
 
     fun editCow(cow: Cattle, key: String?, farmKey: String?, cowKey: String?) {
@@ -613,6 +621,4 @@ class FirebaseInstance(context: Context) {
             })
         }
     }
-
-
 }
