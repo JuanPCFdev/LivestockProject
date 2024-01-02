@@ -584,10 +584,25 @@ class FirebaseInstance(context: Context) {
 
     fun deleteReceipt(key: String?, farmKey: String?, receiptKey: String?) {
         if (key != null && farmKey != null && receiptKey != null) {
-            val userReference =
-                myRef.child(key).child("farms").child(farmKey).child("receipts").child(receiptKey)
+            val userReference = myRef.child(key)
 
-            userReference.removeValue()
+            userReference.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        val existingUser = snapshot.getValue(User::class.java)
+
+                        val receiptRemove = existingUser?.farms?.get(farmKey.toString().toInt())?.receipts?.get(receiptKey.toString().toInt())
+                        existingUser?.farms?.get(farmKey.toString().toInt())?.receipts?.remove(receiptRemove)
+
+                        userReference.setValue(existingUser)
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.i("Algo fallo", error.details)
+                }
+            })
+
         }
     }
 
