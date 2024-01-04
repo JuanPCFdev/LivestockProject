@@ -83,28 +83,35 @@ class EditDeleteLiftingActivity : AppCompatActivity() {
     }
 
     private fun deleteCow(user: String?, farmKey: String?, cowKey: String?) {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Eliminar Vaca")
-        builder.setMessage("¿Estás seguro de que quieres eliminar este animal?")
+        firebaseInstance.getCowDetails(user, farmKey, cowKey) { cow ->
+            val nameReceiptCow = cow.marking
 
-        builder.setPositiveButton("Sí") { _, _ ->
-            firebaseInstance.deleteCow(user, farmKey, cowKey)
-            val intent = Intent(this, HomePageActivity::class.java)
-            intent.putExtra("userKey",user)
-            intent.putExtra("farmKey",farmKey)
-            startActivity(intent)
-            finish()
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Eliminar vaca")
+            builder.setMessage("¿Estás seguro de que quieres eliminar esta vaca?, si se elimina tambien se eliminara el recibo tanto de compra como de venta")
 
-            Toast.makeText(
-                this@EditDeleteLiftingActivity,
-                "Vaca eliminada exitosamente",
-                Toast.LENGTH_SHORT
-            ).show()
+            builder.setPositiveButton("Sí") { _, _ ->
+                    // Eliminar la vaca y el recibo
+                firebaseInstance.deleteReceiptAndCowByCommonName(user, farmKey, nameReceiptCow)
+
+                val intent = Intent(this, HomePageActivity::class.java)
+                intent.putExtra("userKey", user)
+                intent.putExtra("farmKey", farmKey)
+                startActivity(intent)
+                finish()
+
+                Toast.makeText(
+                    this@EditDeleteLiftingActivity,
+                    "Vaca y recibo eliminados exitosamente",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
+            builder.setNegativeButton("No") { _, _ ->
+                // No hace nada
+            }
+            val alertDialog: AlertDialog = builder.create()
+            alertDialog.show()
         }
-        builder.setNegativeButton("No") { _, _ ->
-            // No hace nada
-        }
-        val alertDialog: AlertDialog = builder.create()
-        alertDialog.show()
     }
 }
