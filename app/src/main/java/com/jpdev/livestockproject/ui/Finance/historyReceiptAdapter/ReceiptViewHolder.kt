@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import com.jpdev.livestockproject.databinding.ItemReceiptBinding
 import com.jpdev.livestockproject.domain.model.Receipt
+import com.jpdev.livestockproject.ui.Finance.ConsultReceiptActivity
 import com.jpdev.livestockproject.ui.Finance.EditDeleteReceiptActivity
 
 class ReceiptViewHolder(view: View) : RecyclerView.ViewHolder(view){
@@ -18,7 +19,7 @@ class ReceiptViewHolder(view: View) : RecyclerView.ViewHolder(view){
         binding.tvType.text = receipt.receiptType
 
         binding.cvReceipt.setOnClickListener {
-            val intent = Intent(context, EditDeleteReceiptActivity::class.java)
+            val intent = Intent(context, ConsultReceiptActivity::class.java)
             intent.putExtra("userKey",user)
             intent.putExtra("farmKey",farmKey)
             intent.putExtra("ReceiptKey",ReceiptKey)

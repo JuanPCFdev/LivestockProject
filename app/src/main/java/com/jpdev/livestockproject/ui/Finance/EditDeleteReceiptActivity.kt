@@ -39,9 +39,6 @@ class EditDeleteReceiptActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-        binding.btnDelete.setOnClickListener {
-            deleteReceipt(key,farmKey,receiptKey)
-        }
         binding.btnEdit.setOnClickListener {
             editReceipt(key,farmKey,receiptKey)
         }
@@ -54,31 +51,7 @@ class EditDeleteReceiptActivity : AppCompatActivity() {
             binding.etReceiptData.setText(it.date)
         }
     }
-    private fun deleteReceipt(user: String?, farmKey: String?, receiptKey: String?) {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Eliminar Recibo")
-        builder.setMessage("¿Estás seguro de que quieres eliminar este recibo?, si se elimina ya no se tomara en cuenta para hacer las cuentas de la finca")
 
-        builder.setPositiveButton("Sí") { _, _ ->
-            firebaseInstance.deleteReceipt(user, farmKey, receiptKey)
-            val intent = Intent(this, HomePageActivity::class.java)
-            intent.putExtra("userKey",user)
-            intent.putExtra("farmKey",farmKey)
-            startActivity(intent)
-            finish()
-
-            Toast.makeText(
-                this@EditDeleteReceiptActivity,
-                "recibo eliminado exitosamente",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-        builder.setNegativeButton("No") { _, _ ->
-            // No hace nada
-        }
-        val alertDialog: AlertDialog = builder.create()
-        alertDialog.show()
-    }
     private fun editReceipt(key: String?, farmKey: String?,receiptKey: String?) {
         firebaseInstance.getReceiptDetails(key, farmKey, receiptKey) { originalReceipt ->
             Log.d("OriginalReceiptType", originalReceipt?.javaClass?.simpleName ?: "null")
