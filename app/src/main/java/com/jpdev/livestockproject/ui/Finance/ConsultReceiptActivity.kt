@@ -63,29 +63,47 @@ class ConsultReceiptActivity : AppCompatActivity() {
         }
     }
 
-    private fun deleteReceipt(user: String?, farmKey: String?, receiptKey: String?) {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Eliminar Recibo")
-        builder.setMessage("¿Estás seguro de que quieres eliminar este recibo?, si se elimina ya no se tomara en cuenta para hacer las cuentas de la finca")
 
-        builder.setPositiveButton("Sí") { _, _ ->
-            firebaseInstance.deleteReceipt(user, farmKey, receiptKey)
-            val intent = Intent(this, HomePageActivity::class.java)
-            intent.putExtra("userKey",user)
-            intent.putExtra("farmKey",farmKey)
-            startActivity(intent)
-            finish()
+   private fun deleteReceipt(user: String?, farmKey: String?, receiptKey: String?) {
+       // Obtener detalles del recibo, incluido el tipo
+       firebaseInstance.getReceiptDetails(user, farmKey, receiptKey) { receipt ->
+           val receiptType = receipt.receiptType
+           val receiptName = receipt.nameReceipt
 
-            Toast.makeText(
-                this@ConsultReceiptActivity,
-                "recibo eliminado exitosamente",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-        builder.setNegativeButton("No") { _, _ ->
-            // No hace nada
-        }
-        val alertDialog: AlertDialog = builder.create()
-        alertDialog.show()
-    }
+           val builder = AlertDialog.Builder(this)
+           builder.setTitle("Eliminar Recibo")
+           builder.setMessage("¿Estás seguro de que quieres eliminar este recibo?, si se elimina ya no se tomará en cuenta para hacer las cuentas de la finca, en caso de ser un recibo de compra de ganado se eliminara la vaca")
+
+           builder.setPositiveButton("Sí") { _, _ ->
+               when (receiptType) {
+                   "Compra ganado" -> {
+                       // Eliminar la vaca y el recibo
+                       firebaseInstance.deleteReceiptAndCowByCommonName(user, farmKey, receiptName)
+                   }
+                   else -> {
+                       // Acción por defecto (eliminar solo el recibo)
+                       firebaseInstance.deleteReceipt(user, farmKey, receiptKey)
+                   }
+               }
+
+               val intent = Intent(this, HomePageActivity::class.java)
+               intent.putExtra("userKey", user)
+               intent.putExtra("farmKey", farmKey)
+               startActivity(intent)
+               finish()
+
+               Toast.makeText(
+                   this@ConsultReceiptActivity,
+                   "Recibo eliminado exitosamente",
+                   Toast.LENGTH_SHORT
+               ).show()
+           }
+
+           builder.setNegativeButton("No") { _, _ ->
+               // No hace nada
+           }
+           val alertDialog: AlertDialog = builder.create()
+           alertDialog.show()
+       }
+   }
 }

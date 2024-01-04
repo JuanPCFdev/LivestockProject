@@ -636,4 +636,31 @@ class FirebaseInstance(context: Context) {
             })
         }
     }
+    fun deleteReceiptAndCowByCommonName(key: String?, farmKey: String?, commonName: String?) {
+        if (key != null && farmKey != null && commonName != null) {
+            val userReference = myRef.child(key)
+
+            userReference.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        val existingUser = snapshot.getValue(User::class.java)
+
+                        // Buscar y eliminar el recibo por nombre común
+                        existingUser?.farms?.get(farmKey.toString().toInt())?.receipts?.removeAll { it.nameReceipt == commonName }
+
+                        // Buscar y eliminar la vaca por nombre común
+                        val farm = existingUser?.farms?.get(farmKey.toString().toInt())
+                        farm?.cattles?.removeAll { it.marking == commonName }
+
+                        // Actualizar la referencia en la base de datos
+                        userReference.setValue(existingUser)
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.i("Algo fallo", error.details)
+                }
+            })
+        }
+    }
 }
