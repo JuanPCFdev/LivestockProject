@@ -11,8 +11,7 @@ class CowAdapter(
     val Keys: List<String>,
     val userKey: String,
     val farmKey: String
-) :
-    RecyclerView.Adapter<CowViewHolder>() {
+) : RecyclerView.Adapter<CowViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CowViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         return CowViewHolder(layoutInflater.inflate(R.layout.item_cow, parent, false))

@@ -11,6 +11,7 @@ import com.jpdev.livestockproject.ui.Cow.HomeCow.HomeCowActivity
 import com.jpdev.livestockproject.ui.Farm.deleteEdit.FarmEditDeleteActivity
 import com.jpdev.livestockproject.ui.Finance.FinanceActivity
 import com.jpdev.livestockproject.ui.User.Consult.UserActivity
+import com.jpdev.livestockproject.ui.Vaccine.consult.ConsultVaccineActivity
 
 
 class HomePageActivity : AppCompatActivity() {
@@ -71,7 +72,7 @@ class HomePageActivity : AppCompatActivity() {
             finish()
         }
         binding.btnConsultVaccine.setOnClickListener {
-        //    val intent = Intent(this, VaccineActivity::class.java)
+            val intent = Intent(this, ConsultVaccineActivity::class.java)
             intent.putExtra("userKey",key)
             intent.putExtra("farmKey",farmKey)
             startActivity(intent)

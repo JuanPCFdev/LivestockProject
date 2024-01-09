@@ -14,5 +14,6 @@ data class Cattle(
     @SerializedName("type") var type: String = "",
     @SerializedName("motherMark") var motherMark: String = "",
     @SerializedName("fatherMark") var fatherMark: String = "",
-    @SerializedName("cost") var cost: Double = 0.0
+    @SerializedName("cost") var cost: Double = 0.0,
+    @SerializedName("vaccines") var vaccines: MutableList<Vaccine> = emptyList<Vaccine>().toMutableList()
 )
