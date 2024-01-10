@@ -15,6 +15,7 @@ import com.jpdev.livestockproject.domain.model.Cattle
 import com.jpdev.livestockproject.domain.model.Farm
 import com.jpdev.livestockproject.domain.model.Receipt
 import com.jpdev.livestockproject.domain.model.User
+import com.jpdev.livestockproject.domain.model.Vaccine
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -663,4 +664,111 @@ class FirebaseInstance(context: Context) {
             })
         }
     }
+
+    fun registerVaccine(vaccine: Vaccine, user: String?, farmKey: String?, cowKey: String?) {
+        val userReference = myRef.child(user.toString())
+            .child("farms")
+            .child(farmKey.toString())
+            .child("cattles")
+            .child(cowKey.toString())
+
+        userReference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    val existingCattle = snapshot.getValue(Cattle::class.java)
+                    val vaccineList = existingCattle?.vaccines
+                    vaccineList?.add(vaccine)
+                    existingCattle?.apply {
+                        if (vaccineList != null) {
+                            this.vaccines = vaccineList
+                        }
+                    }
+                    userReference.setValue(existingCattle)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.i("Algo fallo", error.details)
+            }
+        })
+    }
+
+    fun getVaccineDetails(
+        user: String?,
+        farmKey: String?,
+        cowKey: String?,
+        vaccineKey: String?,
+        callback: (Vaccine) -> Unit
+    ) {
+
+        val userReference = myRef.child(user.toString()).child("farms")
+            .child(farmKey.toString())
+            .child("cattles")
+            .child(cowKey.toString())
+            .child("vaccines")
+            .child(vaccineKey.toString())
+
+        userReference.addListenerForSingleValueEvent(object : ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var vaccineData = snapshot.getValue(Vaccine::class.java)
+
+                if (vaccineData != null) {
+                    callback(vaccineData)
+                } else {
+                    callback(Vaccine())
+                }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.i("Algo fallo", error.details)
+                callback(Vaccine())
+            }
+        })
+    }
+
+    fun getCowVaccines(
+        user: String?,
+        farmKey: String?,
+        cowKey: String?,
+        callback: (List<Vaccine>?, List<String>?) -> Unit
+    ) {
+
+        val userReference = myRef.child(user.toString())
+            .child("farms")
+            .child(farmKey.toString())
+            .child("cattles")
+            .child(cowKey.toString())
+            .child("vaccines")
+
+        userReference.addListenerForSingleValueEvent(object : ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                val vaccineKeys = mutableListOf<String>()
+                val vaccines = mutableListOf<Vaccine>()
+
+                for (vaccineSnapshot in snapshot.children) {
+
+                    val key = vaccineSnapshot.key.toString()
+                    val vaccineData = vaccineSnapshot.getValue(Vaccine::class.java)
+
+                    if (vaccineData != null) {
+                        vaccines.add(vaccineData)
+                        vaccineKeys.add(key)
+                    }
+
+                }
+                callback(vaccines, vaccineKeys)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.i("Algo fallo", error.details)
+                callback(null, null)
+            }
+        })
+    }
+
+
 }

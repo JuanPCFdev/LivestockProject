@@ -15,6 +15,15 @@
         android:theme="@style/Theme.LivestockProject"
         tools:targetApi="31">
         <activity
+            android:name=".ui.Vaccine.consult.rvVaccine.RvVaccineActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Vaccine.consult.VaccineDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Vaccine.register.RegisterVaccineActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.Vaccine.consult.ConsultVaccineActivity"
             android:exported="false" />
         <activity

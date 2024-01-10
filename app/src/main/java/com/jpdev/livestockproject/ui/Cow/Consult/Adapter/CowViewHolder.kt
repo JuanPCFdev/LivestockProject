@@ -21,15 +21,6 @@ class CowViewHolder(view: View) : ViewHolder(view) {
         binding.tvMarking.text = cow.marking
         binding.tvGender.text = cow.gender
 
-
-//        binding.delete.setOnClickListener {
-//            val intent = Intent(context, RegisterCowActivity::class.java)
-//            intent.putExtra("userKey",user)
-//            intent.putExtra("farmKey",farmKey)
-//            intent.putExtra("cowKey",cowKey)
-//            context.startActivity(intent)
-//        }
-//
         binding.consult.setOnClickListener {
             val intent = Intent(context, CowDetailsActivity::class.java)
             intent.putExtra("userKey",user)

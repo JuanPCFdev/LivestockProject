@@ -7,6 +7,9 @@ import com.jpdev.livestockproject.databinding.ItemCowBinding
 import com.jpdev.livestockproject.databinding.ItemVaccinateBinding
 import com.jpdev.livestockproject.domain.model.Cattle
 import com.jpdev.livestockproject.ui.Cow.Consult.CowDetailsActivity
+import com.jpdev.livestockproject.ui.Vaccine.consult.VaccineDetailsActivity
+import com.jpdev.livestockproject.ui.Vaccine.consult.rvVaccine.RvVaccineActivity
+import com.jpdev.livestockproject.ui.Vaccine.register.RegisterVaccineActivity
 
 class VaccineViewHolder(view:View) : ViewHolder(view) {
 
@@ -21,7 +24,7 @@ class VaccineViewHolder(view:View) : ViewHolder(view) {
         binding.tvGender.text = cow.gender
 
         binding.consult.setOnClickListener {
-            val intent = Intent(context, CowDetailsActivity::class.java)
+            val intent = Intent(context, RvVaccineActivity::class.java)
             intent.putExtra("userKey",user)
             intent.putExtra("farmKey",farmKey)
             intent.putExtra("cowKey",cowKey)
