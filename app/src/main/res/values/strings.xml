@@ -41,6 +41,7 @@
     <string name="Finance_earnings_lost">Ganancias y perdidas</string>
     <string name="Finance_earnings_lost_in">Total invertido</string>
     <string name="Finance_earnings_lost_abstract">Resumen</string>
+    <string name="Finance_earnings_lost_abstract_vaccine">Total gastado en vacunas</string>
     <string name="Finance_earnings_lost_won">Total ganado</string>
     <string name="Finance_receipt">Historial de recibos</string>
     <string name="Finance_description2">Los botones mostrados a continuación le permiten realizar el registro de un recibo de compra en caso de adquirir un nuevo producto o un recibo de venta en caso de vender ganado </string>
@@ -86,4 +87,8 @@
     <string name="EditDeleteReceipt_date">Fecha de recibo</string>
     <string name="EditDeleteReceipt_edit">Editar Recibo</string>
     <string name="EditDeleteReceipt_delete">Eliminar Recibo</string>
+    <string name="AbstractNothing">Actualmente, no se han registrado ganancias ni pérdidas. Le invitamos a registrar sus recibos y animales para obtener un balance general de su finca.
+                                   Esto le permitirá tener un seguimiento detallado de sus transacciones y evaluar el rendimiento económico de su finca.</string>
+    <string name="AbstractWon">Actualmente, ha acumulado ganancias totales por un monto de: </string>
+    <string name="AbstractLost">Aunque actualmente se registran pérdidas, a medida que transcurra el tiempo y continúe vendiendo más animales, existe la oportunidad de generar ganancias y recuperarse financieramente. Sus perdidas son de: </string>
 </resources>
