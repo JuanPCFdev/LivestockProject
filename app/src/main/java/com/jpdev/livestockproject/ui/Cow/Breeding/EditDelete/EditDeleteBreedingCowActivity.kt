@@ -5,12 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.jpdev.livestockproject.R
 import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityEditDeleteBreedingCowBinding
 import com.jpdev.livestockproject.domain.model.Cattle
 import com.jpdev.livestockproject.ui.Home.HomePageActivity
-import com.jpdev.livestockproject.ui.User.LogIn.LogInActivity
 
 class EditDeleteBreedingCowActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditDeleteBreedingCowBinding

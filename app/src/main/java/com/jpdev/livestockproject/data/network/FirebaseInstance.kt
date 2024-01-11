@@ -419,8 +419,43 @@ class FirebaseInstance(context: Context) {
                     if (snapshot.exists()) {
                         val existingUser = snapshot.getValue(User::class.java)
 
-                        val cattleRemove = existingUser?.farms?.get(farmKey.toString().toInt())?.cattles?.get(cowKey.toString().toInt())
-                        existingUser?.farms?.get(farmKey.toString().toInt())?.cattles?.remove(cattleRemove)
+                        val cattleRemove =
+                            existingUser?.farms?.get(farmKey.toString().toInt())?.cattles?.get(
+                                cowKey.toString().toInt()
+                            )
+                        existingUser?.farms?.get(farmKey.toString().toInt())?.cattles?.remove(
+                            cattleRemove
+                        )
+
+                        userReference.setValue(existingUser)
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.i("Algo fallo", error.details)
+                }
+            })
+
+        }
+
+    }
+
+    fun deleteVaccine(key: String?, farmKey: String?, cowKey: String?, vaccineKey: String?) {
+        if (key != null && farmKey != null && cowKey != null && vaccineKey != null) {
+            val userReference = myRef.child(key)
+
+            userReference.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        val existingUser = snapshot.getValue(User::class.java)
+
+                        val vaccineRemove =
+                            existingUser?.farms?.get(farmKey.toString().toInt())?.cattles?.get(
+                                cowKey.toString().toInt()
+                            )?.vaccines?.get(vaccineKey.toString().toInt())
+                        existingUser?.farms?.get(
+                            farmKey.toString().toInt()
+                        )?.cattles?.get(cowKey.toString().toInt())?.vaccines?.remove(vaccineRemove)
 
                         userReference.setValue(existingUser)
                     }
@@ -460,6 +495,47 @@ class FirebaseInstance(context: Context) {
                         }
 
                         userReference.setValue(existingUser)
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.i("Algo fallo", error.details)
+                }
+            })
+        }
+    }
+
+    fun editVaccine(
+        vaccine: Vaccine,
+        key: String?,
+        farmKey: String?,
+        cowKey: String?,
+        vaccineKey: String?
+    ) {
+        if (key != null && farmKey != null && cowKey != null && vaccineKey != null) {
+            val userReference =
+                myRef.child(key)
+                    .child("farms")
+                    .child(farmKey)
+                    .child("cattles")
+                    .child(cowKey)
+                    .child("vaccines")
+                    .child(vaccineKey)
+
+            userReference.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        val existingVaccine = snapshot.getValue(Vaccine::class.java)
+
+                        existingVaccine?.apply {
+                            this.idVaccine = vaccine.idVaccine
+                            this.vacineName = vaccine.vacineName
+                            this.vaccineCost = vaccine.vaccineCost
+                            this.date = vaccine.date
+                            this.supplier = vaccine.supplier
+                        }
+
+                        userReference.setValue(existingVaccine)
                     }
                 }
 
@@ -592,8 +668,13 @@ class FirebaseInstance(context: Context) {
                     if (snapshot.exists()) {
                         val existingUser = snapshot.getValue(User::class.java)
 
-                        val receiptRemove = existingUser?.farms?.get(farmKey.toString().toInt())?.receipts?.get(receiptKey.toString().toInt())
-                        existingUser?.farms?.get(farmKey.toString().toInt())?.receipts?.remove(receiptRemove)
+                        val receiptRemove =
+                            existingUser?.farms?.get(farmKey.toString().toInt())?.receipts?.get(
+                                receiptKey.toString().toInt()
+                            )
+                        existingUser?.farms?.get(farmKey.toString().toInt())?.receipts?.remove(
+                            receiptRemove
+                        )
 
                         userReference.setValue(existingUser)
                     }
@@ -637,6 +718,7 @@ class FirebaseInstance(context: Context) {
             })
         }
     }
+
     fun deleteReceiptAndCowByCommonName(key: String?, farmKey: String?, commonName: String?) {
         if (key != null && farmKey != null && commonName != null) {
             val userReference = myRef.child(key)
@@ -647,7 +729,9 @@ class FirebaseInstance(context: Context) {
                         val existingUser = snapshot.getValue(User::class.java)
 
                         // Buscar y eliminar el recibo por nombre común
-                        existingUser?.farms?.get(farmKey.toString().toInt())?.receipts?.removeAll { it.nameReceipt == commonName }
+                        existingUser?.farms?.get(
+                            farmKey.toString().toInt()
+                        )?.receipts?.removeAll { it.nameReceipt == commonName }
 
                         // Buscar y eliminar la vaca por nombre común
                         val farm = existingUser?.farms?.get(farmKey.toString().toInt())

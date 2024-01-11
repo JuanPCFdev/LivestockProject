@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.jpdev.livestockproject.databinding.ItemVaccineBinding
 import com.jpdev.livestockproject.domain.model.Vaccine
 import com.jpdev.livestockproject.ui.Vaccine.consult.VaccineDetailsActivity
+import com.jpdev.livestockproject.ui.Vaccine.deleteEdit.EditDeleteVaccineActivity
 
 class RvVaccineViewHolder(view:View):ViewHolder(view) {
     private val binding = ItemVaccineBinding.bind(view)
@@ -25,7 +26,12 @@ class RvVaccineViewHolder(view:View):ViewHolder(view) {
         }
 
         binding.edit.setOnClickListener {
-
+            val intent = Intent(context,EditDeleteVaccineActivity::class.java)
+            intent.putExtra("userKey",userKey)
+            intent.putExtra("farmKey",farmKey)
+            intent.putExtra("cowKey",cowKey)
+            intent.putExtra("vaccineKey",key)
+            context.startActivity(intent)
         }
 
     }
