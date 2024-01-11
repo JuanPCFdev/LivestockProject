@@ -854,5 +854,82 @@ class FirebaseInstance(context: Context) {
         })
     }
 
+    fun getTotalVaccineCostForAllCows(
+        user: String?,
+        farmKey: String?,
+        callback: (Double) -> Unit
+    ) {
+        val userReference =
+            myRef.child(user.toString())
+                .child("farms")
+                .child(farmKey.toString())
+                .child("cattles")
+
+        userReference.addListenerForSingleValueEvent(object : ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var totalVaccineCost = 0.0
+                Log.d("Debug", "Iterando sobre vacas")
+
+                for (cowSnapshot in snapshot.children) {
+                    Log.d("Debug", "Iterando sobre vaca")
+
+                    // Cambia snapshot a cowSnapshot en el bucle interno
+                    for (vaccineSnapshot in cowSnapshot.child("vaccines").children) {
+                        Log.d("Debug", "Iterando sobre vacuna")
+                        val vaccineData = vaccineSnapshot.getValue(Vaccine::class.java)
+                        if (vaccineData != null) {
+                            Log.d("Debug", "Costo de vacuna: ${vaccineData.vaccineCost}")
+                            totalVaccineCost += vaccineData.vaccineCost
+                        }
+                    }
+                }
+
+                Log.d("Debug", "Total del costo de todas las vacunas: $totalVaccineCost")
+                callback(totalVaccineCost)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.i("Algo fallo", error.details)
+                callback(0.0)
+            }
+        })
+    }
+    fun getSumOfAmountPaidByReceiptType(
+        user: String?,
+        farmKey: String?,
+        callback: (Double, Double) -> Unit
+    ) {
+        val receiptsReference = myRef.child(user.toString())
+            .child("farms")
+            .child(farmKey.toString())
+
+
+        receiptsReference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var totalAmountPaidCompra = 0.0
+                var totalAmountPaidVenta = 0.0
+                Log.d("Debug", "Iterando sobre recibos")
+                for (snapshot in snapshot.child("receipts").children) {
+                    Log.d("Debug", "Entra al ciclo")
+                    val receipt = snapshot.getValue(Receipt::class.java)
+                    if (receipt != null) {
+                        // Sumar al total correspondiente según el tipo del recibo
+                        if (receipt.receiptType == "Compra ganado" || receipt.receiptType == "Compra producto") {
+                            totalAmountPaidCompra += receipt.amountPaid
+                        } else if (receipt.receiptType == "Venta ganado") {
+                            totalAmountPaidVenta += receipt.amountPaid
+                        }
+                    }
+                }
+                callback(totalAmountPaidCompra, totalAmountPaidVenta)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("Firebase", "Error en la lectura de datos: ${error.details}")
+                callback(0.0, 0.0)
+            }
+        })
+    }
 
 }

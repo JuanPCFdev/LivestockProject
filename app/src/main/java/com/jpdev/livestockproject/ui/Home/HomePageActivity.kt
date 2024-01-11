@@ -85,13 +85,6 @@ class HomePageActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-        binding.btnConsultNotification.setOnClickListener {
-            //val intent = Intent(this, NotificationActivity::class.java)
-            intent.putExtra("userKey",key)
-            intent.putExtra("farmKey",farmKey)
-            startActivity(intent)
-            finish()
-        }
 
     }
 }
