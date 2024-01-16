@@ -15,6 +15,12 @@
         android:theme="@style/Theme.LivestockProject"
         tools:targetApi="31">
         <activity
+            android:name=".ui.Diagnostic.DiagnosticDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Diagnostic.ConsultDiagnosticActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.Vaccine.deleteEdit.EditDeleteVaccineActivity"
             android:exported="false" />
         <activity
