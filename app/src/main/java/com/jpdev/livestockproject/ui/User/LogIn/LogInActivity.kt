@@ -42,7 +42,7 @@ class LogInActivity : AppCompatActivity() {
     }
 
     private fun goToHomePage(){
-        var key:String = ""
+        var key = ""
         if(validateCredentials()){
             userList.forEach{ user->
                 if(binding.etUser.text.toString() == user.second.name && binding.etPassword.text.toString() == user.second.password){
@@ -50,7 +50,7 @@ class LogInActivity : AppCompatActivity() {
                 }
             }
             if(key!=""){
-                HomePage(key)
+                homePage(key)
             }else{
                 Toast.makeText(this, "Usuario no registrado", Toast.LENGTH_SHORT).show()
             }
@@ -88,7 +88,7 @@ class LogInActivity : AppCompatActivity() {
         return success
     }
 
-    private fun HomePage(key:String){
+    private fun homePage(key:String){
         val intent = Intent(this,FarmActivity::class.java)
         intent.putExtra("userKey",key)
         startActivity(intent)
