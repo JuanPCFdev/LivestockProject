@@ -63,7 +63,7 @@
     <string name="RegisterCow_Type">Tipo</string>
     <string name="RegisterCow_Cost">Costo</string>
     <string name="Buy_title">Recibo de compra</string>
-    <string name="Buy_description">Aqui podra añadir los insumos que compro para su finca, si lo que desea es crear un recibo de compra de ganado seleccione el boton</string>
+    <string name="Buy_description">Aqui podra añadir los insumos que compró para su finca, si lo que desea es crear un recibo de compra de ganado seleccione el boton</string>
     <string name="Buy_name">Nombre del producto</string>
     <string name="Buy_descriptionProduct">Descripcion del producto</string>
     <string name="Buy_date">Fecha de la compra</string>

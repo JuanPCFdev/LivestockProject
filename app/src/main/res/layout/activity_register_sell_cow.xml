@@ -11,15 +11,14 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="60dp"
+        android:paddingVertical="15dp"
         android:text="@string/SellCow_title"
         android:textColor="@color/black"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/card"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
     <androidx.cardview.widget.CardView
@@ -29,9 +28,9 @@
         android:backgroundTint="@color/background_card"
         app:cardCornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/title"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title">
+        app:layout_constraintStart_toStartOf="parent">
 
 
         <LinearLayout
@@ -41,79 +40,111 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/SellCow_Dialing"
-                android:textSize="23sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/etMarcacion"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/marking"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:maxLines="1"
-                android:singleLine="true" />
-
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/SellCow_Weight"
-                android:textSize="23sp"
-                android:textStyle="bold" />
+                android:layout_weight="18"
+                android:hint="@string/SellCow_Dialing"
+                android:padding="5dp"
+                app:boxBackgroundColor="@android:color/transparent">
 
-            <EditText
-                android:id="@+id/etPeso"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etMarcacion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:inputType="text"
+                    android:maxLength="20"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/weight"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:inputType="number"
-                android:maxLines="1"
-                android:singleLine="true" />
-
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/SellCow_Price"
-                android:textSize="23sp"
-                android:textStyle="bold" />
+                android:layout_weight="1"
+                android:hint="@string/SellCow_Weight"
+                android:padding="5dp"
+                app:boxBackgroundColor="@android:color/transparent">
 
-            <EditText
-                android:id="@+id/etPrecioVenta"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPeso"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:inputType="numberDecimal"
+                    android:maxLength="3"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/price"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:inputType="number"
-                android:maxLines="1"
-                android:singleLine="true" />
-
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/SellCow_NameBuyer"
-                android:textSize="23sp"
-                android:textStyle="bold" />
+                android:layout_weight="1"
+                android:hint="@string/SellCow_Price"
+                android:padding="5dp"
+                app:boxBackgroundColor="@android:color/transparent">
 
-            <EditText
-                android:id="@+id/etNombreComprador"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPrecioVenta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:inputType="number"
+                    android:maxLength="20"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/name"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:maxLines="1"
-                android:singleLine="true" />
-
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/SellCow_TelBuyer"
-                android:textSize="23sp"
-                android:textStyle="bold" />
+                android:layout_weight="1"
+                android:hint="@string/SellCow_NameBuyer"
+                android:padding="5dp"
+                app:boxBackgroundColor="@android:color/transparent">
 
-            <EditText
-                android:id="@+id/etTelComprador"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etNombreComprador"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:inputType="text"
+                    android:maxLength="20"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tel"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:inputType="number"
-                android:maxLines="1"
-                android:singleLine="true" />
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/SellCow_TelBuyer"
+                android:padding="5dp"
+                app:boxBackgroundColor="@android:color/transparent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etTelComprador"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:inputType="number"
+                    android:maxLength="20"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
 
             <Button
                 android:id="@+id/btnSaveSell"
@@ -137,6 +168,15 @@
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:src="@drawable/cow_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -49,6 +49,7 @@
                 android:layout_height="50dp"
                 android:inputType="text"
                 android:maxLines="1"
+                android:maxLength="30"
                 android:singleLine="true" />
 
             <TextView
@@ -64,6 +65,7 @@
                 android:layout_height="50dp"
                 android:inputType="text"
                 android:maxLines="1"
+                android:maxLength="30"
                 android:singleLine="true" />
 
             <TextView
@@ -79,6 +81,7 @@
                 android:layout_height="50dp"
                 android:inputType="number"
                 android:maxLines="1"
+                android:maxLength="2"
                 android:singleLine="true" />
 
             <TextView
@@ -94,6 +97,7 @@
                 android:layout_height="50dp"
                 android:inputType="number"
                 android:maxLines="1"
+                android:maxLength="3"
                 android:singleLine="true" />
 
         </LinearLayout>
