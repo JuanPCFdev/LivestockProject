@@ -56,7 +56,7 @@ class ConsultReceiptActivity : AppCompatActivity() {
                     "Fecha del recibo : ${it.date}\n" +
                     "Tipo de recibo : ${it.receiptType}\n" +
                     "Nombre : ${it.name}\n" +
-                    "Telefono : ${it.date}\n"
+                    "Telefono : ${it.tel}\n"
 
             binding.tvReceiptDetails.text = receipt
             binding.tvTitle.text = it.receiptType
