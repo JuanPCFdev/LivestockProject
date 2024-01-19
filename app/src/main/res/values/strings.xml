@@ -50,9 +50,9 @@
     <string name="User_goToHomePage">Pagina Principal</string>
     <string name="ConsultCows_RegisteredCows">Ganado Registrado</string>
     <string name="ConsultCows_Recomendation">El icono de lupa sirve para inspeccionar en detalle los datos de cada animal, el icono de lapiz sirve para editar la informacion del animal y el icono de bote de basura sirve para eliminar el animal. Si desea añadir algun animal puede orpimir el boton rojo de registro</string>
-    <string name="ConsultCows_RegisterCow">Registrar Animal</string>
+    <string name="ConsultCows_RegisterCow">Registrar Vaca</string>
     <string name="ConsultCows_Marking">Marcacion</string>
-    <string name="ConsultCows_Weight">Peso</string>
+    <string name="ConsultCows_Weight">Peso (kg)</string>
     <string name="ConsultCows_Gender">Genero</string>
     <string name="RegisterCow_Title">Registrar Ganado de Levante</string>
     <string name="RegisterCow_Marking">Marcación</string>
