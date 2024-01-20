@@ -13,6 +13,7 @@
         android:text="@string/RegisterUser_Title"
         android:textSize="30sp"
         android:textStyle="bold"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@id/cardRegister"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,84 +21,105 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardRegister"
-        android:layout_width="300dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="25dp"
         android:backgroundTint="@color/background_card"
-        app:cardCornerRadius="20dp"
+        app:cardCornerRadius="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:orientation="vertical"
             android:padding="10dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/name"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/RegisterUser_Name"
-                android:textSize="23sp"
-                android:textStyle="bold" />
+                android:layout_marginVertical="5dp"
+                android:hint="@string/RegisterUser_Name"
+                app:boxBackgroundColor="@android:color/transparent">
 
-            <EditText
-                android:id="@+id/etName"
-                android:layout_width="250dp"
-                android:layout_height="50dp"
-                android:inputType="text"
-                android:maxLines="1"
-                android:singleLine="true" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:maxLength="25"
+                    android:maxLines="1"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/RegisterUser_Phone"
-                android:textSize="23sp"
-                android:textStyle="bold" />
+                android:layout_marginVertical="5dp"
+                android:hint="@string/RegisterUser_Phone"
+                app:boxBackgroundColor="@android:color/transparent">
 
-            <EditText
-                android:id="@+id/etPhone"
-                android:layout_width="250dp"
-                android:layout_height="50dp"
-                android:inputType="number"
-                android:maxLines="1"
-                android:singleLine="true" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/password"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/LogIn_Password"
-                android:textSize="23sp"
-                android:textStyle="bold" />
+                android:layout_marginVertical="5dp"
+                android:hint="@string/LogIn_Password"
+                app:boxBackgroundColor="@android:color/transparent">
 
-            <EditText
-                android:id="@+id/etPassword"
-                android:layout_width="250dp"
-                android:layout_height="50dp"
-                android:inputType="textPassword"
-                android:maxLines="1"
-                android:singleLine="true" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:maxLength="20"
+                    android:maxLines="1"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/confirmPassword"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/RegisterUser_RecordPassword"
-                android:textSize="23sp"
-                android:textStyle="bold" />
+                android:layout_marginVertical="5dp"
+                android:hint="@string/RegisterUser_RecordPassword"
+                app:boxBackgroundColor="@android:color/transparent">
 
-            <EditText
-                android:id="@+id/etConfirmPassword"
-                android:layout_width="250dp"
-                android:layout_height="50dp"
-                android:inputType="textPassword"
-                android:maxLines="1"
-                android:singleLine="true" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etConfirmPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:maxLength="20"
+                    android:maxLines="1"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-            <Button
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnAlreadyRegistered"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -105,10 +127,11 @@
                 android:backgroundTint="#CECECE"
                 android:text="@string/RegisterUser_AlreadyRegistered"
                 android:textColor="@color/button_login_special"
-                android:textSize="11sp"
-                android:textStyle="bold" />
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:cornerRadius="15dp" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -116,7 +139,8 @@
                 android:layout_marginTop="15dp"
                 android:backgroundTint="@color/button_red"
                 android:text="@string/LogIn_Register"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:cornerRadius="15dp" />
 
         </LinearLayout>
 

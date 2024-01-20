@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:textSize="35dp"
+        android:textColor="@color/black"
         android:textStyle="bold"
         tools:text="Nombre de usuario" />
 
@@ -43,6 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="5dp"
         app:cardCornerRadius="15dp">
 
         <TextView
@@ -68,6 +70,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="5dp"
         app:cardCornerRadius="15dp">
 
         <TextView
@@ -86,6 +89,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/button_red"
         android:text="@string/User_EditInfo"
+        android:layout_margin="5dp"
         android:textColor="@color/background_app" />
 
     <Button

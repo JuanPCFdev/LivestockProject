@@ -9,21 +9,23 @@
     android:orientation="vertical"
     android:padding="10dp"
     tools:context=".ui.Diagnostic.DiagnosticDetailsActivity">
+
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        tools:text="Consejo"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:text="Consejo" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:layout_weight="1"
         app:cardBackgroundColor="@color/background_card"
         app:cardCornerRadius="15dp">
 
