@@ -1,16 +1,15 @@
 package com.jpdev.livestockproject.ui.Home
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.jpdev.livestockproject.R
+import androidx.appcompat.app.AppCompatActivity
 import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityHomePageBinding
-import com.jpdev.livestockproject.ui.Cow.Consult.ConsultCowsActivity
 import com.jpdev.livestockproject.ui.Cow.HomeCow.HomeCowActivity
 import com.jpdev.livestockproject.ui.Diagnostic.ConsultDiagnosticActivity
 import com.jpdev.livestockproject.ui.Farm.deleteEdit.FarmEditDeleteActivity
 import com.jpdev.livestockproject.ui.Finance.FinanceActivity
+import com.jpdev.livestockproject.ui.Update.HelpActivity
 import com.jpdev.livestockproject.ui.User.Consult.UserActivity
 import com.jpdev.livestockproject.ui.Vaccine.consult.ConsultVaccineActivity
 
@@ -80,7 +79,7 @@ class HomePageActivity : AppCompatActivity() {
             finish()
         }
         binding.btnConsultHelp.setOnClickListener {
-            // val intent = Intent(this, HelpActivity::class.java)
+            val intent = Intent(this, HelpActivity::class.java)
             intent.putExtra("userKey",key)
             intent.putExtra("farmKey",farmKey)
             startActivity(intent)

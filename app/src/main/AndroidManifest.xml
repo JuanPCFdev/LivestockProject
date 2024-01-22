@@ -15,6 +15,9 @@
         android:theme="@style/Theme.LivestockProject"
         tools:targetApi="31">
         <activity
+            android:name=".ui.Update.HelpActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.Diagnostic.DiagnosticDetailsActivity"
             android:exported="false" />
         <activity
