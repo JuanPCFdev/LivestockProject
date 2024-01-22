@@ -1,6 +1,7 @@
 package com.jpdev.livestockproject.ui.User.LogIn
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -31,8 +32,11 @@ class LogInActivity : AppCompatActivity() {
 
     private fun initListeners(){
         binding.btnLogin.setOnClickListener { goToHomePage() }
-        binding.btnPassRecord.setOnClickListener {  }
         binding.btnRegister.setOnClickListener { Register() }
+        binding.btnHelp.setOnClickListener {
+            val url = "https://www.youtube.com/watch?v=eNLjdPI9zdE"
+            openVideo(url)
+        }
     }
 
     private fun Register(){
@@ -94,5 +98,18 @@ class LogInActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+    private fun openVideo(url: String) {
+        try {
+            val videoUri = url
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(videoUri))
+            if (videoUri!= null) {
+                startActivity(intent)
+            }
+        } catch (e: Exception) {
+            Toast.makeText(this, "Error, asegurese de tener youtube", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
 
 }

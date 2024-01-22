@@ -19,7 +19,7 @@
     <string name="FarmRegister_Capacity">Capacidad de la finca</string>
     <string name="FarmRegister_Return">Regresar</string>
     <string name="LogIn_Password">Contraseña</string>
-    <string name="LogIn_RecordPassword">Recordar Contraseña</string>
+    <string name="LogIn_RecordPassword">¿Cómo iniciar sesión?</string>
     <string name="LogIn_Register">Registrarse</string>
     <string name="LogIn_SignIn">Ingresar</string>
     <string name="LogIn_hint_password">**********</string>
@@ -28,7 +28,7 @@
     <string name="RegisterUser_Name">Nombre</string>
     <string name="RegisterUser_Phone">Telefono</string>
     <string name="RegisterUser_Security_Question">Pregunta de Seguridad</string>
-    <string name="RegisterUser_RecordPassword">Recordar Contraseña</string>
+    <string name="RegisterUser_RecordPassword">Ya estoy registrado</string>
     <string name="RegisterUser_AlreadyRegistered">Ya Estoy Registrado</string>
     <string name="FarmEditDelete_Edit">Editar su finca</string>
     <string name="FarmEditDelete_Delete">Eliminar su finca</string>
@@ -91,4 +91,10 @@
                                    Esto le permitirá tener un seguimiento detallado de sus transacciones y evaluar el rendimiento económico de su finca.</string>
     <string name="AbstractWon">Actualmente, ha acumulado ganancias totales por un monto de: </string>
     <string name="AbstractLost">Aunque actualmente se registran pérdidas, a medida que transcurra el tiempo y continúe vendiendo más animales, existe la oportunidad de generar ganancias y recuperarse financieramente. Sus perdidas son de: </string>
+    <string name="help_title">Asistencia para el uso de la app</string>
+    <string name="help_cow">Con el video que se da a continuación podrá ver como se registra, edita, consulta y elimina un animal: </string>
+    <string name="help_video">Ver video</string>
+    <string name="help_vaccine">En el siguiente video puede observar cómo se realiza el registro, consulta, edición y eliminación de una vacuna: </string>
+    <string name="help_Finance">En el siguiente video puede observar cómo se maneja el modulo de finanzas y todo lo que puede hacer allí: </string>
+    <string name="help_other">En el siguiente video puede observar cómo se maneja el modulo de usuario y finca: </string>
 </resources>
