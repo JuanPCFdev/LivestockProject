@@ -15,8 +15,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:textSize="35dp"
         android:textColor="@color/black"
+        android:textSize="35dp"
         android:textStyle="bold"
         tools:text="Nombre de usuario" />
 
@@ -37,6 +37,7 @@
         android:layout_gravity="start"
         android:layout_margin="20dp"
         android:text="@string/RegisterUser_Name"
+        android:textColor="@color/gray"
         android:textSize="25dp"
         android:textStyle="bold" />
 
@@ -63,6 +64,7 @@
         android:layout_gravity="start"
         android:layout_margin="20dp"
         android:text="@string/RegisterUser_Phone"
+        android:textColor="@color/gray"
         android:textSize="25sp"
         android:textStyle="bold" />
 
@@ -87,9 +89,9 @@
         android:id="@+id/btnEditInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:backgroundTint="@color/button_red"
         android:text="@string/User_EditInfo"
-        android:layout_margin="5dp"
         android:textColor="@color/background_app" />
 
     <Button

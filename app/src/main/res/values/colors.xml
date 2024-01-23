@@ -18,4 +18,6 @@
     <color name="recyclerview_background">#D4EDB8</color>
     <color name="green">#D75C9571</color>
     <color name="help">#D7B0B8B3</color>
+    <color name="gray">#D75D5E5D</color>
+    <color name="item">#2B2A2A</color>
 </resources>

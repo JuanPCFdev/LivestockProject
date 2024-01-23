@@ -43,6 +43,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Finance_earnings_lost_in"
+                    android:textColor="@color/gray"
                     android:textSize="23sp"
                     android:textStyle="bold" />
 
@@ -50,15 +51,16 @@
                     android:id="@+id/etinvestment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text = "0000"
-                    android:textSize="20sp"
+                    android:singleLine="true"
                     android:textColor="@color/black"
-                    android:singleLine="true" />
+                    android:textSize="20sp"
+                    tools:text="0000" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Finance_earnings_lost_won"
+                    android:textColor="@color/gray"
                     android:textSize="23sp"
                     android:textStyle="bold" />
 
@@ -66,14 +68,16 @@
                     android:id="@+id/etWon"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text = "0000"
-                    android:textSize="20sp"
+                    android:singleLine="true"
                     android:textColor="@color/black"
-                    android:singleLine="true" />
+                    android:textSize="20sp"
+                    tools:text="0000" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Finance_earnings_lost_abstract_vaccine"
+                    android:textColor="@color/gray"
                     android:textSize="23sp"
                     android:textStyle="bold" />
 
@@ -81,15 +85,16 @@
                     android:id="@+id/etVaccine"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text = "0000"
-                    android:textSize="20sp"
+                    android:singleLine="true"
                     android:textColor="@color/black"
-                    android:singleLine="true" />
+                    android:textSize="20sp"
+                    tools:text="0000" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Finance_earnings_lost_abstract"
+                    android:textColor="@color/gray"
                     android:textSize="23sp"
                     android:textStyle="bold" />
 
@@ -97,9 +102,9 @@
                     android:id="@+id/etAbstract"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text = "0000"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:textColor="@color/black" />
+                    tools:text="0000" />
 
             </LinearLayout>
 

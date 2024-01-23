@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:text="VacunasRegistradas"
         android:textAlignment="center"
+        android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,6 +28,7 @@
         android:layout_margin="5dp"
         android:text="Seleccione la lupa para consultar y el lapiz para editar"
         android:textAlignment="center"
+        android:textColor="@color/gray"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,19 +58,18 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/button_red"
         android:text="Registrar Vacuna"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cvRecycler"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvRecycler" />
+
     <Button
         android:id="@+id/btnHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/button_red"
         android:text="Pagina Principal"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRegisterVaccine"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnRegisterVaccine" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

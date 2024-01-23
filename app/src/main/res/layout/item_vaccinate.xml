@@ -21,6 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:textColor="@color/item"
             android:textSize="20sp"
             android:textStyle="bold"
             tools:text="@string/ConsultCows_Marking" />
@@ -30,6 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:textColor="@color/item"
             android:textSize="20sp"
             android:textStyle="bold"
             tools:text="@string/ConsultCows_Weight" />
@@ -39,6 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:textColor="@color/item"
             android:textSize="20sp"
             android:textStyle="bold"
             tools:text="@string/ConsultCows_Gender" />

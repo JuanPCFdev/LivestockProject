@@ -38,12 +38,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="10dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/Buy_description"
                 android:padding="10dp"
+                android:text="@string/Buy_description"
+                android:textColor="@color/gray"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -62,10 +64,12 @@
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:maxLength="20"
+                    android:textColor="@color/gray"
                     android:textSize="17sp"
                     android:textStyle="bold" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/descrption"
                 android:layout_width="match_parent"
@@ -81,10 +85,12 @@
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:maxLength="50"
+                    android:textColor="@color/gray"
                     android:textSize="17sp"
                     android:textStyle="bold" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/date"
                 android:layout_width="match_parent"
@@ -100,10 +106,12 @@
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:maxLength="30"
+                    android:textColor="@color/gray"
                     android:textSize="17sp"
                     android:textStyle="bold" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/price"
                 android:layout_width="match_parent"
@@ -119,10 +127,12 @@
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:maxLength="20"
+                    android:textColor="@color/gray"
                     android:textSize="17sp"
                     android:textStyle="bold" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/namex"
                 android:layout_width="match_parent"
@@ -138,10 +148,12 @@
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:maxLength="20"
+                    android:textColor="@color/gray"
                     android:textSize="17sp"
                     android:textStyle="bold" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tel"
                 android:layout_width="match_parent"
@@ -157,6 +169,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:maxLength="20"
+                    android:textColor="@color/gray"
                     android:textSize="17sp"
                     android:textStyle="bold" />
 
@@ -185,14 +198,15 @@
                     android:backgroundTint="@color/button_red"
                     android:text="@string/Buy_buyCow" />
             </LinearLayout>
+
             <Button
                 android:id="@+id/btnReturnHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:backgroundTint="@color/button_red"
-                android:layout_gravity="center"
-                android:text="@string/ReceiptHistory_return"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:text="@string/ReceiptHistory_return" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
