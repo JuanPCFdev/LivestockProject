@@ -45,27 +45,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/HomePage_User"
+                android:textColor="@color/gray"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:src="@drawable/ic_user"/>
+                    android:src="@drawable/ic_user" />
 
                 <EditText
                     android:id="@+id/etUser"
                     android:layout_width="225dp"
                     android:layout_height="50dp"
-                    android:maxLines="1"
-                    android:inputType="text"
                     android:hint="@string/LogIn_hint_username"
+                    android:inputType="text"
+                    android:maxLines="1"
                     android:singleLine="true" />
             </LinearLayout>
 
@@ -74,27 +75,28 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/LogIn_Password"
+                android:textColor="@color/gray"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:src="@drawable/ic_password"/>
+                    android:src="@drawable/ic_password" />
 
                 <EditText
                     android:id="@+id/etPassword"
                     android:layout_width="225dp"
                     android:layout_height="50dp"
-                    android:maxLines="1"
-                    android:inputType="textPassword"
                     android:hint="@string/LogIn_hint_password"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
                     android:singleLine="true" />
             </LinearLayout>
 

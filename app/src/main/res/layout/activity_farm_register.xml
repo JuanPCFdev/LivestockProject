@@ -11,9 +11,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/FarmRegister_Title"
+        android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@id/cardRegister"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,6 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/FarmRegister_Name"
+                android:textColor="@color/gray"
                 android:textSize="23sp"
                 android:textStyle="bold" />
 
@@ -50,14 +51,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:inputType="text"
-                android:maxLines="1"
                 android:maxLength="30"
+                android:maxLines="1"
                 android:singleLine="true" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/FarmRegister_Address"
+                android:textColor="@color/gray"
                 android:textSize="23sp"
                 android:textStyle="bold" />
 
@@ -66,14 +68,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:inputType="text"
-                android:maxLines="1"
                 android:maxLength="30"
+                android:maxLines="1"
                 android:singleLine="true" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/FarmRegister_Hectares"
+                android:textColor="@color/gray"
                 android:textSize="23sp"
                 android:textStyle="bold" />
 
@@ -82,14 +85,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:inputType="number"
-                android:maxLines="1"
                 android:maxLength="2"
+                android:maxLines="1"
                 android:singleLine="true" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/FarmRegister_Capacity"
+                android:textColor="@color/gray"
                 android:textSize="23sp"
                 android:textStyle="bold" />
 
@@ -98,8 +102,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:inputType="number"
-                android:maxLines="1"
                 android:maxLength="3"
+                android:maxLines="1"
                 android:singleLine="true" />
 
             <Button
@@ -117,9 +121,9 @@
                 android:id="@+id/btnRegisterFarm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="15dp"
                 android:backgroundTint="@color/button_red"
-                android:layout_gravity="center"
                 android:text="@string/FarmRegister_Title" />
 
 

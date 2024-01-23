@@ -72,6 +72,7 @@ class RegisterUserActivity : AppCompatActivity() {
             }
         }
         firebaseInstance.setupDatabaseListener(postListener)
+        Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
     }
 
     private fun validateName():Boolean{

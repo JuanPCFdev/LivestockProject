@@ -32,6 +32,7 @@
             android:layout_marginVertical="16dp"
             android:gravity="center"
             android:text="@string/SellCow_Description"
+            android:textColor="@color/gray"
             android:textSize="15sp" />
     </LinearLayout>
 
@@ -40,15 +41,15 @@
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:layout_marginHorizontal="16dp"
-        app:cardCornerRadius="10dp"
         android:backgroundTint="@color/background_card"
+        app:cardCornerRadius="10dp"
         app:layout_constraintTop_toBottomOf="@+id/llfirst">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCows"
             android:layout_width="match_parent"
-            android:padding="16dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:padding="16dp" />
     </androidx.cardview.widget.CardView>
 
     <Button

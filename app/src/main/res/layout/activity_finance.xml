@@ -41,6 +41,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="@string/Finance_description"
+                    android:textColor="@color/gray"
                     android:textSize="18sp" />
 
                 <LinearLayout
@@ -88,6 +89,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="@string/Finance_description2"
+                    android:textColor="@color/gray"
                     android:textSize="18dp" />
 
                 <LinearLayout
