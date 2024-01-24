@@ -87,10 +87,9 @@
     <string name="EditDeleteReceipt_date">Fecha recibo</string>
     <string name="EditDeleteReceipt_edit">Editar Recibo</string>
     <string name="EditDeleteReceipt_delete">Eliminar Recibo</string>
-    <string name="AbstractNothing">Actualmente, no se han registrado ganancias ni pérdidas. Le invitamos a registrar sus recibos y animales para obtener un balance general de su finca.
-                                   Esto le permitirá tener un seguimiento detallado de sus transacciones y evaluar el rendimiento económico de su finca.</string>
+    <string name="AbstractNothing">Actualmente, no se han registrado ganancias ni pérdidas.</string>
     <string name="AbstractWon">Actualmente, ha acumulado ganancias totales por un monto de: </string>
-    <string name="AbstractLost">Aunque actualmente se registran pérdidas, a medida que transcurra el tiempo y continúe vendiendo más animales, existe la oportunidad de generar ganancias y recuperarse financieramente. Sus perdidas son de: </string>
+    <string name="AbstractLost">Se registran pérdidas. Sus perdidas son de: </string>
     <string name="help_title">Asistencia para el uso de la app</string>
     <string name="help_cow">Con el video que se da a continuación podrá ver como se registra, edita, consulta y elimina un animal: </string>
     <string name="help_video">Ver video</string>

@@ -32,21 +32,21 @@ class HelpActivity : AppCompatActivity() {
             finish()
         }
         binding.btnCowVideo.setOnClickListener {
-            val youtubeVideoCow = "https://www.youtube.com/watch?v=eNLjdPI9zdE"
+            val youtubeVideoCow = "https://www.youtube.com/watch?v=ZN1POCHP-rY&ab_channel=mr.J"
             openVideo(youtubeVideoCow)
 
         }
         binding.btnVaccineVideo.setOnClickListener {
-            val youtubeVideoVaccine = "https://www.youtube.com/watch?v=xvaOV0lT0Uk"
+            val youtubeVideoVaccine = "https://www.youtube.com/watch?v=1CUAuxWFus4&ab_channel=mr.J"
             openVideo(youtubeVideoVaccine)
 
         }
         binding.btnFinanceVideo.setOnClickListener {
-            val youtubeVideoFinance = "https://www.youtube.com/watch?v=xvaOV0lT0Uk"
+            val youtubeVideoFinance = "https://www.youtube.com/watch?v=LkWkbKM2MYw&ab_channel=mr.J"
             openVideo(youtubeVideoFinance)
         }
         binding.btnOtherVideo.setOnClickListener {
-            val youtubeVideoOther = "https://www.youtube.com/watch?v=xvaOV0lT0Uk"
+            val youtubeVideoOther = "https://www.youtube.com/watch?v=1js-0gcnqQM&ab_channel=mr.J"
             openVideo(youtubeVideoOther)
         }
     }

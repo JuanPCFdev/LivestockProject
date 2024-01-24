@@ -34,7 +34,7 @@ class LogInActivity : AppCompatActivity() {
         binding.btnLogin.setOnClickListener { goToHomePage() }
         binding.btnRegister.setOnClickListener { Register() }
         binding.btnHelp.setOnClickListener {
-            val url = "https://www.youtube.com/watch?v=eNLjdPI9zdE"
+            val url = "https://www.youtube.com/watch?v=zFpK6Q6Fk44&t=3s&ab_channel=mr.J"
             openVideo(url)
         }
     }
