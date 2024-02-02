@@ -3,14 +3,12 @@ package com.jpdev.livestockproject.ui.Cow.Consult
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.jpdev.livestockproject.R
 import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityCowDetailsBinding
-import com.jpdev.livestockproject.domain.model.Cattle
-import com.jpdev.livestockproject.ui.Cow.Consult.Adapter.CowViewHolder
-import com.jpdev.livestockproject.ui.Home.HomePageActivity
+import com.jpdev.livestockproject.ui.Cow.HomeCow.HomeCowActivity
+import com.jpdev.livestockproject.ui.Cow.Lifting.Register.RegisterNewsLiftingActivity
 
-class CowDetailsActivity : AppCompatActivity() {
+class CowDetailsLiftingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCowDetailsBinding
     private lateinit var firebaseInstance: FirebaseInstance
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,14 +25,22 @@ class CowDetailsActivity : AppCompatActivity() {
 
         printInfo(user, farmKey, cowKey)
 
-        initListeners(user, farmKey)
+        initListeners(user, farmKey, cowKey)
     }
 
-    private fun initListeners(user: String?, farmKey: String?) {
+    private fun initListeners(user: String?, farmKey: String?, cowKey: String?) {
         binding.btnBack.setOnClickListener {
-            val intent = Intent(this, HomePageActivity::class.java)
+            val intent = Intent(this, HomeCowActivity::class.java)
             intent.putExtra("userKey", user)
             intent.putExtra("farmKey", farmKey)
+            startActivity(intent)
+            finish()
+        }
+        binding.btnRegisterWeight.setOnClickListener {
+            val intent = Intent(this, RegisterNewsLiftingActivity::class.java)
+            intent.putExtra("userKey", user)
+            intent.putExtra("farmKey", farmKey)
+            intent.putExtra("cowKey", cowKey)
             startActivity(intent)
             finish()
         }
@@ -54,7 +60,7 @@ class CowDetailsActivity : AppCompatActivity() {
                         "Padre : ${it.fatherMark}\n" +
                         "Costo : ${it.cost}\n"
 
-                binding.cowDetails.text = details
+                //binding.cowDetails.text = details
 
         }
     }

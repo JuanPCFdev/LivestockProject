@@ -15,6 +15,15 @@
         android:theme="@style/Theme.LivestockProject"
         tools:targetApi="31">
         <activity
+            android:name=".ui.Cow.Breeding.Register.RegisterNewsBreedingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Cow.Lifting.Register.RegisterNewsLiftingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Cow.Consult.CowDetailsBreedingActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.Update.HelpActivity"
             android:exported="false" />
         <activity
@@ -51,7 +60,7 @@
             android:name=".ui.Cow.Breeding.EditDelete.EditDeleteBreedingCowActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.Cow.Consult.CowDetailsActivity"
+            android:name=".ui.Cow.Consult.CowDetailsLiftingActivity"
             android:exported="false" />
         <activity
             android:name=".ui.Finance.RegisterSellCowActivity"
