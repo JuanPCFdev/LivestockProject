@@ -3,13 +3,9 @@ package com.jpdev.livestockproject.ui.Vaccine.consult.adapterVaccine
 import android.content.Intent
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.jpdev.livestockproject.databinding.ItemCowBinding
 import com.jpdev.livestockproject.databinding.ItemVaccinateBinding
 import com.jpdev.livestockproject.domain.model.Cattle
-import com.jpdev.livestockproject.ui.Cow.Consult.CowDetailsActivity
-import com.jpdev.livestockproject.ui.Vaccine.consult.VaccineDetailsActivity
 import com.jpdev.livestockproject.ui.Vaccine.consult.rvVaccine.RvVaccineActivity
-import com.jpdev.livestockproject.ui.Vaccine.register.RegisterVaccineActivity
 
 class VaccineViewHolder(view:View) : ViewHolder(view) {
 

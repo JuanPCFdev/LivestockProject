@@ -6,7 +6,8 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.jpdev.livestockproject.databinding.ItemCowBinding
 import com.jpdev.livestockproject.domain.model.Cattle
 import com.jpdev.livestockproject.ui.Cow.Breeding.EditDelete.EditDeleteBreedingCowActivity
-import com.jpdev.livestockproject.ui.Cow.Consult.CowDetailsActivity
+import com.jpdev.livestockproject.ui.Cow.Consult.CowDetailsBreedingActivity
+import com.jpdev.livestockproject.ui.Cow.Consult.CowDetailsLiftingActivity
 import com.jpdev.livestockproject.ui.Cow.Lifting.EditDelete.EditDeleteLiftingActivity
 import com.jpdev.livestockproject.ui.Home.HomePageActivity
 
@@ -22,11 +23,29 @@ class CowViewHolder(view: View) : ViewHolder(view) {
         binding.tvGender.text = cow.gender
 
         binding.consult.setOnClickListener {
-            val intent = Intent(context, CowDetailsActivity::class.java)
-            intent.putExtra("userKey",user)
-            intent.putExtra("farmKey",farmKey)
-            intent.putExtra("cowKey",cowKey)
-            context.startActivity(intent)
+            when (type){
+                "Lifting" -> {
+                    val intent = Intent(context, CowDetailsLiftingActivity::class.java)
+                    intent.putExtra("userKey",user)
+                    intent.putExtra("farmKey",farmKey)
+                    intent.putExtra("cowKey",cowKey)
+                    context.startActivity(intent)
+                }
+                "Breeding" -> {
+                    val intent = Intent(context, CowDetailsBreedingActivity::class.java)
+                    intent.putExtra("userKey",user)
+                    intent.putExtra("farmKey",farmKey)
+                    intent.putExtra("cowKey",cowKey)
+                    context.startActivity(intent)
+                }
+                else -> {
+                    val intent = Intent(context, HomePageActivity::class.java)
+                    intent.putExtra("userKey",user)
+                    intent.putExtra("farmKey",farmKey)
+                    intent.putExtra("cowKey",cowKey)
+                    context.startActivity(intent)
+                }
+            }
         }
 
         binding.edit.setOnClickListener {
