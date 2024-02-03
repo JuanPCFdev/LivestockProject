@@ -3,6 +3,7 @@ package com.jpdev.livestockproject.ui.Cow.Consult
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.jpdev.livestockproject.R
 import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityCowDetailsBinding
 import com.jpdev.livestockproject.ui.Cow.HomeCow.HomeCowActivity
@@ -16,7 +17,6 @@ class CowDetailsLiftingActivity : AppCompatActivity() {
         binding = ActivityCowDetailsBinding.inflate(layoutInflater)
         supportActionBar?.hide()
         setContentView(binding.root)
-
         val user = intent.extras?.getString("userKey")
         val farmKey = intent.extras?.getString("farmKey")
         val cowKey = intent.extras?.getString("cowKey")
@@ -24,8 +24,14 @@ class CowDetailsLiftingActivity : AppCompatActivity() {
         firebaseInstance = FirebaseInstance(this)
 
         printInfo(user, farmKey, cowKey)
-
         initListeners(user, farmKey, cowKey)
+    }
+
+    private fun printInfo(user: String?, farmKey: String?, cowKey: String?) {
+        firebaseInstance.getCowDetails(user,farmKey,cowKey){
+            val details = getString(R.string.register_news) + " ${it.marking}"
+            binding.tvRegisteredCows.text = details
+        }
     }
 
     private fun initListeners(user: String?, farmKey: String?, cowKey: String?) {
@@ -43,25 +49,6 @@ class CowDetailsLiftingActivity : AppCompatActivity() {
             intent.putExtra("cowKey", cowKey)
             startActivity(intent)
             finish()
-        }
-    }
-
-    private fun printInfo(user: String?, farmKey: String?, cowKey: String?) {
-        firebaseInstance.getCowDetails(user,farmKey,cowKey){
-
-                val details = "Marcación : ${it.marking}\n" +
-                        "Edad : ${it.age}\n" +
-                        "F-Nacimiento : ${it.birthdate}\n" +
-                        "Raza : ${it.breed}\n" +
-                        "Genero : ${it.gender}\n" +
-                        "Peso : ${it.weight}\n" +
-                        "Estado : ${it.state}\n" +
-                        "Madre : ${it.motherMark}\n" +
-                        "Padre : ${it.fatherMark}\n" +
-                        "Costo : ${it.cost}\n"
-
-                //binding.cowDetails.text = details
-
         }
     }
 

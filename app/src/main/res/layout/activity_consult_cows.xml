@@ -12,7 +12,7 @@
         android:id="@+id/tvRegisteredCows"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/ConsultCows_RegisteredCows"
+        android:text="Estadisticas ganado de levante"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="25sp"
@@ -21,18 +21,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:text="@string/ConsultCows_Recomendation"
-        android:textAlignment="center"
-        android:textColor="@color/gray"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvRegisteredCows" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvRecycler"
@@ -42,7 +30,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDescription"
+        app:layout_constraintTop_toBottomOf="@+id/tvRegisteredCows"
         app:layout_constraintVertical_bias="0.1">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -56,6 +44,7 @@
         android:id="@+id/btnRegisterCow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
         android:backgroundTint="@color/button_red"
         android:text="Opciones de Ganado"
         app:layout_constraintEnd_toEndOf="parent"

@@ -11,8 +11,10 @@ import com.google.firebase.database.MutableData
 import com.google.firebase.database.Transaction
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
+import com.jpdev.livestockproject.domain.model.BreedingPerformance
 import com.jpdev.livestockproject.domain.model.Cattle
 import com.jpdev.livestockproject.domain.model.Farm
+import com.jpdev.livestockproject.domain.model.LiftingPerformance
 import com.jpdev.livestockproject.domain.model.Receipt
 import com.jpdev.livestockproject.domain.model.User
 import com.jpdev.livestockproject.domain.model.Vaccine
@@ -931,5 +933,58 @@ class FirebaseInstance(context: Context) {
             }
         })
     }
+    fun registerNewsBreeding(news: BreedingPerformance, user: String?, farmKey: String?, cowKey: String?) {
+        val userReference = myRef.child(user.toString())
+            .child("farms")
+            .child(farmKey.toString())
+            .child("cattles")
+            .child(cowKey.toString())
 
+        userReference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    val existingCattle = snapshot.getValue(Cattle::class.java)
+                    val newsList = existingCattle?.PBreeding
+                    newsList?.add(news)
+                    existingCattle?.apply {
+                        if (newsList != null) {
+                            this.PBreeding = newsList
+                        }
+                    }
+                    userReference.setValue(existingCattle)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.i("Algo fallo", error.details)
+            }
+        })
+    }
+    fun registerNewsLifting(news: LiftingPerformance, user: String?, farmKey: String?, cowKey: String?) {
+        val userReference = myRef.child(user.toString())
+            .child("farms")
+            .child(farmKey.toString())
+            .child("cattles")
+            .child(cowKey.toString())
+
+        userReference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    val existingCattle = snapshot.getValue(Cattle::class.java)
+                    val newsList = existingCattle?.PLifting
+                    newsList?.add(news)
+                    existingCattle?.apply {
+                        if (newsList != null) {
+                            this.PLifting = newsList
+                        }
+                    }
+                    userReference.setValue(existingCattle)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.i("Algo fallo", error.details)
+            }
+        })
+    }
 }

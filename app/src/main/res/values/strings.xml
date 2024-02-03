@@ -98,4 +98,6 @@
     <string name="help_vaccine">En el siguiente video puede observar cómo se realiza el registro, consulta, edición y eliminación de una vacuna: </string>
     <string name="help_Finance">En el siguiente video puede observar cómo se maneja el modulo de finanzas y todo lo que puede hacer allí: </string>
     <string name="help_other">En el siguiente video puede observar cómo se maneja el modulo de usuario y finca: </string>
+    <string name="consult_estadis_title">Estadisticas vaca </string>
+    <string name="register_news">Registrar novedad vaca </string>
 </resources>

@@ -8,17 +8,17 @@
     tools:context=".ui.Cow.Lifting.Consult.ConsultCowLiftingActivity">
 
     <TextView
-        android:id="@+id/tvRegisteredCows"
+        android:id="@+id/tvTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:text="Estadisticas vaca 111"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Estadisticas vaca 111" />
 
     <TextView
         android:id="@+id/tvDescription"
@@ -31,7 +31,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvRegisteredCows" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
 
     <androidx.cardview.widget.CardView
@@ -60,29 +60,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cvRecycler">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            tools:text="Estadisticas, hijos que tuvo etc djsfhsjkfh"
-            />
+            tools:text="Estadisticas, hijos que tuvo etc djsfhsjkfh" />
     </androidx.cardview.widget.CardView>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginVertical="10dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cvRecycler1">
+
         <Button
             android:id="@+id/btnRegisterWeight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
             android:backgroundTint="@color/button_red"
             android:text="registrar novedad"
-            android:layout_marginHorizontal="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cvRecycler1" />
