@@ -1,9 +1,8 @@
 package com.jpdev.livestockproject.ui.Vaccine.consult
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.jpdev.livestockproject.R
+import androidx.appcompat.app.AppCompatActivity
 import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityVaccineDetailsBinding
 import com.jpdev.livestockproject.ui.Home.HomePageActivity
