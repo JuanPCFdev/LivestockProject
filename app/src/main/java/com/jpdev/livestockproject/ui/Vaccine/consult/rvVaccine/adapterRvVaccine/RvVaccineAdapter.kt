@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jpdev.livestockproject.R
 import com.jpdev.livestockproject.domain.model.Vaccine
-import com.jpdev.livestockproject.ui.Cow.Consult.Adapter.CowViewHolder
 
 class RvVaccineAdapter
     (

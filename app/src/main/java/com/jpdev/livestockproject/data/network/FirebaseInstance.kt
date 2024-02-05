@@ -897,6 +897,7 @@ class FirebaseInstance(context: Context) {
             }
         })
     }
+
     fun getSumOfAmountPaidByReceiptType(
         user: String?,
         farmKey: String?,
@@ -933,7 +934,13 @@ class FirebaseInstance(context: Context) {
             }
         })
     }
-    fun registerNewsBreeding(news: BreedingPerformance, user: String?, farmKey: String?, cowKey: String?) {
+
+    fun registerNewsBreeding(
+        news: BreedingPerformance,
+        user: String?,
+        farmKey: String?,
+        cowKey: String?
+    ) {
         val userReference = myRef.child(user.toString())
             .child("farms")
             .child(farmKey.toString())
@@ -960,7 +967,13 @@ class FirebaseInstance(context: Context) {
             }
         })
     }
-    fun registerNewsLifting(news: LiftingPerformance, user: String?, farmKey: String?, cowKey: String?) {
+
+    fun registerNewsLifting(
+        news: LiftingPerformance,
+        user: String?,
+        farmKey: String?,
+        cowKey: String?
+    ) {
         val userReference = myRef.child(user.toString())
             .child("farms")
             .child(farmKey.toString())
@@ -987,4 +1000,159 @@ class FirebaseInstance(context: Context) {
             }
         })
     }
+
+    fun getCowNewsLifting(
+        user: String?,
+        farmKey: String?,
+        cowKey: String?,
+        callback: (List<LiftingPerformance>?, List<String>?) -> Unit
+    ) {
+
+        val userReference = myRef.child(user.toString())
+            .child("farms")
+            .child(farmKey.toString())
+            .child("cattles")
+            .child(cowKey.toString())
+            .child("plifting")
+
+        userReference.addListenerForSingleValueEvent(object : ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                val keys = mutableListOf<String>()
+                val NewsList = mutableListOf<LiftingPerformance>()
+
+                for (pliftingSnapshot in snapshot.children) {
+
+                    val key = pliftingSnapshot.key.toString()
+                    val NewsData = pliftingSnapshot.getValue(LiftingPerformance::class.java)
+
+                    if (NewsData != null) {
+                        NewsList.add(NewsData)
+                        keys.add(key)
+                    }
+
+                }
+                callback(NewsList, keys)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.i("Algo fallo", error.details)
+                callback(null, null)
+            }
+        })
+    }
+
+    fun getCowNewsBreeding(
+        user: String?,
+        farmKey: String?,
+        cowKey: String?,
+        callback: (List<BreedingPerformance>?, List<String>?) -> Unit
+    ) {
+
+        val userReference = myRef.child(user.toString())
+            .child("farms")
+            .child(farmKey.toString())
+            .child("cattles")
+            .child(cowKey.toString())
+            .child("pbreeding")
+
+        userReference.addListenerForSingleValueEvent(object : ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                val keys = mutableListOf<String>()
+                val NewsList = mutableListOf<BreedingPerformance>()
+
+                for (pbreedingSnapshot in snapshot.children) {
+
+                    val key = pbreedingSnapshot.key.toString()
+                    val NewsData = pbreedingSnapshot.getValue(BreedingPerformance::class.java)
+
+                    if (NewsData != null) {
+                        NewsList.add(NewsData)
+                        keys.add(key)
+                    }
+
+                }
+                callback(NewsList, keys)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.i("Algo fallo", error.details)
+                callback(null, null)
+            }
+        })
+    }
+
+    fun getNewsBreedingDetails(
+        user: String?,
+        farmKey: String?,
+        cowKey: String?,
+        keyBreeding: String?,
+        callback: (BreedingPerformance) -> Unit
+    ) {
+
+        val userReference = myRef.child(user.toString()).child("farms")
+            .child(farmKey.toString())
+            .child("cattles")
+            .child(cowKey.toString())
+            .child("pbreeding")
+            .child(keyBreeding.toString())
+
+        userReference.addListenerForSingleValueEvent(object : ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var NewsData = snapshot.getValue(BreedingPerformance::class.java)
+
+                if (NewsData != null) {
+                    callback(NewsData)
+                } else {
+                    callback(BreedingPerformance())
+                }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.i("Algo fallo", error.details)
+                callback(BreedingPerformance())
+            }
+        })
+    }
+
+    fun getNewsLiftingDetails(
+        user: String?,
+        farmKey: String?,
+        cowKey: String?,
+        keyLifting: String?,
+        callback: (LiftingPerformance) -> Unit
+    ) {
+
+        val userReference = myRef.child(user.toString()).child("farms")
+            .child(farmKey.toString())
+            .child("cattles")
+            .child(cowKey.toString())
+            .child("plifting")
+            .child(keyLifting.toString())
+
+        userReference.addListenerForSingleValueEvent(object : ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var NewsData = snapshot.getValue(LiftingPerformance::class.java)
+
+                if (NewsData != null) {
+                    callback(NewsData)
+                } else {
+                    callback(LiftingPerformance())
+                }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.i("Algo fallo", error.details)
+                callback(LiftingPerformance())
+            }
+        })
+    }
+
 }
