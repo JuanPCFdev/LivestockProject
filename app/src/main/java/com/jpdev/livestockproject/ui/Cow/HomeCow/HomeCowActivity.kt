@@ -7,7 +7,8 @@ import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityHomeCowBinding
 import com.jpdev.livestockproject.ui.Cow.Breeding.Consult.ConsultCowBreedingActivity
 import com.jpdev.livestockproject.ui.Cow.Breeding.Register.RegisterCowBreedingActivity
-import com.jpdev.livestockproject.ui.Cow.Consult.ConsultCowsActivity
+import com.jpdev.livestockproject.ui.Cow.Consult.LiftingStatisticsActivity
+import com.jpdev.livestockproject.ui.Cow.Consult.breedingStatisticsActivity
 import com.jpdev.livestockproject.ui.Cow.Lifting.Consult.ConsultCowLiftingActivity
 import com.jpdev.livestockproject.ui.Cow.Lifting.Register.RegisterCowActivity
 import com.jpdev.livestockproject.ui.Home.HomePageActivity
@@ -37,14 +38,24 @@ class HomeCowActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-        //All
-        binding.btnConsultAll.setOnClickListener {
-            val intent = Intent(this,ConsultCowsActivity::class.java) //Consultar todas las vacas
+        //Statistics Breeding
+        binding.btnConsultBreeding.setOnClickListener {
+            val intent = Intent(this,breedingStatisticsActivity::class.java) //Estadisticas
             intent.putExtra("userKey",key)
             intent.putExtra("farmKey",farmKey)
             startActivity(intent)
             finish()
         }
+
+        //Statistics lifting
+        binding.btnConsultBreeding.setOnClickListener {
+            val intent = Intent(this, LiftingStatisticsActivity::class.java) //Estadisticas
+            intent.putExtra("userKey",key)
+            intent.putExtra("farmKey",farmKey)
+            startActivity(intent)
+            finish()
+        }
+
         //Consult
         binding.btnConsultBreeding.setOnClickListener {
             val intent = Intent(this,ConsultCowBreedingActivity::class.java) //Consultar Cría

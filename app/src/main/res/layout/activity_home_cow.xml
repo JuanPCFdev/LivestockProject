@@ -50,6 +50,15 @@
                 app:cornerRadius="15dp" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnConsultEstLifting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:backgroundTint="@color/button_red"
+                android:text="Estadisticas ganado levante"
+                app:cornerRadius="15dp" />
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnRegisterBreeding"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -68,12 +77,12 @@
                 app:cornerRadius="15dp" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnConsultAll"
+                android:id="@+id/btnConsultestBree"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:backgroundTint="@color/button_red"
-                android:text="Consultar Todo"
+                android:text="Estadisticas ganado cria"
                 app:cornerRadius="15dp" />
 
             <com.google.android.material.button.MaterialButton

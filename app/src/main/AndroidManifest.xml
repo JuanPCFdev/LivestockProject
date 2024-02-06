@@ -15,6 +15,9 @@
         android:theme="@style/Theme.LivestockProject"
         tools:targetApi="31">
         <activity
+            android:name=".ui.Cow.Consult.LiftingStatisticsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.Cow.Breeding.Register.RegisterNewsBreedingActivity"
             android:exported="false" />
         <activity
@@ -84,7 +87,7 @@
             android:name=".ui.Cow.HomeCow.HomeCowActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.Cow.Consult.ConsultCowsActivity"
+            android:name=".ui.Cow.Consult.breedingStatisticsActivity"
             android:exported="false" />
         <activity
             android:name=".ui.User.Register.RegisterUserActivity"

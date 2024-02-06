@@ -11,7 +11,7 @@ import com.jpdev.livestockproject.ui.Cow.Consult.Adapter.CowAdapter
 import com.jpdev.livestockproject.ui.Cow.HomeCow.HomeCowActivity
 import com.jpdev.livestockproject.ui.Home.HomePageActivity
 
-class ConsultCowsActivity : AppCompatActivity() {
+class breedingStatisticsActivity : AppCompatActivity() {
     private lateinit var binding:ActivityConsultCowsBinding
     private lateinit var firebaseInstance: FirebaseInstance
     private var cowList = mutableListOf<Cattle>()
