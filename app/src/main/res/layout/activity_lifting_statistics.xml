@@ -12,7 +12,7 @@
         android:id="@+id/tvRegisteredCows"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Estadisticas ganado de cria"
+        android:text="Estadisticas ganado de levante"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="25sp"
@@ -23,7 +23,7 @@
 
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cvRecycler"
+        android:id="@+id/cvText"
         android:layout_width="0dp"
         android:layout_height="450dp"
         app:cardCornerRadius="15dp"
@@ -33,11 +33,10 @@
         app:layout_constraintTop_toBottomOf="@+id/tvRegisteredCows"
         app:layout_constraintVertical_bias="0.1">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvCows"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
     </androidx.cardview.widget.CardView>
 
     <Button
@@ -49,7 +48,7 @@
         android:text="Opciones de Ganado"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cvRecycler" />
+        app:layout_constraintTop_toBottomOf="@+id/cvText" />
 
     <Button
         android:id="@+id/btnHome"
