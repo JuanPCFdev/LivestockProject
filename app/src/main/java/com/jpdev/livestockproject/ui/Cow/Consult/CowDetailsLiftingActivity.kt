@@ -1,9 +1,16 @@
 package com.jpdev.livestockproject.ui.Cow.Consult
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.androidplot.xy.CatmullRomInterpolator
+import com.androidplot.xy.LineAndPointFormatter
+import com.androidplot.xy.SimpleXYSeries
+import com.androidplot.xy.XYGraphWidget
+import com.androidplot.xy.XYSeries
 import com.jpdev.livestockproject.R
 import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityCowDetailsBinding
@@ -14,6 +21,10 @@ import com.jpdev.livestockproject.ui.Cow.Consult.AdapterNewsLifting.LiftingViewH
 import com.jpdev.livestockproject.ui.Cow.HomeCow.HomeCowActivity
 import com.jpdev.livestockproject.ui.Cow.Lifting.Register.RegisterNewsLiftingActivity
 import com.jpdev.livestockproject.ui.Vaccine.consult.rvVaccine.adapterRvVaccine.RvVaccineAdapter
+import java.text.FieldPosition
+import java.text.Format
+import java.text.ParsePosition
+import kotlin.math.roundToInt
 
 class CowDetailsLiftingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCowDetailsBinding
@@ -82,5 +93,56 @@ class CowDetailsLiftingActivity : AppCompatActivity() {
         binding.rvCows.adapter = adapter
         binding.rvCows.layoutManager = LinearLayoutManager(this)
         adapter.notifyDataSetChanged()
+        setGraph()
+    }
+
+    private fun setGraph(){
+        if(NewsList.size > 1){
+            var weight = mutableListOf<Number>()
+            var domain = mutableListOf<Number>()
+
+            for (element in NewsList){
+                weight.add(element.PLWeight)
+            }
+
+            for (i in 0..NewsList.size){
+                domain.add(i+1)
+            }
+
+            val weightList: Array<Number> = weight.toTypedArray()
+            val domainLabels: Array<Number> = domain.toList().toTypedArray()
+
+            val weightSeries:XYSeries = SimpleXYSeries(
+                listOf(* weightList), SimpleXYSeries.ArrayFormat.Y_VALS_ONLY,""
+            )
+
+            val weightFormat = LineAndPointFormatter(Color.BLUE, Color.BLACK, null, null)
+
+            weightFormat.interpolationParams = CatmullRomInterpolator.Params(
+                10, CatmullRomInterpolator.Type.Centripetal
+            )
+
+            binding.graphic.addSeries(weightSeries,weightFormat)
+
+            binding.graphic.graph.getLineLabelStyle(XYGraphWidget.Edge.BOTTOM).format = object : Format() {
+
+                override fun format(
+                    obj: Any?,
+                    toAppendTo: StringBuffer?,
+                    pos: FieldPosition?
+                ): StringBuffer {
+                    val i = (obj as Number).toFloat().roundToInt()
+                    return toAppendTo!!.append(domainLabels[i])
+                }
+
+                override fun parseObject(source: String?, pos: ParsePosition?): Any? {
+                    return null
+                }
+
+            }
+        }else{
+            Toast.makeText(this, "La vaca aun no tiene suficientes datos", Toast.LENGTH_SHORT).show()
+        }
+
     }
 }
