@@ -48,7 +48,7 @@ class HomeCowActivity : AppCompatActivity() {
         }
 
         //Statistics lifting
-        binding.btnConsultBreeding.setOnClickListener {
+        binding.btnConsultEstLifting.setOnClickListener {
             val intent = Intent(this, LiftingStatisticsActivity::class.java) //Estadisticas
             intent.putExtra("userKey",key)
             intent.putExtra("farmKey",farmKey)
