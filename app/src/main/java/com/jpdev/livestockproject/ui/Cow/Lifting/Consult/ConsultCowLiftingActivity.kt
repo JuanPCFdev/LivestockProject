@@ -10,6 +10,7 @@ import com.jpdev.livestockproject.databinding.ActivityConsultCowLiftingBinding
 import com.jpdev.livestockproject.domain.model.Cattle
 import com.jpdev.livestockproject.ui.Cow.Consult.Adapter.CowAdapter
 import com.jpdev.livestockproject.ui.Cow.HomeCow.HomeCowActivity
+import com.jpdev.livestockproject.ui.Cow.Lifting.Register.RegisterCowActivity
 import com.jpdev.livestockproject.ui.Home.HomePageActivity
 
 class ConsultCowLiftingActivity : AppCompatActivity() {
@@ -35,14 +36,14 @@ class ConsultCowLiftingActivity : AppCompatActivity() {
     private fun initListeners(user:String?,farm:String?){
         getListCows(user,farm)
         binding.btnRegisterCow.setOnClickListener {
-            val intent = Intent(this, HomeCowActivity::class.java)
+            val intent = Intent(this, RegisterCowActivity::class.java)
             intent.putExtra("userKey",user.toString())
             intent.putExtra("farmKey",farm.toString())
             startActivity(intent)
             finish()
         }
         binding.btnHome.setOnClickListener {
-            val intent = Intent(this, HomePageActivity::class.java)
+            val intent = Intent(this, HomeCowActivity::class.java)
             intent.putExtra("userKey",user.toString())
             intent.putExtra("farmKey",farm.toString())
             startActivity(intent)

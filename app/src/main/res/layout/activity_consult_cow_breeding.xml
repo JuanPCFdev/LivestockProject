@@ -57,19 +57,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/button_red"
-        android:text="Opciones de Ganado"
+        android:text="Registrar ganado"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cvRecycler" />
 
     <Button
-        android:id="@+id/btnHome"
+        android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/button_red"
-        android:text="Pagina Principal"
+        android:text="VOLVER"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnRegisterCow" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
