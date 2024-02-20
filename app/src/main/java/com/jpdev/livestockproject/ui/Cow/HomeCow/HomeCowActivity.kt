@@ -30,6 +30,7 @@ class HomeCowActivity : AppCompatActivity() {
     }
 
     private fun initListeners(key:String?,farmKey:String?){
+<<<<<<<<< Temporary merge branch 1
         //Home
         binding.btnHomePage.setOnClickListener {
             val intent = Intent(this,HomePageActivity::class.java)
@@ -48,22 +49,17 @@ class HomeCowActivity : AppCompatActivity() {
         }
 
         //Statistics lifting
-        binding.btnConsultBreeding.setOnClickListener {
+        binding.btnConsultEstLifting.setOnClickListener {
             val intent = Intent(this, LiftingStatisticsActivity::class.java) //Estadisticas
             intent.putExtra("userKey",key)
             intent.putExtra("farmKey",farmKey)
             startActivity(intent)
             finish()
         }
+=========
+>>>>>>>>> Temporary merge branch 2
 
         //Consult
-        binding.btnConsultBreeding.setOnClickListener {
-            val intent = Intent(this,ConsultCowBreedingActivity::class.java) //Consultar Cría
-            intent.putExtra("userKey",key)
-            intent.putExtra("farmKey",farmKey)
-            startActivity(intent)
-            finish()
-        }
         binding.btnConsultLifting.setOnClickListener {
             val intent = Intent(this,ConsultCowLiftingActivity::class.java) //Consultar Levante
             intent.putExtra("userKey",key)
@@ -71,16 +67,8 @@ class HomeCowActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-        //Register
-        binding.btnRegisterBreeding.setOnClickListener {
-            val intent = Intent(this,RegisterCowBreedingActivity::class.java) //Registrar Cría
-            intent.putExtra("userKey",key)
-            intent.putExtra("farmKey",farmKey)
-            startActivity(intent)
-            finish()
-        }
-        binding.btnRegisterLifting.setOnClickListener {
-            val intent = Intent(this,RegisterCowActivity::class.java) //Registrar Levante
+        binding.btnConsultLifting.setOnClickListener{
+            val intent = Intent(this,ConsultCowBreedingActivity::class.java) //Consultar Cría
             intent.putExtra("userKey",key)
             intent.putExtra("farmKey",farmKey)
             startActivity(intent)
