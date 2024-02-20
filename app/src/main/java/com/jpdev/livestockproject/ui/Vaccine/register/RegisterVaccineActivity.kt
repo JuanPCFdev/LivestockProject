@@ -7,8 +7,10 @@ import android.widget.Toast
 import com.jpdev.livestockproject.R
 import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityRegisterVaccineBinding
+import com.jpdev.livestockproject.domain.model.DatePickerFragment
 import com.jpdev.livestockproject.domain.model.Vaccine
 import com.jpdev.livestockproject.ui.Home.HomePageActivity
+import java.util.Calendar
 
 class RegisterVaccineActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterVaccineBinding
@@ -35,6 +37,19 @@ class RegisterVaccineActivity : AppCompatActivity() {
         binding.btnHomePage.setOnClickListener {
             goToHome(user, farmKey)
         }
+        binding.tieVaccineDate.setOnClickListener {
+            showDatePickerDialog()
+        }
+    }
+
+    private fun showDatePickerDialog() {
+        val datePicker = DatePickerFragment { day, month, year -> onDateSelected(day, month, year) }
+        datePicker.show(supportFragmentManager, "Fecha de Aplicacion")
+    }
+
+    private fun onDateSelected(day: Int, month: Int, year: Int) {
+        val mes = month + 1
+        binding.tieVaccineDate.setText("$day/$mes/$year")
     }
 
     private fun goToHome(user: String?, farmKey: String?) {

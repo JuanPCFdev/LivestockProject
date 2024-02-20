@@ -9,7 +9,9 @@ import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityRegisterCowBinding
 import com.jpdev.livestockproject.databinding.ActivityRegisterCowBreedingBinding
 import com.jpdev.livestockproject.domain.model.Cattle
+import com.jpdev.livestockproject.domain.model.DatePickerFragment
 import com.jpdev.livestockproject.ui.Home.HomePageActivity
+import java.util.Calendar
 
 class RegisterCowBreedingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterCowBreedingBinding
@@ -73,6 +75,39 @@ class RegisterCowBreedingActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+        binding.etBirthday.setOnClickListener{
+            showDatePickerDialog()
+        }
+    }
+
+    private fun showDatePickerDialog() {
+        val datePicker = DatePickerFragment { day, month, year -> onDateSelected(day, month, year) }
+        datePicker.show(supportFragmentManager, "Fecha de Nacimiento")
+    }
+
+    private fun onDateSelected(day: Int, month: Int, year: Int) {
+        val mes = month + 1
+        binding.etBirthday.setText("$day/$mes/$year")
+
+        val birthDate = Calendar.getInstance().apply {
+            set(Calendar.YEAR, year)
+            set(Calendar.MONTH, month)
+            set(Calendar.DAY_OF_MONTH, day)
+        }
+        val actualDate = Calendar.getInstance()
+
+        val ageInMonths = calculateAgeInMonths(birthDate, actualDate)
+
+        binding.etAge.setText(ageInMonths.toString())
+
+    }
+
+    private fun calculateAgeInMonths(dateBirth: Calendar, actualDate: Calendar): Int {
+        val diffYears = actualDate.get(Calendar.YEAR) - dateBirth.get(Calendar.YEAR)
+        val diffMonths = actualDate.get(Calendar.MONTH) - dateBirth.get(Calendar.MONTH)
+
+        return diffYears * 12 + diffMonths
     }
 
     private fun validateCredentials(): Boolean {

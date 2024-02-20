@@ -49,7 +49,7 @@ class CowDetailsLiftingActivity : AppCompatActivity() {
     }
 
     private fun printInfo(user: String?, farmKey: String?, cowKey: String?) {
-        firebaseInstance.getCowDetails(user,farmKey,cowKey){
+        firebaseInstance.getCowDetails(user, farmKey, cowKey) {
             val details = getString(R.string.register_news) + " ${it.marking}"
             binding.tvRegisteredCows.text = details
         }
@@ -72,48 +72,54 @@ class CowDetailsLiftingActivity : AppCompatActivity() {
             finish()
         }
     }
-    private fun getListCowsNews(user:String?,farm:String?,cowKey:String?){
-        firebaseInstance.getCowNewsLifting(user.toString(),farm.toString(),cowKey.toString()){ news, keys ->
-            if(news != null){
+
+    private fun getListCowsNews(user: String?, farm: String?, cowKey: String?) {
+        firebaseInstance.getCowNewsLifting(
+            user.toString(),
+            farm.toString(),
+            cowKey.toString()
+        ) { news, keys ->
+            if (news != null) {
                 news?.let {
                     NewsList.clear()
                     NewsList.addAll(news)
-                    keys?.let{
+                    keys?.let {
                         Keys.clear()
                         Keys.addAll(keys)
-                        setUpRecyclerView(user.toString(),farm.toString(),cowKey.toString())
+                        setUpRecyclerView(user.toString(), farm.toString(), cowKey.toString())
                     }
                 }
             }
         }
     }
 
-    private fun setUpRecyclerView(user:String?,farm:String?,cowKey: String?){
-        adapter = LiftingAdapter(NewsList, Keys, user.toString(), farm.toString(), cowKey.toString())
+    private fun setUpRecyclerView(user: String?, farm: String?, cowKey: String?) {
+        adapter =
+            LiftingAdapter(NewsList, Keys, user.toString(), farm.toString(), cowKey.toString())
         binding.rvCows.adapter = adapter
         binding.rvCows.layoutManager = LinearLayoutManager(this)
         adapter.notifyDataSetChanged()
         setGraph()
     }
 
-    private fun setGraph(){
-        if(NewsList.size > 1){
+    private fun setGraph() {
+        if (NewsList.size > 1) {
             var weight = mutableListOf<Number>()
             var domain = mutableListOf<Number>()
 
-            for (element in NewsList){
+            for (element in NewsList) {
                 weight.add(element.PLWeight)
             }
 
-            for (i in 0..NewsList.size){
-                domain.add(i+1)
+            for (i in 0..NewsList.size) {
+                domain.add(i + 1)
             }
 
             val weightList: Array<Number> = weight.toTypedArray()
             val domainLabels: Array<Number> = domain.toList().toTypedArray()
 
-            val weightSeries:XYSeries = SimpleXYSeries(
-                listOf(* weightList), SimpleXYSeries.ArrayFormat.Y_VALS_ONLY,""
+            val weightSeries: XYSeries = SimpleXYSeries(
+                listOf(* weightList), SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, ""
             )
 
             val weightFormat = LineAndPointFormatter(Color.BLUE, Color.BLACK, null, null)
@@ -122,26 +128,28 @@ class CowDetailsLiftingActivity : AppCompatActivity() {
                 10, CatmullRomInterpolator.Type.Centripetal
             )
 
-            binding.graphic.addSeries(weightSeries,weightFormat)
+            binding.graphic.addSeries(weightSeries, weightFormat)
 
-            binding.graphic.graph.getLineLabelStyle(XYGraphWidget.Edge.BOTTOM).format = object : Format() {
+            binding.graphic.graph.getLineLabelStyle(XYGraphWidget.Edge.BOTTOM).format =
+                object : Format() {
 
-                override fun format(
-                    obj: Any?,
-                    toAppendTo: StringBuffer?,
-                    pos: FieldPosition?
-                ): StringBuffer {
-                    val i = (obj as Number).toFloat().roundToInt()
-                    return toAppendTo!!.append(domainLabels[i])
+                    override fun format(
+                        obj: Any?,
+                        toAppendTo: StringBuffer?,
+                        pos: FieldPosition?
+                    ): StringBuffer {
+                        val i = (obj as Number).toFloat().roundToInt()
+                        return toAppendTo!!.append(domainLabels[i])
+                    }
+
+                    override fun parseObject(source: String?, pos: ParsePosition?): Any? {
+                        return null
+                    }
+
                 }
-
-                override fun parseObject(source: String?, pos: ParsePosition?): Any? {
-                    return null
-                }
-
-            }
-        }else{
-            Toast.makeText(this, "La vaca aun no tiene suficientes datos", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "La vaca aun no tiene suficientes datos", Toast.LENGTH_SHORT)
+                .show()
         }
 
     }
