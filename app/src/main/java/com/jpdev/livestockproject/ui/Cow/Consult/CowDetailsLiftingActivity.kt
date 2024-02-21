@@ -2,9 +2,9 @@ package com.jpdev.livestockproject.ui.Cow.Consult
 
 import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.androidplot.xy.CatmullRomInterpolator
 import com.androidplot.xy.LineAndPointFormatter
@@ -15,12 +15,9 @@ import com.jpdev.livestockproject.R
 import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityCowDetailsBinding
 import com.jpdev.livestockproject.domain.model.LiftingPerformance
-import com.jpdev.livestockproject.domain.model.Vaccine
 import com.jpdev.livestockproject.ui.Cow.Consult.AdapterNewsLifting.LiftingAdapter
-import com.jpdev.livestockproject.ui.Cow.Consult.AdapterNewsLifting.LiftingViewHolder
 import com.jpdev.livestockproject.ui.Cow.HomeCow.HomeCowActivity
 import com.jpdev.livestockproject.ui.Cow.Lifting.Register.RegisterNewsLiftingActivity
-import com.jpdev.livestockproject.ui.Vaccine.consult.rvVaccine.adapterRvVaccine.RvVaccineAdapter
 import java.text.FieldPosition
 import java.text.Format
 import java.text.ParsePosition

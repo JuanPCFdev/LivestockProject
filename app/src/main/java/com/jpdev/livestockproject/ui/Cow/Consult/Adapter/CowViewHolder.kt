@@ -38,6 +38,13 @@ class CowViewHolder(view: View) : ViewHolder(view) {
                     intent.putExtra("cowKey",cowKey)
                     context.startActivity(intent)
                 }
+                "corral"-> {
+                    val intent = Intent(context, HomePageActivity::class.java)
+                    intent.putExtra("userKey",user)
+                    intent.putExtra("farmKey",farmKey)
+                    intent.putExtra("cowKey",cowKey)
+                    context.startActivity(intent)
+                }
                 else -> {
                     val intent = Intent(context, HomePageActivity::class.java)
                     intent.putExtra("userKey",user)

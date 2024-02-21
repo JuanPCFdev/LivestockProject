@@ -15,6 +15,15 @@
         android:theme="@style/Theme.LivestockProject"
         tools:targetApi="31">
         <activity
+            android:name=".ui.Cow.Sold.SoldActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Cow.Death.DeathActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Cow.Corral.CorralActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.Cow.Consult.LiftingStatisticsActivity"
             android:exported="false" />
         <activity

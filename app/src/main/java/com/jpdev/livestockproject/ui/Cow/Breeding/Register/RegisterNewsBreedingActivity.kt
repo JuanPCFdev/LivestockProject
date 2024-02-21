@@ -8,6 +8,7 @@ import com.jpdev.livestockproject.R
 import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityRegisterNewsBreedingBinding
 import com.jpdev.livestockproject.domain.model.BreedingPerformance
+import com.jpdev.livestockproject.domain.model.Cattle
 import com.jpdev.livestockproject.ui.Home.HomePageActivity
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -40,7 +41,7 @@ class RegisterNewsBreedingActivity : AppCompatActivity() {
         firebaseInstance.getCowDetails(user, farm, cow) {
             val details = getString(R.string.consult_estadis_title) + " ${it.marking}"
             binding.tvTitle.text = details
-            binding.etBorn.setText(formattedDate)
+            binding.etBirthday.setText(formattedDate)
         }
     }
 
@@ -50,17 +51,18 @@ class RegisterNewsBreedingActivity : AppCompatActivity() {
         }
         binding.btnSaveChanges.setOnClickListener {
             saveNews(user, farm, cow)
+            saveCow(user, farm, cow)
         }
     }
 
     private fun saveNews(user: String?, farm: String?, cow: String?) {
         if(validateCredentials()){
             val New = BreedingPerformance(
-                binding.etBorn.text.toString(),
+                binding.etBirthday.text.toString(),
                 binding.etInsemination.text.toString(),
-                binding.etInitialWeight.text.toString().toInt(),
-                if(binding.chkIsSick.isChecked){true}else{false},
-                if(binding.chkIsDead.isChecked){true}else{false},
+                binding.etWeight.text.toString().toInt(),
+                binding.chkIsSick.isChecked,
+                binding.chkIsDead.isChecked,
                 binding.etDiet.text.toString()
             )
             firebaseInstance.registerNewsBreeding(New, user, farm, cow)
@@ -72,13 +74,48 @@ class RegisterNewsBreedingActivity : AppCompatActivity() {
         }
     }
 
+    private fun saveCow(user: String?, farm: String?, cow: String?){
+        if (validateCredentials()) {
+            var mother = ""
+            var father = ""
+            firebaseInstance.getCowDetails(user, farm, cow) {
+                it.marking = mother
+                val Cow = Cattle(
+                    0,
+                    binding.etMarking.text.toString(),
+                    binding.etBirthday.text.toString(),
+                    binding.etWeight.text.toString().toInt(),
+                    0,
+                    binding.etBreed.text.toString(),
+                    "Propia",
+                    binding.etGender.text.toString(),
+                    "corral",
+                    mother,
+                    father
+                )
+
+            firebaseInstance.registerCow(Cow, user, farm)}
+
+            val intent = Intent(this, HomePageActivity::class.java)
+            intent.putExtra("userKey", user.toString())
+            intent.putExtra("farmKey", farm.toString())
+            startActivity(intent)
+            finish()
+        } else {
+            Toast.makeText(this, "Falta por llenar algun dato", Toast.LENGTH_SHORT).show()
+        }
+    }
+
     private fun validateCredentials(): Boolean {
         var validate = false
         if (binding.toString().isNotEmpty()
-            && binding.etBorn.toString().isNotEmpty()
+            && binding.etBirthday.toString().isNotEmpty()
             && binding.etInsemination.toString().isNotEmpty()
-            && binding.etInitialWeight.toString().isNotEmpty()
+            && binding.etWeight.toString().isNotEmpty()
             && binding.etDiet.toString().isNotEmpty()
+            && binding.etGender.toString().isNotEmpty()
+            && binding.etMarking.toString().isNotEmpty()
+            && binding.etBreed.toString().isNotEmpty()
         ) {
             validate = true
         } else {

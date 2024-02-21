@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
     android:background="@color/background_app"
     android:padding="15dp"
-    tools:context=".ui.Cow.Consult.breedingStatisticsActivity">
+    tools:context=".ui.Cow.Death.DeathActivity">
 
     <TextView
         android:id="@+id/tvRegisteredCows"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Estadisticas ganado de cria"
+        android:text="Muerte bovina"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="25sp"
@@ -21,6 +21,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="El icono de lupa sirve para ver los datos o estadisticas del animal fallecido, el icono de lapiz sirve para eliminar el animal."
+        android:textAlignment="center"
+        android:textColor="@color/gray"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvRegisteredCows" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvRecycler"
@@ -30,7 +42,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvRegisteredCows"
+        app:layout_constraintTop_toBottomOf="@+id/tvDescription"
         app:layout_constraintVertical_bias="0.1">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -40,26 +52,16 @@
             android:layout_margin="5dp" />
     </androidx.cardview.widget.CardView>
 
+
     <Button
-        android:id="@+id/btnRegisterCow"
+        android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp"
         android:backgroundTint="@color/button_red"
-        android:text="Opciones de Ganado"
+        android:text="VOLVER"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cvRecycler" />
-
-    <Button
-        android:id="@+id/btnHome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/button_red"
-        android:text="Pagina Principal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRegisterCow" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
