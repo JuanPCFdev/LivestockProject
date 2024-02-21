@@ -1,42 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_app"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".ui.Home.HomePageActivity">
 
     <TextView
         android:id="@+id/titleHomePage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="40dp"
         android:text="Modulo de ganado"
         android:textColor="@color/black"
         android:textSize="40sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textStyle="bold" />
 
     <LinearLayout
         android:id="@+id/llfirst"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleHomePage">
+        android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/btnConsultLifting"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginHorizontal="16dp"
-            app:cardBackgroundColor="@color/gray"
+            app:cardBackgroundColor="@color/button_gray"
             app:cardCornerRadius="16dp">
 
             <LinearLayout
@@ -50,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Ganado Levante"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -68,7 +63,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginHorizontal="16dp"
-            app:cardBackgroundColor="@color/gray"
+            app:cardBackgroundColor="@color/button_gray"
             app:cardCornerRadius="16dp">
 
             <LinearLayout
@@ -82,7 +77,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Ganado Cria"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -100,19 +95,16 @@
         android:id="@+id/llsecond"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llfirst">
+        android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/btnConsultCalf"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginHorizontal="16dp"
-            app:cardBackgroundColor="@color/gray"
+            app:cardBackgroundColor="@color/button_gray"
             app:cardCornerRadius="16dp">
 
             <LinearLayout
@@ -125,7 +117,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Corral"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -143,7 +135,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginHorizontal="16dp"
-            app:cardBackgroundColor="@color/gray"
+            app:cardBackgroundColor="@color/button_gray"
             app:cardCornerRadius="16dp">
 
             <LinearLayout
@@ -157,7 +149,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Ganado Vendido"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="20dp"
                     android:textStyle="bold" />
 
@@ -175,13 +167,10 @@
         android:id="@+id/btnDead"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         android:layout_marginHorizontal="16dp"
-        app:cardBackgroundColor="@color/gray"
-        app:cardCornerRadius="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llsecond">
+        app:cardBackgroundColor="@color/button_gray"
+        app:cardCornerRadius="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -192,8 +181,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="Ganado Muerto"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -207,4 +197,4 @@
     </androidx.cardview.widget.CardView>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

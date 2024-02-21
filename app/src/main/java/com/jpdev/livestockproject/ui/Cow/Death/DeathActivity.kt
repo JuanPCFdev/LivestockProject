@@ -1,4 +1,4 @@
-package com.jpdev.livestockproject.ui.Cow.Breeding.Consult
+package com.jpdev.livestockproject.ui.Cow.Death
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,21 +6,21 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityConsultCowBreedingBinding
+import com.jpdev.livestockproject.databinding.ActivityDeathBinding
 import com.jpdev.livestockproject.domain.model.Cattle
 import com.jpdev.livestockproject.ui.Cow.Breeding.Register.RegisterCowBreedingActivity
 import com.jpdev.livestockproject.ui.Cow.Consult.Adapter.CowAdapter
 import com.jpdev.livestockproject.ui.Cow.HomeCow.HomeCowActivity
 
-class ConsultCowBreedingActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityConsultCowBreedingBinding
+class DeathActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityDeathBinding
     private lateinit var firebaseInstance: FirebaseInstance
     private var cowList = mutableListOf<Cattle>()
     private var cowKeys = mutableListOf<String>()
     private lateinit var adapter: CowAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityConsultCowBreedingBinding.inflate(layoutInflater)
+        binding = ActivityDeathBinding.inflate(layoutInflater)
         supportActionBar?.hide()
         setContentView(binding.root)
 
@@ -34,13 +34,6 @@ class ConsultCowBreedingActivity : AppCompatActivity() {
 
     private fun initListeners(user: String?, farm: String?) {
         getListCows(user, farm)
-        binding.btnRegisterCow.setOnClickListener {
-            val intent = Intent(this, RegisterCowBreedingActivity::class.java)
-            intent.putExtra("userKey", user.toString())
-            intent.putExtra("farmKey", farm.toString())
-            startActivity(intent)
-            finish()
-        }
         binding.btnBack.setOnClickListener {
             val intent = Intent(this, HomeCowActivity::class.java)
             intent.putExtra("userKey", user.toString())
@@ -54,9 +47,9 @@ class ConsultCowBreedingActivity : AppCompatActivity() {
         //Crear funcion para obtener una lista con todas las vacas
         firebaseInstance.getUserCows(user.toString(), farm.toString()) { cows, keys ->
             if (cows != null && keys != null) {
-                val breedingCowsIndices = cows.indices.filter { cows[it].type != "Breeding" || cows[it].state == "vendido" || cows[it].state == "death" }
-                val filteredCows = cows.filterIndexed { index, _ -> index !in breedingCowsIndices }
-                val filteredKeys = keys.filterIndexed { index, _ -> index !in breedingCowsIndices }
+                val deathCowsIndices = cows.indices.filter { cows[it].state != "death" }
+                val filteredCows = cows.filterIndexed { index, _ -> index !in deathCowsIndices }
+                val filteredKeys = keys.filterIndexed { index, _ -> index !in deathCowsIndices }
 
                 cowList.clear()
                 cowList.addAll(filteredCows)
@@ -75,5 +68,4 @@ class ConsultCowBreedingActivity : AppCompatActivity() {
         binding.rvCows.layoutManager = LinearLayoutManager(this)
         adapter.notifyDataSetChanged()
     }
-
 }

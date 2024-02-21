@@ -1,12 +1,10 @@
 package com.jpdev.livestockproject.ui.Cow.Breeding.Register
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.jpdev.livestockproject.R
+import androidx.appcompat.app.AppCompatActivity
 import com.jpdev.livestockproject.data.network.FirebaseInstance
-import com.jpdev.livestockproject.databinding.ActivityRegisterCowBinding
 import com.jpdev.livestockproject.databinding.ActivityRegisterCowBreedingBinding
 import com.jpdev.livestockproject.domain.model.Cattle
 import com.jpdev.livestockproject.domain.model.DatePickerFragment
@@ -35,10 +33,10 @@ class RegisterCowBreedingActivity : AppCompatActivity() {
             if (validateCredentials()) {
                 var mother = ""
                 var father = ""
-                if(binding.etMother.text.toString().isNotEmpty()){
+                if (binding.etMother.text.toString().isNotEmpty()) {
                     mother = binding.etMother.text.toString()
                 }
-                if(binding.etFather.text.toString().isNotEmpty()){
+                if (binding.etFather.text.toString().isNotEmpty()) {
                     father = binding.etFather.text.toString()
                 }
 
@@ -56,14 +54,14 @@ class RegisterCowBreedingActivity : AppCompatActivity() {
                     father
                 )
 
-                firebaseInstance.registerCow(cow,user,farm)
+                firebaseInstance.registerCow(cow, user, farm)
 
-                val intent = Intent(this,HomePageActivity::class.java)
-                intent.putExtra("userKey",user.toString())
-                intent.putExtra("farmKey",farm.toString())
+                val intent = Intent(this, HomePageActivity::class.java)
+                intent.putExtra("userKey", user.toString())
+                intent.putExtra("farmKey", farm.toString())
                 startActivity(intent)
                 finish()
-            }else{
+            } else {
                 Toast.makeText(this, "Falta por llenar algun dato", Toast.LENGTH_SHORT).show()
             }
         }
@@ -76,7 +74,7 @@ class RegisterCowBreedingActivity : AppCompatActivity() {
             finish()
         }
 
-        binding.etBirthday.setOnClickListener{
+        binding.etBirthday.setOnClickListener {
             showDatePickerDialog()
         }
     }

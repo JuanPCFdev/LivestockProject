@@ -6,12 +6,10 @@ import android.os.Bundle
 import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityHomeCowBinding
 import com.jpdev.livestockproject.ui.Cow.Breeding.Consult.ConsultCowBreedingActivity
-import com.jpdev.livestockproject.ui.Cow.Breeding.Register.RegisterCowBreedingActivity
-import com.jpdev.livestockproject.ui.Cow.Consult.LiftingStatisticsActivity
-import com.jpdev.livestockproject.ui.Cow.Consult.breedingStatisticsActivity
+import com.jpdev.livestockproject.ui.Cow.Corral.CorralActivity
+import com.jpdev.livestockproject.ui.Cow.Death.DeathActivity
 import com.jpdev.livestockproject.ui.Cow.Lifting.Consult.ConsultCowLiftingActivity
-import com.jpdev.livestockproject.ui.Cow.Lifting.Register.RegisterCowActivity
-import com.jpdev.livestockproject.ui.Home.HomePageActivity
+import com.jpdev.livestockproject.ui.Cow.Sold.SoldActivity
 
 class HomeCowActivity : AppCompatActivity() {
     private lateinit var binding : ActivityHomeCowBinding
@@ -30,45 +28,39 @@ class HomeCowActivity : AppCompatActivity() {
     }
 
     private fun initListeners(key:String?,farmKey:String?){
-<<<<<<<<< Temporary merge branch 1
-        //Home
-        binding.btnHomePage.setOnClickListener {
-            val intent = Intent(this,HomePageActivity::class.java)
-            intent.putExtra("userKey",key)
-            intent.putExtra("farmKey",farmKey)
-            startActivity(intent)
-            finish()
-        }
-        //Statistics Breeding
-        binding.btnConsultBreeding.setOnClickListener {
-            val intent = Intent(this,breedingStatisticsActivity::class.java) //Estadisticas
+
+        binding.btnConsultBredding.setOnClickListener {
+            val intent = Intent(this,ConsultCowBreedingActivity::class.java)
             intent.putExtra("userKey",key)
             intent.putExtra("farmKey",farmKey)
             startActivity(intent)
             finish()
         }
 
-        //Statistics lifting
-        binding.btnConsultEstLifting.setOnClickListener {
-            val intent = Intent(this, LiftingStatisticsActivity::class.java) //Estadisticas
-            intent.putExtra("userKey",key)
-            intent.putExtra("farmKey",farmKey)
-            startActivity(intent)
-            finish()
-        }
-=========
->>>>>>>>> Temporary merge branch 2
-
-        //Consult
         binding.btnConsultLifting.setOnClickListener {
-            val intent = Intent(this,ConsultCowLiftingActivity::class.java) //Consultar Levante
+            val intent = Intent(this,ConsultCowLiftingActivity::class.java)
             intent.putExtra("userKey",key)
             intent.putExtra("farmKey",farmKey)
             startActivity(intent)
             finish()
         }
-        binding.btnConsultLifting.setOnClickListener{
-            val intent = Intent(this,ConsultCowBreedingActivity::class.java) //Consultar Cría
+
+        binding.btnConsultCalf.setOnClickListener {
+            val intent = Intent(this,CorralActivity::class.java)
+            intent.putExtra("userKey",key)
+            intent.putExtra("farmKey",farmKey)
+            startActivity(intent)
+            finish()
+        }
+        binding.btnDead.setOnClickListener {
+            val intent = Intent(this,DeathActivity::class.java)
+            intent.putExtra("userKey",key)
+            intent.putExtra("farmKey",farmKey)
+            startActivity(intent)
+            finish()
+        }
+        binding.btnSold.setOnClickListener {
+            val intent = Intent(this,SoldActivity::class.java)
             intent.putExtra("userKey",key)
             intent.putExtra("farmKey",farmKey)
             startActivity(intent)
