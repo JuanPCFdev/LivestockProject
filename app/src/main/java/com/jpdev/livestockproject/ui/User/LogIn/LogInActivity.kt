@@ -1,6 +1,8 @@
 package com.jpdev.livestockproject.ui.User.LogIn
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -26,8 +28,27 @@ class LogInActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         firebaseInstance = FirebaseInstance(this)
-        getUsers()
-        initListeners()
+
+        if(isNetworkAvailable()){
+            getUsers()
+            initListeners()
+        }else{
+            showNoInternetToast()
+        }
+    }
+
+    private fun isNetworkAvailable():Boolean{
+        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetworkInfo = connectivityManager.activeNetworkInfo
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected
+    }
+
+    private fun showNoInternetToast() {
+        Toast.makeText(
+            this,
+            "No hay conexión a Internet. Por favor, conéctese a una red.",
+            Toast.LENGTH_LONG
+        ).show()
     }
 
     private fun initListeners(){
