@@ -15,6 +15,9 @@
         android:theme="@style/Theme.LivestockProject"
         tools:targetApi="31">
         <activity
+            android:name=".ui.Cow.Consult.CowResumeActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.Cow.Sold.SoldActivity"
             android:exported="false" />
         <activity

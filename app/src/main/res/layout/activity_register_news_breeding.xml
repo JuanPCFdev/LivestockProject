@@ -12,7 +12,7 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="registrar novedad"
+        tools:text="Registrar parto"
         android:layout_marginVertical="10dp"
         android:textColor="@color/black"
         android:textSize="30sp"

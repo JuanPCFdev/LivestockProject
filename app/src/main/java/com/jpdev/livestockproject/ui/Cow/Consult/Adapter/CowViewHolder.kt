@@ -8,6 +8,7 @@ import com.jpdev.livestockproject.domain.model.Cattle
 import com.jpdev.livestockproject.ui.Cow.Breeding.EditDelete.EditDeleteBreedingCowActivity
 import com.jpdev.livestockproject.ui.Cow.Consult.CowDetailsBreedingActivity
 import com.jpdev.livestockproject.ui.Cow.Consult.CowDetailsLiftingActivity
+import com.jpdev.livestockproject.ui.Cow.Consult.CowResumeActivity
 import com.jpdev.livestockproject.ui.Cow.Lifting.EditDelete.EditDeleteLiftingActivity
 import com.jpdev.livestockproject.ui.Home.HomePageActivity
 
@@ -22,7 +23,15 @@ class CowViewHolder(view: View) : ViewHolder(view) {
         binding.tvMarking.text = cow.marking
         binding.tvGender.text = cow.gender
 
-        binding.consult.setOnClickListener {
+        binding.cvCow.setOnClickListener {
+            val intent = Intent(context, CowResumeActivity::class.java)
+            intent.putExtra("userKey",user)
+            intent.putExtra("farmKey",farmKey)
+            intent.putExtra("cowKey",cowKey)
+            context.startActivity(intent)
+        }
+
+       /* binding.consult.setOnClickListener {
             when (type){
                 "Lifting" -> {
                     val intent = Intent(context, CowDetailsLiftingActivity::class.java)
@@ -79,7 +88,7 @@ class CowViewHolder(view: View) : ViewHolder(view) {
                     context.startActivity(intent)
                 }
             }
-        }
+        }*/
 
     }
 
