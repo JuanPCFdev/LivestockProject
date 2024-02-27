@@ -76,10 +76,9 @@ class RegisterNewsBreedingActivity : AppCompatActivity() {
 
     private fun saveCow(user: String?, farm: String?, cow: String?){
         if (validateCredentials()) {
-            var mother = ""
             var father = ""
+            var type = if(binding.chkIsDead.isChecked){"death"} else{"propia"}
             firebaseInstance.getCowDetails(user, farm, cow) {
-                it.marking = mother
                 val Cow = Cattle(
                     0,
                     binding.etMarking.text.toString(),
@@ -87,10 +86,10 @@ class RegisterNewsBreedingActivity : AppCompatActivity() {
                     binding.etWeight.text.toString().toInt(),
                     0,
                     binding.etBreed.text.toString(),
-                    "Propia",
+                    type,
                     binding.etGender.text.toString(),
                     "corral",
-                    mother,
+                    it.marking,
                     father
                 )
 
@@ -118,8 +117,6 @@ class RegisterNewsBreedingActivity : AppCompatActivity() {
             && binding.etBreed.toString().isNotEmpty()
         ) {
             validate = true
-        } else {
-            Toast.makeText(this, "Debe de rellenar todos los datos", Toast.LENGTH_SHORT).show()
         }
         return validate
     }
