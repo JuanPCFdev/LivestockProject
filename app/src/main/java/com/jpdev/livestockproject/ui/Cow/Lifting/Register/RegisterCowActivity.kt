@@ -9,6 +9,7 @@ import com.jpdev.livestockproject.databinding.ActivityRegisterCowBinding
 import com.jpdev.livestockproject.domain.model.Cattle
 import com.jpdev.livestockproject.domain.model.DatePickerFragment
 import com.jpdev.livestockproject.domain.model.Receipt
+import com.jpdev.livestockproject.ui.Cow.Lifting.Consult.ConsultCowLiftingActivity
 import com.jpdev.livestockproject.ui.Home.HomePageActivity
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -37,7 +38,7 @@ class RegisterCowActivity : AppCompatActivity() {
             if (validateCredentials()) {
                 registerReceiptCow(user, farm)
 
-                val intent = Intent(this, HomePageActivity::class.java)
+                val intent = Intent(this, ConsultCowLiftingActivity::class.java)
                 intent.putExtra("userKey", user.toString())
                 intent.putExtra("farmKey", farm.toString())
                 startActivity(intent)
@@ -110,12 +111,13 @@ class RegisterCowActivity : AppCompatActivity() {
             binding.etWeight.text.toString().toInt(),
             binding.etAge.text.toString().toInt(),
             binding.etBreed.text.toString(),
-            binding.etState.text.toString(),
+            "Propio",
             binding.etGender.text.toString(),
             "Lifting",
             "",
             "",
-            binding.etCost.text.toString().toDouble()
+            binding.etCost.text.toString().toDouble(),
+            binding.radioButtonYes.isChecked
         )
         Toast.makeText(this, "Se registro correctamente", Toast.LENGTH_SHORT).show()
         firebaseInstance.registerCowAndReceipt(cow, receipt, user, farm)
@@ -129,7 +131,6 @@ class RegisterCowActivity : AppCompatActivity() {
             && binding.etBirthday.text.toString().isNotEmpty()
             && binding.etBreed.text.toString().isNotEmpty()
             && binding.etGender.text.toString().isNotEmpty()
-            && binding.etState.text.toString().isNotEmpty()
             && binding.etCost.text.toString().isNotEmpty()
             && binding.etMarking.text.toString().isNotEmpty()
             && binding.etWeight.text.toString().isNotEmpty()

@@ -15,6 +15,7 @@ data class Cattle(
     @SerializedName("motherMark") var motherMark: String = "",
     @SerializedName("fatherMark") var fatherMark: String = "",
     @SerializedName("cost") var cost: Double = 0.0,
+    @SerializedName("castrated") var castrated: Boolean = false,
     @SerializedName("vaccines") var vaccines: MutableList<Vaccine> = emptyList<Vaccine>().toMutableList(),
     @SerializedName("PLifting") var PLifting: MutableList<LiftingPerformance> = emptyList<LiftingPerformance>().toMutableList(),
     @SerializedName("PBreeding") var PBreeding: MutableList<BreedingPerformance> = emptyList<BreedingPerformance>().toMutableList()

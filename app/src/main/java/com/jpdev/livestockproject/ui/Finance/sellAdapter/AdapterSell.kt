@@ -15,7 +15,7 @@ class AdapterSell(
 ) : RecyclerView.Adapter<SellViewHolder>() {
 
     // Filtrar las vacas vendidas
-    private val filteredCowsList: List<Cattle> = cowsList.filter { it.state != "vendido" && it.state != "death" }
+    private val filteredCowsList: List<Cattle> = cowsList.filter { it.state != "vendido" && it.state != "Muerta" }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SellViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
