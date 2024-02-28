@@ -55,7 +55,7 @@ class ConsultCowLiftingActivity : AppCompatActivity() {
         //Crear funcion para obtener una lista con todas las vacas
         firebaseInstance.getUserCows(user.toString(), farm.toString()) { cows, keys ->
             if (cows != null && keys != null) {
-                val breedingCowsIndices = cows.indices.filter { cows[it].type != "Lifting" || cows[it].state == "vendido" || cows[it].state == "death" }
+                val breedingCowsIndices = cows.indices.filter { cows[it].type != "Lifting" || cows[it].state == "vendido" || cows[it].state == "Muerta" }
                 val filteredCows = cows.filterIndexed { index, _ -> index !in breedingCowsIndices }
                 val filteredKeys = keys.filterIndexed { index, _ -> index !in breedingCowsIndices }
 

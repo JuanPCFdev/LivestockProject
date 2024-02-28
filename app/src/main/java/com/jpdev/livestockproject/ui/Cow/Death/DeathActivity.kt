@@ -47,7 +47,7 @@ class DeathActivity : AppCompatActivity() {
         //Crear funcion para obtener una lista con todas las vacas
         firebaseInstance.getUserCows(user.toString(), farm.toString()) { cows, keys ->
             if (cows != null && keys != null) {
-                val deathCowsIndices = cows.indices.filter { cows[it].state != "death" }
+                val deathCowsIndices = cows.indices.filter { cows[it].state != "Muerta" }
                 val filteredCows = cows.filterIndexed { index, _ -> index !in deathCowsIndices }
                 val filteredKeys = keys.filterIndexed { index, _ -> index !in deathCowsIndices }
 

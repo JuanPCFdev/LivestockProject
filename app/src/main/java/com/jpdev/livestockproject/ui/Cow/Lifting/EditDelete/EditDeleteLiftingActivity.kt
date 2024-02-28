@@ -49,12 +49,13 @@ class EditDeleteLiftingActivity : AppCompatActivity() {
             binding.etWeight.text.toString().toInt(),
             binding.etAge.text.toString().toInt(),
             binding.etBreed.text.toString(),
-            binding.etState.text.toString(),
+            "Propio",
             binding.etGender.text.toString(),
             "Lifting",
             "",
             "",
-            binding.etCost.text.toString().toDouble()
+            binding.etCost.text.toString().toDouble(),
+            binding.radioButtonYes.isChecked
         )
 
         firebaseInstance.editCow(updatedCow, user, farmKey, cowKey)
@@ -69,6 +70,7 @@ class EditDeleteLiftingActivity : AppCompatActivity() {
     }
 
     private fun printInfo(user: String?, farmKey: String?, cowKey: String?) {
+
         firebaseInstance.getCowDetails(user, farmKey, cowKey) {
 
             binding.etMarking.setText(it.marking)
@@ -77,7 +79,6 @@ class EditDeleteLiftingActivity : AppCompatActivity() {
             binding.etAge.setText(it.age.toString())
             binding.etBreed.setText(it.breed)
             binding.etGender.setText(it.gender)
-            binding.etState.setText(it.state)
             binding.etCost.setText(it.cost.toString())
         }
     }

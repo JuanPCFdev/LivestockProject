@@ -8,6 +8,7 @@ import androidx.appcompat.app.AlertDialog
 import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityEditDeleteBreedingCowBinding
 import com.jpdev.livestockproject.domain.model.Cattle
+import com.jpdev.livestockproject.ui.Cow.Breeding.Consult.ConsultCowBreedingActivity
 import com.jpdev.livestockproject.ui.Home.HomePageActivity
 
 class EditDeleteBreedingCowActivity : AppCompatActivity() {
@@ -52,7 +53,8 @@ class EditDeleteBreedingCowActivity : AppCompatActivity() {
             "Breeding",
             binding.etMother.text.toString(),
             binding.etFather.text.toString(),
-            0.0
+            0.0,
+            false
         )
 
         firebaseInstance.editCow(updatedCow,user,farmKey,cowKey)
@@ -89,7 +91,7 @@ class EditDeleteBreedingCowActivity : AppCompatActivity() {
 
         builder.setPositiveButton("Sí") { _, _ ->
             firebaseInstance.deleteCow(user, farmKey, cowKey)
-            val intent = Intent(this, HomePageActivity::class.java)
+            val intent = Intent(this, ConsultCowBreedingActivity::class.java)
             intent.putExtra("userKey",user)
             intent.putExtra("farmKey",farmKey)
             startActivity(intent)

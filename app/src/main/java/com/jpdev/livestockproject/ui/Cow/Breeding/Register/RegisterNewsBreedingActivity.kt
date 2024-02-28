@@ -9,6 +9,7 @@ import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityRegisterNewsBreedingBinding
 import com.jpdev.livestockproject.domain.model.BreedingPerformance
 import com.jpdev.livestockproject.domain.model.Cattle
+import com.jpdev.livestockproject.ui.Cow.Consult.CowDetailsBreedingActivity
 import com.jpdev.livestockproject.ui.Home.HomePageActivity
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -77,7 +78,7 @@ class RegisterNewsBreedingActivity : AppCompatActivity() {
     private fun saveCow(user: String?, farm: String?, cow: String?){
         if (validateCredentials()) {
             var father = ""
-            var type = if(binding.chkIsDead.isChecked){"death"} else{"propia"}
+            var type = if(binding.chkIsDead.isChecked){"Muerta"} else{"Propio"}
             firebaseInstance.getCowDetails(user, farm, cow) {
                 val Cow = Cattle(
                     0,
@@ -90,14 +91,18 @@ class RegisterNewsBreedingActivity : AppCompatActivity() {
                     binding.etGender.text.toString(),
                     "corral",
                     it.marking,
-                    father
+                    father,
+                    0.0,
+                    false
                 )
 
             firebaseInstance.registerCow(Cow, user, farm)}
 
-            val intent = Intent(this, HomePageActivity::class.java)
+            val intent = Intent(this, CowDetailsBreedingActivity::class.java)
             intent.putExtra("userKey", user.toString())
             intent.putExtra("farmKey", farm.toString())
+            intent.putExtra("cowKey", cow.toString())
+
             startActivity(intent)
             finish()
         } else {
