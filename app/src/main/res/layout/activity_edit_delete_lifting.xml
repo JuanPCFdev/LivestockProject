@@ -269,6 +269,15 @@
         android:text="Eliminar"
         app:cornerRadius="15dp" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnNotifyDeath"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:backgroundTint="@color/button_red"
+        android:text="Notificar Muerte"
+        app:cornerRadius="15dp" />
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

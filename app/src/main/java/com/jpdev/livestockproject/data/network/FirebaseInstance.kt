@@ -13,6 +13,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
 import com.jpdev.livestockproject.domain.model.BreedingPerformance
 import com.jpdev.livestockproject.domain.model.Cattle
+import com.jpdev.livestockproject.domain.model.DeathDetails
 import com.jpdev.livestockproject.domain.model.Farm
 import com.jpdev.livestockproject.domain.model.LiftingPerformance
 import com.jpdev.livestockproject.domain.model.Receipt
@@ -472,6 +473,31 @@ class FirebaseInstance(context: Context) {
 
     }
 
+    fun editDeath(death:DeathDetails, key: String?, farmKey: String?, cowKey: String?){
+        if (key != null && farmKey != null && cowKey != null) {
+            val userReference =
+                myRef.child(key).child("farms").child(farmKey).child("cattles").child(cowKey)
+
+            userReference.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        val existingUser = snapshot.getValue(Cattle::class.java)
+
+                        existingUser?.apply {
+                            this.state = "Death"
+                            this.death = death
+                        }
+
+                        userReference.setValue(existingUser)
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.i("Algo fallo", error.details)
+                }
+            })
+        }
+    }
     fun editCow(cow: Cattle, key: String?, farmKey: String?, cowKey: String?) {
         if (key != null && farmKey != null && cowKey != null) {
             val userReference =

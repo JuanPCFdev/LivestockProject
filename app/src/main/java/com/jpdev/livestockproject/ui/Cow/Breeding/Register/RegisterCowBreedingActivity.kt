@@ -1,5 +1,6 @@
 package com.jpdev.livestockproject.ui.Cow.Breeding.Register
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -83,7 +84,6 @@ class RegisterCowBreedingActivity : AppCompatActivity() {
         val datePicker = DatePickerFragment { day, month, year -> onDateSelected(day, month, year) }
         datePicker.show(supportFragmentManager, "Fecha de Nacimiento")
     }
-
     private fun onDateSelected(day: Int, month: Int, year: Int) {
         val mes = month + 1
         binding.etBirthday.setText("$day/$mes/$year")
@@ -104,7 +104,6 @@ class RegisterCowBreedingActivity : AppCompatActivity() {
     private fun calculateAgeInMonths(dateBirth: Calendar, actualDate: Calendar): Int {
         val diffYears = actualDate.get(Calendar.YEAR) - dateBirth.get(Calendar.YEAR)
         val diffMonths = actualDate.get(Calendar.MONTH) - dateBirth.get(Calendar.MONTH)
-
         return diffYears * 12 + diffMonths
     }
 

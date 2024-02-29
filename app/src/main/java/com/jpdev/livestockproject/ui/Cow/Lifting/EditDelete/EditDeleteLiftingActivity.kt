@@ -9,6 +9,7 @@ import com.jpdev.livestockproject.R
 import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityEditDeleteLiftingBinding
 import com.jpdev.livestockproject.domain.model.Cattle
+import com.jpdev.livestockproject.ui.Cow.Death.NotifyDeathCow
 import com.jpdev.livestockproject.ui.Home.HomePageActivity
 
 class EditDeleteLiftingActivity : AppCompatActivity() {
@@ -38,6 +39,14 @@ class EditDeleteLiftingActivity : AppCompatActivity() {
         }
         binding.btnDeleteCow.setOnClickListener {
             deleteCow(user,farmKey,cowKey)
+        }
+        binding.btnNotifyDeath.setOnClickListener {
+            val intent = Intent(this,NotifyDeathCow::class.java)
+            intent.putExtra("userKey", user)
+            intent.putExtra("farmKey", farmKey)
+            intent.putExtra("cowKey",cowKey)
+            startActivity(intent)
+            finish()
         }
     }
 

@@ -46,28 +46,6 @@
             android:textStyle="bold"
             tools:text="@string/ConsultCows_Gender" />
 
-
-        <ImageView
-            android:id="@+id/consult"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_margin="5dp"
-            android:src="@drawable/consult_icon" />
-
-        <ImageView
-            android:id="@+id/edit"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_margin="5dp"
-            android:src="@drawable/edit_icon" />
-        <!--
-                <ImageView
-                    android:id="@+id/delete"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_margin="5dp"
-                    android:src="@drawable/delete_icon" />
-                -->
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

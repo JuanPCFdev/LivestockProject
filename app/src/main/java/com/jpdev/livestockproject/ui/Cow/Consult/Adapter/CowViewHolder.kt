@@ -31,65 +31,6 @@ class CowViewHolder(view: View) : ViewHolder(view) {
             context.startActivity(intent)
         }
 
-       /* binding.consult.setOnClickListener {
-            when (type){
-                "Lifting" -> {
-                    val intent = Intent(context, CowDetailsLiftingActivity::class.java)
-                    intent.putExtra("userKey",user)
-                    intent.putExtra("farmKey",farmKey)
-                    intent.putExtra("cowKey",cowKey)
-                    context.startActivity(intent)
-                }
-                "Breeding" -> {
-                    val intent = Intent(context, CowDetailsBreedingActivity::class.java)
-                    intent.putExtra("userKey",user)
-                    intent.putExtra("farmKey",farmKey)
-                    intent.putExtra("cowKey",cowKey)
-                    context.startActivity(intent)
-                }
-                "corral"-> {
-                    val intent = Intent(context, HomePageActivity::class.java)
-                    intent.putExtra("userKey",user)
-                    intent.putExtra("farmKey",farmKey)
-                    intent.putExtra("cowKey",cowKey)
-                    context.startActivity(intent)
-                }
-                else -> {
-                    val intent = Intent(context, HomePageActivity::class.java)
-                    intent.putExtra("userKey",user)
-                    intent.putExtra("farmKey",farmKey)
-                    intent.putExtra("cowKey",cowKey)
-                    context.startActivity(intent)
-                }
-            }
-        }
-
-        binding.edit.setOnClickListener {
-            when (type){
-                "Lifting" -> {
-                    val intent = Intent(context, EditDeleteLiftingActivity::class.java)
-                    intent.putExtra("userKey",user)
-                    intent.putExtra("farmKey",farmKey)
-                    intent.putExtra("cowKey",cowKey)
-                    context.startActivity(intent)
-                }
-                "Breeding" -> {
-                    val intent = Intent(context, EditDeleteBreedingCowActivity::class.java)
-                    intent.putExtra("userKey",user)
-                    intent.putExtra("farmKey",farmKey)
-                    intent.putExtra("cowKey",cowKey)
-                    context.startActivity(intent)
-                }
-                else -> {
-                    val intent = Intent(context, HomePageActivity::class.java)
-                    intent.putExtra("userKey",user)
-                    intent.putExtra("farmKey",farmKey)
-                    intent.putExtra("cowKey",cowKey)
-                    context.startActivity(intent)
-                }
-            }
-        }*/
-
     }
 
 }
