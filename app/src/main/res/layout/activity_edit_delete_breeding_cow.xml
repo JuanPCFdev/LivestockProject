@@ -186,6 +186,8 @@
                         android:layout_gravity="center"
                         android:inputType="text"
                         android:maxLength="10"
+                        android:clickable="false"
+                        android:focusable="false"
                         android:textAlignment="center"
                         android:textSize="17sp"
                         android:textStyle="bold" />

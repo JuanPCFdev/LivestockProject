@@ -9,6 +9,7 @@ import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityRegisterNewsLiftingBinding
 import com.jpdev.livestockproject.domain.model.Cattle
 import com.jpdev.livestockproject.domain.model.LiftingPerformance
+import com.jpdev.livestockproject.ui.Cow.Consult.CowDetailsLiftingActivity
 import com.jpdev.livestockproject.ui.Home.HomePageActivity
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -64,7 +65,12 @@ class RegisterNewsLiftingActivity : AppCompatActivity() {
 
             firebaseInstance.registerNewsLifting(New, user, farm, cow)
             Toast.makeText(this, "Novedad registrada", Toast.LENGTH_SHORT).show()
-            goToHome(user, farm)
+            val intent = Intent(this, CowDetailsLiftingActivity::class.java)
+            intent.putExtra("userKey", user)
+            intent.putExtra("farmKey", farm)
+            intent.putExtra("cowKey", cow.toString())
+            startActivity(intent)
+            finish()
 
             firebaseInstance.getCowDetails(user, farm, cow) {
                 val editCow = Cattle(
@@ -79,7 +85,8 @@ class RegisterNewsLiftingActivity : AppCompatActivity() {
                     it.type,
                     "",
                     "",
-                    it.cost
+                    it.cost,
+                    it.castrated
                 )
                 firebaseInstance.editCow(editCow, user, farm, cow)
             }

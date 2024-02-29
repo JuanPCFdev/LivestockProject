@@ -294,7 +294,8 @@ class FirebaseInstance(context: Context) {
                             type = cowData["type"] as? String ?: "",
                             motherMark = cowData["motherMark"] as? String ?: "",
                             fatherMark = cowData["fatherMark"] as? String ?: "",
-                            cost = cowData["cost"].toString().toDouble() as? Double ?: 0.0
+                            cost = cowData["cost"].toString().toDouble() as? Double ?: 0.0,
+                            castrated = cowData["castrated"].toString().toBoolean() as? Boolean ?: false
                         )
                         cows.add(cow)
                         cowsKeys.add(key)
@@ -318,8 +319,18 @@ class FirebaseInstance(context: Context) {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     val existingUser = snapshot.getValue(User::class.java)
-                    existingUser?.farms?.get(farm.toString().toInt())?.cattles?.add(cow)
-                    userReference.setValue(existingUser)
+                    val farmKey = farm.toString().toInt()
+
+                    val isMarkingUnique = existingUser?.farms?.get(farmKey)?.cattles
+                        ?.none { it.marking == cow.marking } ?: true
+
+                    if (isMarkingUnique) {
+                        // Agregar la nueva vaca solo si la marcación es única
+                        existingUser?.farms?.get(farmKey)?.cattles?.add(cow)
+                        userReference.setValue(existingUser)
+                    } else {
+                        Log.i("Marcación duplicada", "Ya existe una vaca con la misma marcación")
+                    }
                 }
             }
 
@@ -328,6 +339,7 @@ class FirebaseInstance(context: Context) {
             }
         })
     }
+
 
     //metodo para registrar un recibo de compra
     fun registerReceiptBuy(receipt: Receipt, user: String?, farm: String?) {
@@ -520,6 +532,7 @@ class FirebaseInstance(context: Context) {
                             this.motherMark = cow.motherMark
                             this.fatherMark = cow.fatherMark
                             this.cost = cow.cost
+                            this.castrated = cow.castrated
                         }
 
                         userReference.setValue(existingUser)
@@ -605,7 +618,8 @@ class FirebaseInstance(context: Context) {
                         type = cowData["type"] as? String ?: "",
                         motherMark = cowData["motherMark"] as? String ?: "",
                         fatherMark = cowData["fatherMark"] as? String ?: "",
-                        cost = cowData["cost"].toString().toDouble() as? Double ?: 0.0
+                        cost = cowData["cost"].toString().toDouble() as? Double ?: 0.0,
+                        castrated = cowData["castrated"].toString().toBoolean() as? Boolean ?: false
                     )
 
                     callback(cow)

@@ -9,12 +9,14 @@ import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityRegisterCowBreedingBinding
 import com.jpdev.livestockproject.domain.model.Cattle
 import com.jpdev.livestockproject.domain.model.DatePickerFragment
+import com.jpdev.livestockproject.ui.Cow.Breeding.Consult.ConsultCowBreedingActivity
 import com.jpdev.livestockproject.ui.Home.HomePageActivity
 import java.util.Calendar
 
 class RegisterCowBreedingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterCowBreedingBinding
     private lateinit var firebaseInstance: FirebaseInstance
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterCowBreedingBinding.inflate(layoutInflater)
@@ -31,40 +33,7 @@ class RegisterCowBreedingActivity : AppCompatActivity() {
     private fun initListener(user: String?, farm: String?) {
 
         binding.btnRegister.setOnClickListener {
-            if (validateCredentials()) {
-                var mother = ""
-                var father = ""
-                if (binding.etMother.text.toString().isNotEmpty()) {
-                    mother = binding.etMother.text.toString()
-                }
-                if (binding.etFather.text.toString().isNotEmpty()) {
-                    father = binding.etFather.text.toString()
-                }
-
-                val cow = Cattle(
-                    0,
-                    binding.etMarking.text.toString(),
-                    binding.etBirthday.text.toString(),
-                    binding.etWeight.text.toString().toInt(),
-                    binding.etAge.text.toString().toInt(),
-                    binding.etBreed.text.toString(),
-                    binding.etState.text.toString(),
-                    binding.etGender.text.toString(),
-                    "Breeding",
-                    mother,
-                    father
-                )
-
-                firebaseInstance.registerCow(cow, user, farm)
-
-                val intent = Intent(this, HomePageActivity::class.java)
-                intent.putExtra("userKey", user.toString())
-                intent.putExtra("farmKey", farm.toString())
-                startActivity(intent)
-                finish()
-            } else {
-                Toast.makeText(this, "Falta por llenar algun dato", Toast.LENGTH_SHORT).show()
-            }
+            registerCow(user, farm)
         }
 
         binding.btnHome.setOnClickListener {
@@ -110,13 +79,12 @@ class RegisterCowBreedingActivity : AppCompatActivity() {
     private fun validateCredentials(): Boolean {
         var check = false
 
-        if (binding.etMarking.text.toString()
-                .isNotEmpty() //Valida si no hay datos vacios (exeptuando madre y padre)
+        if (binding.etMarking.text.toString().isNotEmpty()
             && binding.etBirthday.text.toString().isNotEmpty()
             && binding.etWeight.text.toString().isNotEmpty()
             && binding.etAge.text.toString().isNotEmpty()
             && binding.etBreed.text.toString().isNotEmpty()
-            && binding.etState.text.toString().isNotEmpty()
+            //&& binding.etState.text.toString().isNotEmpty()
             && binding.etGender.text.toString().isNotEmpty()
         ) {
             check = true
@@ -130,4 +98,45 @@ class RegisterCowBreedingActivity : AppCompatActivity() {
 
         return check
     }
+
+    private fun registerCow(user: String?, farm: String?) {
+
+        if (validateCredentials()) {
+            var mother = ""
+            var father = ""
+            if (binding.etMother.text.toString().isNotEmpty()) {
+                mother = binding.etMother.text.toString()
+            }
+            if (binding.etFather.text.toString().isNotEmpty()) {
+                father = binding.etFather.text.toString()
+            }
+
+            val cow = Cattle(
+                0,
+                binding.etMarking.text.toString(),
+                binding.etBirthday.text.toString(),
+                binding.etWeight.text.toString().toInt(),
+                binding.etAge.text.toString().toInt(),
+                binding.etBreed.text.toString(),
+                "Propio",
+                binding.etGender.text.toString(),
+                "Breeding",
+                mother,
+                father,
+                0.0,
+                false
+            )
+
+            firebaseInstance.registerCow(cow, user, farm)
+
+            val intent = Intent(this, ConsultCowBreedingActivity::class.java)
+            intent.putExtra("userKey", user.toString())
+            intent.putExtra("farmKey", farm.toString())
+            startActivity(intent)
+            finish()
+        }
+
+    }
+
+
 }

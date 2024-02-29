@@ -56,7 +56,7 @@ class CowResumeActivity : AppCompatActivity() {
 
     private fun showCow(user: String?, farm: String?, cow: String?) {
         firebaseInstance.getCowDetails(user, farm, cow) {
-
+            val castrado = if (it.castrated){"Si"}else{"No"}
             when (it.type) {
                 "Lifting" -> {
                     val descripcion =
@@ -66,7 +66,8 @@ class CowResumeActivity : AppCompatActivity() {
                                 "Raza: ${it.breed}\n" +
                                 "Precio de compra: ${it.cost}\n" +
                                 "Genero: ${it.gender}\n" +
-                                "Estado: ${it.state}\n"
+                                "Estado: ${it.state}\n"+
+                                "Castrado:${castrado}"
                     binding.informationcow.text = descripcion
                 }
 

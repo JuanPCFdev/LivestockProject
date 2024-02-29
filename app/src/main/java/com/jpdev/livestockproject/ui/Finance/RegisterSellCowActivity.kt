@@ -94,7 +94,8 @@ class RegisterSellCowActivity : AppCompatActivity() {
                 it.type,
                 it.motherMark,
                 it.fatherMark,
-                it.cost
+                it.cost,
+                it.castrated
             )
 
             firebaseInstance.editCow(updatedCow, user, farmKey, cowKey)
