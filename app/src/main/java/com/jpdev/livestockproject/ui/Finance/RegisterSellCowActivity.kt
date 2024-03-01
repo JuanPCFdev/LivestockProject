@@ -46,7 +46,7 @@ class RegisterSellCowActivity : AppCompatActivity() {
             updateCow(user, farmKey, cowKey)
         }
         binding.btnHomePage.setOnClickListener {
-            val intent = Intent(this, HomePageActivity::class.java)
+            val intent = Intent(this, SellCowActivity::class.java)
             intent.putExtra("userKey", user)
             intent.putExtra("farmKey", farmKey)
             startActivity(intent)
@@ -71,7 +71,7 @@ class RegisterSellCowActivity : AppCompatActivity() {
 
             firebaseInstance.registerReceiptBuy(receipt,key,farmKey)
             Toast.makeText(this, "Se creo el recibo correctamente", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, HomePageActivity::class.java)
+            val intent = Intent(this, SellCowActivity::class.java)
             intent.putExtra("userKey",key)
             intent.putExtra("farmKey",farmKey)
             startActivity(intent)

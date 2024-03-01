@@ -32,7 +32,7 @@ class ConsultReceiptActivity : AppCompatActivity() {
             deleteReceipt(key,farmKey,receiptKey)
         }
         binding.btnHomePage.setOnClickListener {
-            val intent = Intent(this, HomePageActivity::class.java)
+            val intent = Intent(this, ReceiptHistoryActivity::class.java)
             intent.putExtra("userKey",key)
             intent.putExtra("farmKey",farmKey)
             startActivity(intent)

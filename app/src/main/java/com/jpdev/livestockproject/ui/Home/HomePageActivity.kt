@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityHomePageBinding
 import com.jpdev.livestockproject.ui.Cow.HomeCow.HomeCowActivity
-import com.jpdev.livestockproject.ui.Diagnostic.ConsultDiagnosticActivity
 import com.jpdev.livestockproject.ui.Farm.deleteEdit.FarmEditDeleteActivity
 import com.jpdev.livestockproject.ui.Finance.FinanceActivity
 import com.jpdev.livestockproject.ui.Update.HelpActivity
@@ -59,13 +58,6 @@ class HomePageActivity : AppCompatActivity() {
         }
         binding.btnConsultFinance.setOnClickListener {
             val intent = Intent(this, FinanceActivity::class.java)
-            intent.putExtra("userKey",key)
-            intent.putExtra("farmKey",farmKey)
-            startActivity(intent)
-            finish()
-        }
-        binding.btnDiagnosis.setOnClickListener {
-            val intent = Intent(this, ConsultDiagnosticActivity::class.java)
             intent.putExtra("userKey",key)
             intent.putExtra("farmKey",farmKey)
             startActivity(intent)

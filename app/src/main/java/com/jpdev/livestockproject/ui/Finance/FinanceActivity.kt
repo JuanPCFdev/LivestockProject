@@ -1,9 +1,8 @@
 package com.jpdev.livestockproject.ui.Finance
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.jpdev.livestockproject.data.network.FirebaseInstance
+import androidx.appcompat.app.AppCompatActivity
 import com.jpdev.livestockproject.databinding.ActivityFinanceBinding
 import com.jpdev.livestockproject.ui.Home.HomePageActivity
 
@@ -19,39 +18,39 @@ class FinanceActivity : AppCompatActivity() {
         initComponents(key, farmKey)
     }
 
-    private fun initComponents(key: String?, farmKey: String? ){
-        binding.btnHistoryReceipt.setOnClickListener{
+    private fun initComponents(key: String?, farmKey: String?) {
+        binding.btnHistoryReceipt.setOnClickListener {
             val intent = Intent(this, ReceiptHistoryActivity::class.java)
-            intent.putExtra("userKey",key)
-            intent.putExtra("farmKey",farmKey)
+            intent.putExtra("userKey", key)
+            intent.putExtra("farmKey", farmKey)
             startActivity(intent)
             finish()
         }
         binding.btnBuy.setOnClickListener {
             val intent = Intent(this, BuyActivity::class.java)
-            intent.putExtra("userKey",key)
-            intent.putExtra("farmKey",farmKey)
+            intent.putExtra("userKey", key)
+            intent.putExtra("farmKey", farmKey)
             startActivity(intent)
             finish()
         }
         binding.btnSold.setOnClickListener {
             val intent = Intent(this, SellCowActivity::class.java)
-            intent.putExtra("userKey",key)
-            intent.putExtra("farmKey",farmKey)
+            intent.putExtra("userKey", key)
+            intent.putExtra("farmKey", farmKey)
             startActivity(intent)
             finish()
         }
         binding.btnReturnHome.setOnClickListener {
             val intent = Intent(this, HomePageActivity::class.java)
-            intent.putExtra("userKey",key)
-            intent.putExtra("farmKey",farmKey)
+            intent.putExtra("userKey", key)
+            intent.putExtra("farmKey", farmKey)
             startActivity(intent)
             finish()
         }
         binding.btnEarningsLost.setOnClickListener {
             val intent = Intent(this, EarningLostReceiptActivity::class.java)
-            intent.putExtra("userKey",key)
-            intent.putExtra("farmKey",farmKey)
+            intent.putExtra("userKey", key)
+            intent.putExtra("farmKey", farmKey)
             startActivity(intent)
             finish()
         }
