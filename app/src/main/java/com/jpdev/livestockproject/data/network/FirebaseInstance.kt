@@ -546,6 +546,44 @@ class FirebaseInstance(context: Context) {
         }
     }
 
+    fun editType(type:Int, key: String?, farmKey: String?, cowKey: String?) {
+        if (key != null && farmKey != null && cowKey != null) {
+            val userReference =
+                myRef.child(key).child("farms").child(farmKey).child("cattles").child(cowKey)
+
+            userReference.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        val existingUser = snapshot.getValue(Cattle::class.java)
+
+                        when(type){
+                            1 -> {
+                                existingUser?.apply {
+                                    this.type = "Lifting"
+                                }
+                                userReference.setValue(existingUser)
+                            }
+                            2 -> {
+                                existingUser?.apply {
+                                    this.type = "Breeding"
+                                }
+                                userReference.setValue(existingUser)
+                            }
+                            else -> {
+                                //No hace nada
+                            }
+                        }
+
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.i("Algo fallo", error.details)
+                }
+            })
+        }
+    }
+
     fun editVaccine(
         vaccine: Vaccine,
         key: String?,

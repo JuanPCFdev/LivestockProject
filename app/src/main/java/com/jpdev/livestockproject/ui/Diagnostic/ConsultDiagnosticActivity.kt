@@ -11,6 +11,7 @@ import com.jpdev.livestockproject.databinding.ActivityConsultDiagnosticBinding
 import com.jpdev.livestockproject.ui.Cow.Consult.Adapter.CowAdapter
 import com.jpdev.livestockproject.ui.Diagnostic.Adapter.DiagnosticAdapter
 import com.jpdev.livestockproject.ui.Home.HomePageActivity
+import com.jpdev.livestockproject.ui.Update.HelpActivity
 
 class ConsultDiagnosticActivity : AppCompatActivity() {
     private lateinit var binding: ActivityConsultDiagnosticBinding
@@ -33,7 +34,7 @@ class ConsultDiagnosticActivity : AppCompatActivity() {
     private fun initListeners(user: String?, farm: String?) {
         setUpRecyclerView(user, farm)
         binding.btnHome.setOnClickListener {
-            val intent = Intent(this, HomePageActivity::class.java)
+            val intent = Intent(this, HelpActivity::class.java)
             intent.putExtra("userKey", user.toString())
             intent.putExtra("farmKey", farm.toString())
             startActivity(intent)

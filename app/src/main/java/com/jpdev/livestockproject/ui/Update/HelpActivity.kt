@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.Toast
 import com.jpdev.livestockproject.R
 import com.jpdev.livestockproject.databinding.ActivityHelpBinding
+import com.jpdev.livestockproject.ui.Diagnostic.ConsultDiagnosticActivity
 import com.jpdev.livestockproject.ui.Farm.deleteEdit.FarmEditDeleteActivity
 import com.jpdev.livestockproject.ui.Home.HomePageActivity
 
@@ -48,6 +49,13 @@ class HelpActivity : AppCompatActivity() {
         binding.btnOtherVideo.setOnClickListener {
             val youtubeVideoOther = "https://www.youtube.com/watch?v=1js-0gcnqQM&ab_channel=mr.J"
             openVideo(youtubeVideoOther)
+        }
+        binding.btnDiagnostic.setOnClickListener {
+            val intent = Intent(this, ConsultDiagnosticActivity::class.java)
+            intent.putExtra("userKey",key)
+            intent.putExtra("farmKey",farmKey)
+            startActivity(intent)
+            finish()
         }
     }
     private fun openVideo(url: String) {

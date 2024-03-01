@@ -194,6 +194,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -232,7 +233,7 @@
                 android:text="¿Castrado?"
                 android:textColor="@color/black"
                 android:textSize="17sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <RadioGroup
                 android:id="@+id/radioGroupOptions"
@@ -258,32 +259,60 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnSaveChanges"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:backgroundTint="@color/button_red"
-        android:text="Guardar Cambios"
-        app:cornerRadius="15dp" />
+        android:orientation="horizontal">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnDeleteCow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:backgroundTint="@color/button_red"
-        android:text="Eliminar"
-        app:cornerRadius="15dp" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSaveChanges"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/button_red"
+            android:text="Guardar Cambios"
+            app:cornerRadius="15dp" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnNotifyDeath"
-        android:layout_width="wrap_content"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDeleteCow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/button_red"
+            android:text="Eliminar"
+            app:cornerRadius="15dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:backgroundTint="@color/button_red"
-        android:text="Notificar Muerte"
-        app:cornerRadius="15dp" />
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNotifyDeath"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/button_red"
+            android:text="Notificar Muerte"
+            app:cornerRadius="15dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/button_red"
+            android:text="Volver"
+            app:cornerRadius="15dp" />
+
+    </LinearLayout>
+
 
     <ImageView
         android:layout_width="wrap_content"

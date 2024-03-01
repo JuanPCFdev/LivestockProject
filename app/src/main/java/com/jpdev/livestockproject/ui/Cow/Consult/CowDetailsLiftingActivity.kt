@@ -21,6 +21,7 @@ import com.jpdev.livestockproject.ui.Cow.Lifting.Register.RegisterNewsLiftingAct
 import java.text.FieldPosition
 import java.text.Format
 import java.text.ParsePosition
+import java.util.Arrays
 import kotlin.math.roundToInt
 
 class CowDetailsLiftingActivity : AppCompatActivity() {
@@ -100,54 +101,51 @@ class CowDetailsLiftingActivity : AppCompatActivity() {
     }
 
     private fun setGraph() {
-        if (NewsList.size > 1) {
-            var weight = mutableListOf<Number>()
-            var domain = mutableListOf<Number>()
 
-            for (element in NewsList) {
-                weight.add(element.PLWeight)
-            }
+        val domain = mutableListOf<Number>()
+        val weight = mutableListOf<Number>()
 
-            for (i in 0..NewsList.size) {
-                domain.add(i + 1)
-            }
+        domain.add(0)
+        weight.add(0)
 
-            val weightList: Array<Number> = weight.toTypedArray()
-            val domainLabels: Array<Number> = domain.toList().toTypedArray()
-
-            val weightSeries: XYSeries = SimpleXYSeries(
-                listOf(* weightList), SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, ""
-            )
-
-            val weightFormat = LineAndPointFormatter(Color.BLUE, Color.BLACK, null, null)
-
-            weightFormat.interpolationParams = CatmullRomInterpolator.Params(
-                10, CatmullRomInterpolator.Type.Centripetal
-            )
-
-            binding.graphic.addSeries(weightSeries, weightFormat)
-
-            binding.graphic.graph.getLineLabelStyle(XYGraphWidget.Edge.BOTTOM).format =
-                object : Format() {
-
-                    override fun format(
-                        obj: Any?,
-                        toAppendTo: StringBuffer?,
-                        pos: FieldPosition?
-                    ): StringBuffer {
-                        val i = (obj as Number).toFloat().roundToInt()
-                        return toAppendTo!!.append(domainLabels[i])
-                    }
-
-                    override fun parseObject(source: String?, pos: ParsePosition?): Any? {
-                        return null
-                    }
-
-                }
-        } else {
-            Toast.makeText(this, "La vaca aun no tiene suficientes datos", Toast.LENGTH_SHORT)
-                .show()
+        for (element in NewsList){
+            weight.add(element.PLWeight)
         }
+
+        for (i in 1..NewsList.size) {
+            domain.add(i)
+        }
+
+        val weightList: Array<Number> = weight.toList().toTypedArray()
+        val domainLabels: Array<Number> = domain.toList().toTypedArray()
+
+        val series1: XYSeries = SimpleXYSeries(
+            listOf(* weightList), SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "Peso de la Vaca"
+        )
+
+        val series1Format = LineAndPointFormatter(Color.BLUE, Color.BLACK, Color.GREEN, null)
+        series1Format.interpolationParams = CatmullRomInterpolator.Params(10,
+            CatmullRomInterpolator.Type.Centripetal)
+
+        binding.graphic.addSeries(series1, series1Format)
+
+        binding.graphic.graph.getLineLabelStyle(XYGraphWidget.Edge.BOTTOM).format =
+            object : Format() {
+
+                override fun format(
+                    obj: Any?,
+                    toAppendTo: StringBuffer?,
+                    pos: FieldPosition?
+                ): StringBuffer {
+                    val i = (obj as Number).toFloat().roundToInt()
+                    return toAppendTo!!.append(domainLabels[i])
+                }
+
+                override fun parseObject(source: String?, pos: ParsePosition?): Any? {
+                    return null
+                }
+
+            }
 
     }
 }

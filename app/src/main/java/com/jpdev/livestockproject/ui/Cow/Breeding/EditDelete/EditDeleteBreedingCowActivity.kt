@@ -9,6 +9,8 @@ import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityEditDeleteBreedingCowBinding
 import com.jpdev.livestockproject.domain.model.Cattle
 import com.jpdev.livestockproject.ui.Cow.Breeding.Consult.ConsultCowBreedingActivity
+import com.jpdev.livestockproject.ui.Cow.Consult.CowResumeActivity
+import com.jpdev.livestockproject.ui.Cow.Death.NotifyDeathCow
 import com.jpdev.livestockproject.ui.Home.HomePageActivity
 
 class EditDeleteBreedingCowActivity : AppCompatActivity() {
@@ -33,14 +35,30 @@ class EditDeleteBreedingCowActivity : AppCompatActivity() {
 
     private fun initListeners(user: String?, farmKey: String?, cowKey: String?) {
         binding.btnDelete.setOnClickListener {
-            deleteCow(user,farmKey,cowKey)
+            deleteCow(user, farmKey, cowKey)
         }
         binding.btnSaveChanges.setOnClickListener {
-            saveChanges(user,farmKey,cowKey)
+            saveChanges(user, farmKey, cowKey)
+        }
+        binding.btnNotifyDeath.setOnClickListener {
+            val intent = Intent(this, NotifyDeathCow::class.java)
+            intent.putExtra("userKey", user)
+            intent.putExtra("farmKey", farmKey)
+            intent.putExtra("cowKey", cowKey)
+            startActivity(intent)
+            finish()
+        }
+        binding.btnBack.setOnClickListener {
+            val intent = Intent(this, CowResumeActivity::class.java)
+            intent.putExtra("userKey", user)
+            intent.putExtra("farmKey", farmKey)
+            intent.putExtra("cowKey", cowKey)
+            startActivity(intent)
+            finish()
         }
     }
 
-    private fun saveChanges(user: String?, farmKey: String?, cowKey: String?){
+    private fun saveChanges(user: String?, farmKey: String?, cowKey: String?) {
         val updatedCow = Cattle(
             0,
             binding.etMarking.text.toString(),
@@ -57,13 +75,13 @@ class EditDeleteBreedingCowActivity : AppCompatActivity() {
             false
         )
 
-        firebaseInstance.editCow(updatedCow,user,farmKey,cowKey)
+        firebaseInstance.editCow(updatedCow, user, farmKey, cowKey)
 
-        Toast.makeText(this,"Se han actualizado los datos",Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Se han actualizado los datos", Toast.LENGTH_SHORT).show()
 
         val intent = Intent(this, HomePageActivity::class.java)
-        intent.putExtra("userKey",user)
-        intent.putExtra("farmKey",farmKey)
+        intent.putExtra("userKey", user)
+        intent.putExtra("farmKey", farmKey)
         startActivity(intent)
         finish()
     }
@@ -92,8 +110,8 @@ class EditDeleteBreedingCowActivity : AppCompatActivity() {
         builder.setPositiveButton("Sí") { _, _ ->
             firebaseInstance.deleteCow(user, farmKey, cowKey)
             val intent = Intent(this, ConsultCowBreedingActivity::class.java)
-            intent.putExtra("userKey",user)
-            intent.putExtra("farmKey",farmKey)
+            intent.putExtra("userKey", user)
+            intent.putExtra("farmKey", farmKey)
             startActivity(intent)
             finish()
 
