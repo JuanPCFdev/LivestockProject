@@ -59,7 +59,7 @@ class BuyActivity : AppCompatActivity() {
 
             firebaseInstance.registerReceiptBuy(receipt,key,farmKey)
             Toast.makeText(this, "Se creo el recibo correctamente", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, HomePageActivity::class.java)
+            val intent = Intent(this, FinanceActivity::class.java)
             intent.putExtra("userKey",key)
             intent.putExtra("farmKey",farmKey)
             startActivity(intent)

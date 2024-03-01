@@ -33,11 +33,7 @@ class EditDeleteReceiptActivity : AppCompatActivity() {
 
     private fun initlistenener(key: String?, farmKey: String?, receiptKey: String?) {
         binding.btnHomePage.setOnClickListener {
-            val intent = Intent(this, HomePageActivity::class.java)
-            intent.putExtra("userKey",key)
-            intent.putExtra("farmKey",farmKey)
-            startActivity(intent)
-            finish()
+            back(key,farmKey)
         }
         binding.btnEdit.setOnClickListener {
             editReceipt(key,farmKey,receiptKey)
@@ -79,15 +75,19 @@ class EditDeleteReceiptActivity : AppCompatActivity() {
                     "Información del recibo actualizada exitosamente",
                     Toast.LENGTH_SHORT
                 ).show()
-                val intent = Intent(this, HomePageActivity::class.java)
-                intent.putExtra("userKey", key)
-                intent.putExtra("farmKey", farmKey)
-                startActivity(intent)
-                finish()
+                back(key,farmKey)
+
             } else {
                 Toast.makeText(this, "No se realizaron cambios", Toast.LENGTH_SHORT).show()
             }
         }
+    }
 
+    private fun back(key: String?, farmKey: String?){
+        val intent = Intent(this, ReceiptHistoryActivity::class.java)
+        intent.putExtra("userKey", key)
+        intent.putExtra("farmKey", farmKey)
+        startActivity(intent)
+        finish()
     }
 }
