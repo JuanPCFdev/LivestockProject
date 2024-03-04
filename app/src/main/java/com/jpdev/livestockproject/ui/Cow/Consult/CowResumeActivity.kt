@@ -37,7 +37,7 @@ class CowResumeActivity : AppCompatActivity() {
         initListeners(user, farm, cow)
         printInfo(user, farm, cow)
         showCow(user, farm, cow)
-        insertButtom(user, farm, cow)
+        insertButton(user, farm, cow)
     }
 
     private fun printInfo(user: String?, farm: String?, cow: String?) {
@@ -107,7 +107,7 @@ class CowResumeActivity : AppCompatActivity() {
         }
     }
 
-    private fun insertButtom(user: String?, farm: String?, cow: String?) {
+    private fun insertButton(user: String?, farm: String?, cow: String?) {
         firebaseInstance.getCowDetails(user, farm, cow) {
 
             when (it.type) {

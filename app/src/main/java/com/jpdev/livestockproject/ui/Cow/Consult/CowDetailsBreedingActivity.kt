@@ -10,7 +10,6 @@ import com.jpdev.livestockproject.databinding.ActivityCowDetailsBreedingBinding
 import com.jpdev.livestockproject.domain.model.BreedingPerformance
 import com.jpdev.livestockproject.ui.Cow.Breeding.Register.RegisterNewsBreedingActivity
 import com.jpdev.livestockproject.ui.Cow.Consult.AdapterNewsBreeding.BreedingAdapter
-import com.jpdev.livestockproject.ui.Cow.HomeCow.HomeCowActivity
 
 class CowDetailsBreedingActivity : AppCompatActivity() {
 
@@ -34,6 +33,47 @@ class CowDetailsBreedingActivity : AppCompatActivity() {
         initListeners(user, farm, cow)
         getListCowsNews(user, farm, cow)
         printInfo(user, farm, cow)
+
+    }
+
+    private fun printDetailsInfo(user: String?, farm: String?, cow: String?) {
+        //Cantidad de Partos
+        //Cantidad de Partos exitosos
+        //Cantidad de Partos Fallidos
+        //Cantidad de Crias enfermas
+        //Peso promedio de las crias al nacer
+
+        //Cantidad de Partos
+        var numberOfBirths = 0
+        var numberOfSuccessfullyBirths = 0
+        var numberOfFailedBirths = 0
+        var numberOfSickBabies = 0
+        var avgOfWeight = 0.0
+        var aux = 0
+        numberOfBirths = NewsList.size
+        for (i in NewsList) {
+
+            if (i.PBDeath) {
+                numberOfFailedBirths += 1
+            }
+            if (i.PBSick) {
+                numberOfSickBabies += 1
+            }
+            numberOfSuccessfullyBirths = numberOfBirths - numberOfFailedBirths
+
+            aux += i.PBInitialWeight
+        }
+        avgOfWeight = (aux / numberOfBirths).toDouble()
+
+        val textDetails = " ".repeat(8) + "ESTADISTICAS DE RENDIMIENTO.\n" +
+                "Cantidad de Partos TOTALES : $numberOfBirths.\n" +
+                "Cantidad de Partos EXITOSOS : $numberOfSuccessfullyBirths.\n" +
+                "Cantidad de Partos FALLIDOS : $numberOfFailedBirths.\n" +
+                "Cantidad de Crias que nacieron enfermas : $numberOfSickBabies.\n" +
+                "Peso promedio de las crias al nacer : $avgOfWeight KG."
+
+        binding.tvStats.text = textDetails
+
     }
 
     private fun printInfo(user: String?, farm: String?, cow: String?) {
@@ -45,9 +85,10 @@ class CowDetailsBreedingActivity : AppCompatActivity() {
 
     private fun initListeners(user: String?, farm: String?, cow: String?) {
         binding.btnBack.setOnClickListener {
-            val intent = Intent(this, HomeCowActivity::class.java)
+            val intent = Intent(this, CowResumeActivity::class.java)
             intent.putExtra("userKey", user.toString())
             intent.putExtra("farmKey", farm.toString())
+            intent.putExtra("cowKey", cow.toString())
             startActivity(intent)
             finish()
         }
@@ -88,5 +129,7 @@ class CowDetailsBreedingActivity : AppCompatActivity() {
         binding.rvNews.adapter = adapter
         binding.rvNews.layoutManager = LinearLayoutManager(this)
         adapter.notifyDataSetChanged()
+
+        printDetailsInfo(user, farm, cowKey)
     }
 }

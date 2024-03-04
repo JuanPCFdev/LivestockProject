@@ -27,10 +27,15 @@ class BreedingViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         binding.cvBreeding.setOnClickListener {
             firebaseInstance.getNewsBreedingDetails(userKey, farmKey, cowKey, key) {
+                var txtConfirm = "NO"
+                if (it.PBDeath){
+                    txtConfirm = "SI"
+                }
                 val descripcion = "Fecha Nacimiento cria: ${it.PBDate}\n" +
                         "Fecha inseminación: ${it.PBDateInsemination}\n" +
                         "peso inicial cria: ${it.PBInitialWeight}\n" +
-                        "Dieta: ${it.PBDiet}\n"
+                        "Dieta: ${it.PBDiet}\n" +
+                        "Muerta $txtConfirm\n"
 
                 val builder = AlertDialog.Builder(context)
                 builder.setTitle("Información sobre la nota")
