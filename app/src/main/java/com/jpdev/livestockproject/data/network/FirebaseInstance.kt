@@ -892,6 +892,35 @@ class FirebaseInstance(context: Context) {
         })
     }
 
+    fun getCowDeathDetails(
+        user: String?,
+        farmKey: String?,
+        cowKey: String?,
+        callback: (DeathDetails) -> Unit
+    ) {
+        val userReference = myRef.child(user.toString())
+            .child("farms")
+            .child(farmKey.toString())
+            .child("cattles")
+            .child(cowKey.toString())
+            .child("death")
+
+        userReference.addListenerForSingleValueEvent(object : ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                    val deathDetails = snapshot.getValue(DeathDetails::class.java)
+                    if (deathDetails != null) {
+                        callback(deathDetails)
+                    }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.i("Algo fallo", error.details)
+                callback(DeathDetails())
+            }
+        })
+    }
+
     fun getCowVaccines(
         user: String?,
         farmKey: String?,
