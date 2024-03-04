@@ -5,10 +5,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jpdev.livestockproject.data.network.FirebaseInstance
-import com.jpdev.livestockproject.databinding.ActivityConsultCowBreedingBinding
 import com.jpdev.livestockproject.databinding.ActivityDeathBinding
 import com.jpdev.livestockproject.domain.model.Cattle
-import com.jpdev.livestockproject.ui.Cow.Breeding.Register.RegisterCowBreedingActivity
 import com.jpdev.livestockproject.ui.Cow.Consult.Adapter.CowAdapter
 import com.jpdev.livestockproject.ui.Cow.HomeCow.HomeCowActivity
 

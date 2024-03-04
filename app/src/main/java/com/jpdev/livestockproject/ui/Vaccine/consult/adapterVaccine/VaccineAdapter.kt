@@ -12,15 +12,17 @@ class VaccineAdapter (
     val userKey:String,
     val farmKey:String
     ) : RecyclerView.Adapter<VaccineViewHolder>(){
+
+    private val filteredCowsList: List<Cattle> = cowList.filter {  it.state != "vendido" && it.state != "Muerta"}
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VaccineViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         return VaccineViewHolder(layoutInflater.inflate(R.layout.item_vaccinate, parent, false))
     }
 
-    override fun getItemCount() = cowList.size
+    override fun getItemCount() = filteredCowsList.size
 
     override fun onBindViewHolder(holder: VaccineViewHolder, position: Int) {
-        val item = cowList[position]
+        val item = filteredCowsList[position]
         val key = keys[position]
         holder.bind(item, key, userKey, farmKey)
     }

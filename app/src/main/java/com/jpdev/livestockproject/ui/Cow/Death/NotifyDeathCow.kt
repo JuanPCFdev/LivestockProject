@@ -41,14 +41,6 @@ class NotifyDeathCow : AppCompatActivity() {
     }
 
     private fun initListeners(user: String?, farmKey: String?, cowKey: String?){
-//        binding.btnBack.setOnClickListener {
-//            val intent = Intent(this,EditDeleteLiftingActivity::class.java)
-//            intent.putExtra("userKey", user)
-//            intent.putExtra("farmKey", farmKey)
-//            intent.putExtra("cowKey",cowKey)
-//            startActivity(intent)
-//            finish()
-//        }
         binding.btnConfirmDeath.setOnClickListener {
             saveChangeCowDeath(user,farmKey,cowKey)
         }
@@ -75,16 +67,39 @@ class NotifyDeathCow : AppCompatActivity() {
     private fun saveChangeCowDeath(user: String?, farmKey: String?, cowKey: String?) {
 
         val deathCow = DeathDetails(
-            deathDate = binding.etDeathDate.toString(),
-            deathCause = binding.etDeathCause.toString(),
-            deathDescription = binding.etDeathDescription.toString()
+            deathDate = binding.etDeathDate.text.toString(),
+            deathCause = binding.etDeathCause.text.toString(),
+            deathDescription = binding.etDeathDescription.text.toString()
         )
 
         firebaseInstance.editDeath(deathCow, user, farmKey, cowKey)
 
+        firebaseInstance.getCowDetails(user, farmKey, cowKey) {
+            val updatedCow = Cattle(
+                0,
+                it.marking,
+                it.birthdate,
+                it.weight,
+                it.age,
+                it.breed,
+                "Muerta",
+                it.gender,
+                it.type,
+                it.motherMark,
+                it.fatherMark,
+                it.cost,
+                it.castrated
+            )
+
+            firebaseInstance.editCow(updatedCow, user, farmKey, cowKey)
+
+        }
+
+
+
         Toast.makeText(this, "Se ha notificado muerte", Toast.LENGTH_SHORT).show()
 
-        val intent = Intent(this, HomePageActivity::class.java)
+        val intent = Intent(this, HomeCowActivity::class.java)
         intent.putExtra("userKey", user)
         intent.putExtra("farmKey", farmKey)
         startActivity(intent)
