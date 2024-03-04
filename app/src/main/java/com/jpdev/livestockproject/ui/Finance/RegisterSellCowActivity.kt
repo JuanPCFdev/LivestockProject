@@ -1,16 +1,13 @@
 package com.jpdev.livestockproject.ui.Finance
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.jpdev.livestockproject.R
+import androidx.appcompat.app.AppCompatActivity
 import com.jpdev.livestockproject.data.network.FirebaseInstance
-import com.jpdev.livestockproject.databinding.ActivityCowDetailsBinding
 import com.jpdev.livestockproject.databinding.ActivityRegisterSellCowBinding
 import com.jpdev.livestockproject.domain.model.Cattle
 import com.jpdev.livestockproject.domain.model.Receipt
-import com.jpdev.livestockproject.ui.Home.HomePageActivity
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -36,7 +33,6 @@ class RegisterSellCowActivity : AppCompatActivity() {
     private fun printInfo(user: String?, farmKey: String?, cowKey: String?) {
         firebaseInstance.getCowDetails(user,farmKey,cowKey){
             binding.etMarcacion.setText(it.marking)
-            binding.etMarcacion.isEnabled = false
         }
     }
 
@@ -114,5 +110,10 @@ class RegisterSellCowActivity : AppCompatActivity() {
         }
 
         return success
+    }
+
+    private fun calculatePrice(user : String?, farmKey: String?, cowKey: String?){
+        var cost : Double
+        
     }
 }

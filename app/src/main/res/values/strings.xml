@@ -63,8 +63,8 @@
     <string name="RegisterCow_State">Estado</string>
     <string name="RegisterCow_Type">Tipo</string>
     <string name="RegisterCow_Cost">Costo</string>
-    <string name="Buy_title">Recibo de compra</string>
-    <string name="Buy_description">Aqui podra añadir los insumos que compró para su finca, si lo que desea es crear un recibo de compra de ganado seleccione el boton</string>
+    <string name="Buy_title">Gastos</string>
+    <string name="Buy_description">Aqui podra añadir los insumos que compró para su finca.</string>
     <string name="Buy_name">Nombre del producto</string>
     <string name="Buy_descriptionProduct">Descripcion del producto</string>
     <string name="Buy_date">Fecha de la compra</string>
@@ -75,7 +75,7 @@
     <string name="Buy_buyCow">Comprar Ganado</string>
     <string name="ReceiptHistory_title">Historial de recibos</string>
     <string name="ReceiptHistory_return">Volver</string>
-    <string name="SellCow_title">Recibo Venta</string>
+    <string name="SellCow_title">Venta de ganado</string>
     <string name="SellCow_Description">Seleccione el animal que desea vender</string>
     <string name="SellCow_Dialing">Marcación del animal</string>
     <string name="SellCow_Weight">Peso del animal</string>

@@ -15,6 +15,12 @@
         android:theme="@style/Theme.LivestockProject"
         tools:targetApi="31">
         <activity
+            android:name=".ui.Cow.Monta.ConsultMontaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Cow.Monta.MontaActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.Cow.Death.NotifyDeathCow"
             android:exported="false" />
         <activity

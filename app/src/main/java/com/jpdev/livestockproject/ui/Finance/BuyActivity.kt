@@ -1,16 +1,13 @@
 package com.jpdev.livestockproject.ui.Finance
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.jpdev.livestockproject.R
+import androidx.appcompat.app.AppCompatActivity
 import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityBuyBinding
-import com.jpdev.livestockproject.domain.model.Cattle
 import com.jpdev.livestockproject.domain.model.Receipt
 import com.jpdev.livestockproject.ui.Cow.Lifting.Register.RegisterCowActivity
-import com.jpdev.livestockproject.ui.Home.HomePageActivity
 
 class BuyActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBuyBinding
