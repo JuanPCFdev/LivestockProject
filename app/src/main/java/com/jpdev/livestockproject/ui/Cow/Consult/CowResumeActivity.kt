@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.jpdev.livestockproject.R
 import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityCowResumeBinding
+import com.jpdev.livestockproject.domain.model.Cattle
+import com.jpdev.livestockproject.domain.model.Receipt
 import com.jpdev.livestockproject.domain.model.Vaccine
 import com.jpdev.livestockproject.ui.Cow.Breeding.EditDelete.EditDeleteBreedingCowActivity
 import com.jpdev.livestockproject.ui.Cow.Death.NotifyDeathCow
@@ -109,7 +111,7 @@ class CowResumeActivity : AppCompatActivity() {
 
     private fun insertButton(user: String?, farm: String?, cow: String?) {
         firebaseInstance.getCowDetails(user, farm, cow) {
-
+            val auxCattle = it
             when (it.type) {
                 "Lifting" -> {
                     if (!(it.state == "vendido" || it.state == "Muerta")) {
@@ -143,7 +145,7 @@ class CowResumeActivity : AppCompatActivity() {
                                     Button(ContextThemeWrapper(this, R.style.ButtonStyle))
                                 btnSellDetails.text = "Consultar Venta"
                                 btnSellDetails.setOnClickListener {
-                                    showSellInfo(user,farm,cow)
+                                    showSellInfo(user, farm, auxCattle)
                                 }
                                 binding.lledit.addView(btnSellDetails)
                             }
@@ -153,7 +155,7 @@ class CowResumeActivity : AppCompatActivity() {
                                     Button(ContextThemeWrapper(this, R.style.ButtonStyle))
                                 btnDeathDetails.text = "Consultar Muerte"
                                 btnDeathDetails.setOnClickListener {
-                                    showDeathInfo(user,farm,cow)
+                                    showDeathInfo(user, farm, cow)
                                 }
                                 binding.lledit.addView(btnDeathDetails)
                             }
@@ -210,14 +212,14 @@ class CowResumeActivity : AppCompatActivity() {
                             this.finish()
                         }
                         binding.lledit.addView(btnWeight)
-                    }else {
+                    } else {
                         when (it.state) {
                             "vendido" -> {
                                 val btnSellDetails =
                                     Button(ContextThemeWrapper(this, R.style.ButtonStyle))
                                 btnSellDetails.text = "Consultar Venta"
                                 btnSellDetails.setOnClickListener {
-                                    showSellInfo(user,farm,cow)
+                                    showSellInfo(user, farm, auxCattle)
                                 }
                                 binding.lledit.addView(btnSellDetails)
                             }
@@ -227,7 +229,7 @@ class CowResumeActivity : AppCompatActivity() {
                                     Button(ContextThemeWrapper(this, R.style.ButtonStyle))
                                 btnDeathDetails.text = "Consultar Muerte"
                                 btnDeathDetails.setOnClickListener {
-                                    showDeathInfo(user,farm,cow)
+                                    showDeathInfo(user, farm, cow)
                                 }
                                 binding.lledit.addView(btnDeathDetails)
                             }
@@ -291,14 +293,14 @@ class CowResumeActivity : AppCompatActivity() {
                             this.finish()
                         }
                         binding.lledit.addView(btnSetBreeding)
-                    }else {
+                    } else {
                         when (it.state) {
                             "vendido" -> {
                                 val btnSellDetails =
                                     Button(ContextThemeWrapper(this, R.style.ButtonStyle))
                                 btnSellDetails.text = "Consultar Venta"
                                 btnSellDetails.setOnClickListener {
-                                    showSellInfo(user,farm,cow)
+                                    showSellInfo(user, farm, auxCattle)
                                 }
                                 binding.lledit.addView(btnSellDetails)
                             }
@@ -308,7 +310,7 @@ class CowResumeActivity : AppCompatActivity() {
                                     Button(ContextThemeWrapper(this, R.style.ButtonStyle))
                                 btnDeathDetails.text = "Consultar Muerte"
                                 btnDeathDetails.setOnClickListener {
-                                    showDeathInfo(user,farm,cow)
+                                    showDeathInfo(user, farm, cow)
                                 }
                                 binding.lledit.addView(btnDeathDetails)
                             }
@@ -369,14 +371,22 @@ class CowResumeActivity : AppCompatActivity() {
                         "Fecha de la muerte : ${it.deathDate}.\n" +
                         "Descripción : ${it.deathDescription}.\n"
 
-                showInfoDetails(deathText,true)
+                showInfoDetails(deathText, true)
             }
         }
     }
 
-    private fun showSellInfo(user: String?, farm: String?, cow: String?) {
-        //Traer informacion de la venta e imprimirla
-        showInfoDetails("texto",false)
+    private fun showSellInfo(user: String?, farm: String?, cow: Cattle) {
+        firebaseInstance.getFarmReceips(user.toString(), farm.toString()) { receipts ->
+            if (receipts.isNotEmpty()) {
+                val receiptOfCow = receipts.find { it.nameReceipt.contains(cow.marking) }
+                if (receiptOfCow != null) {
+                    val textReceipt =
+                        "Fecha de la venta : ${receiptOfCow.date}.\nValor de la venta : ${receiptOfCow.amountPaid}.\nComprador : ${receiptOfCow.name}.\nTelefono Comprador : ${receiptOfCow.tel}.\n"
+                    showInfoDetails(textReceipt, false)
+                }
+            }
+        }
     }
 
     private fun showInfoDetails(text: String, type: Boolean) {

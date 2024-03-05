@@ -258,6 +258,30 @@ class FirebaseInstance(context: Context) {
         })
     }
 
+    fun getFarmReceips(userKey: String, farmKey: String, callback: (List<Receipt>) -> Unit) {
+
+        val userRef = myRef.child(userKey).child("farms").child(farmKey).child("receipts")
+
+        userRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                val receipts = mutableListOf<Receipt>()
+
+                for (receipt in snapshot.children){
+                    val receiptData = receipt.getValue(Receipt::class.java)
+                    if(receiptData != null){
+                        receipts.add(receiptData)
+                    }
+                }
+                callback(receipts)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                callback(emptyList())
+            }
+        })
+    }
+
     fun getUserCows(
         user: String?,
         farmKey: String?,
