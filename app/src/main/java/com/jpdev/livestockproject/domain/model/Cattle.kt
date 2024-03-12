@@ -19,5 +19,6 @@ data class Cattle(
     @SerializedName("vaccines") var vaccines: MutableList<Vaccine> = emptyList<Vaccine>().toMutableList(),
     @SerializedName("PLifting") var PLifting: MutableList<LiftingPerformance> = emptyList<LiftingPerformance>().toMutableList(),
     @SerializedName("PBreeding") var PBreeding: MutableList<BreedingPerformance> = emptyList<BreedingPerformance>().toMutableList(),
-    @SerializedName("Death") var death:DeathDetails = DeathDetails()
+    @SerializedName("Death") var death:DeathDetails = DeathDetails(),
+    @SerializedName("inseminationNews") var inseminationNews: MutableList<Insemination> = emptyList<Insemination>().toMutableList()
 )

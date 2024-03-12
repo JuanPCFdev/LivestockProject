@@ -15,6 +15,7 @@ import com.jpdev.livestockproject.domain.model.BreedingPerformance
 import com.jpdev.livestockproject.domain.model.Cattle
 import com.jpdev.livestockproject.domain.model.DeathDetails
 import com.jpdev.livestockproject.domain.model.Farm
+import com.jpdev.livestockproject.domain.model.Insemination
 import com.jpdev.livestockproject.domain.model.LiftingPerformance
 import com.jpdev.livestockproject.domain.model.Receipt
 import com.jpdev.livestockproject.domain.model.User
@@ -853,6 +854,34 @@ class FirebaseInstance(context: Context) {
         }
     }
 
+    fun registerInsemination(insemination: Insemination, user: String?, farmKey: String?, cowKey: String?) {
+        val userReference = myRef.child(user.toString())
+            .child("farms")
+            .child(farmKey.toString())
+            .child("cattles")
+            .child(cowKey.toString())
+
+        userReference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    val existingCattle = snapshot.getValue(Cattle::class.java)
+                    val inseminationList = existingCattle?.inseminationNews
+                    inseminationList?.add(insemination)
+                    existingCattle?.apply {
+                        if (inseminationList != null) {
+                            this.inseminationNews = inseminationList
+                        }
+                    }
+                    userReference.setValue(existingCattle)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.i("Algo fallo", error.details)
+            }
+        })
+    }
+
     fun registerVaccine(vaccine: Vaccine, user: String?, farmKey: String?, cowKey: String?) {
         val userReference = myRef.child(user.toString())
             .child("farms")
@@ -1132,6 +1161,48 @@ class FirebaseInstance(context: Context) {
         })
     }
 
+    fun getCowInseminationList(
+        user: String?,
+        farmKey: String?,
+        cowKey: String?,
+        callback: (List<Insemination>?, List<String>?) -> Unit
+    ) {
+
+        val userReference = myRef.child(user.toString())
+            .child("farms")
+            .child(farmKey.toString())
+            .child("cattles")
+            .child(cowKey.toString())
+            .child("inseminationNews")
+
+        userReference.addListenerForSingleValueEvent(object : ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                val keys = mutableListOf<String>()
+                val inseminationList = mutableListOf<Insemination>()
+
+                for (inseminationSnapshot in snapshot.children) {
+
+                    val key = inseminationSnapshot.key.toString()
+                    val inseminationData = inseminationSnapshot.getValue(Insemination::class.java)
+
+                    if (inseminationData != null) {
+                        inseminationList.add(inseminationData)
+                        keys.add(key)
+                    }
+
+                }
+                callback(inseminationList, keys)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.i("Algo fallo", error.details)
+                callback(null, null)
+            }
+        })
+    }
+
     fun getCowNewsLifting(
         user: String?,
         farmKey: String?,
@@ -1282,6 +1353,41 @@ class FirebaseInstance(context: Context) {
             override fun onCancelled(error: DatabaseError) {
                 Log.i("Algo fallo", error.details)
                 callback(LiftingPerformance())
+            }
+        })
+    }
+
+    fun getInseminationDetails(
+        user: String?,
+        farmKey: String?,
+        cowKey: String?,
+        keyInsemination: String?,
+        callback: (Insemination) -> Unit
+    ) {
+
+        val userReference = myRef.child(user.toString()).child("farms")
+            .child(farmKey.toString())
+            .child("cattles")
+            .child(cowKey.toString())
+            .child("inseminationNews")
+            .child(keyInsemination.toString())
+
+        userReference.addListenerForSingleValueEvent(object : ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var inseminationData = snapshot.getValue(Insemination::class.java)
+
+                if (inseminationData != null) {
+                    callback(inseminationData)
+                } else {
+                    callback(Insemination())
+                }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.i("Algo fallo", error.details)
+                callback(Insemination())
             }
         })
     }

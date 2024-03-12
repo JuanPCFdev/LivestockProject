@@ -16,6 +16,7 @@ import com.jpdev.livestockproject.ui.Cow.Breeding.EditDelete.EditDeleteBreedingC
 import com.jpdev.livestockproject.ui.Cow.Death.NotifyDeathCow
 import com.jpdev.livestockproject.ui.Cow.HomeCow.HomeCowActivity
 import com.jpdev.livestockproject.ui.Cow.Lifting.EditDelete.EditDeleteLiftingActivity
+import com.jpdev.livestockproject.ui.Cow.Monta.ConsultMontaActivity
 import com.jpdev.livestockproject.ui.Home.HomePageActivity
 
 class CowResumeActivity : AppCompatActivity() {
@@ -56,7 +57,6 @@ class CowResumeActivity : AppCompatActivity() {
         }
         binding.btnConsultVaccine.setOnClickListener {
             showVaccine(user, farm, cow)
-            //finish()
         }
     }
 
@@ -192,7 +192,7 @@ class CowResumeActivity : AppCompatActivity() {
                         val btnMonta = Button(ContextThemeWrapper(this, R.style.ButtonStyle))
                         btnMonta.text = "Consultar Montas"
                         btnMonta.setOnClickListener {
-                            val intent = Intent(this, HomeCowActivity::class.java)
+                            val intent = Intent(this, ConsultMontaActivity::class.java)
                             intent.putExtra("userKey", user)
                             intent.putExtra("farmKey", farm)
                             intent.putExtra("cowKey", cow)
