@@ -1,16 +1,14 @@
 package com.jpdev.livestockproject.ui.Vaccine.register
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.jpdev.livestockproject.R
+import androidx.appcompat.app.AppCompatActivity
 import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityRegisterVaccineBinding
 import com.jpdev.livestockproject.domain.model.DatePickerFragment
 import com.jpdev.livestockproject.domain.model.Vaccine
 import com.jpdev.livestockproject.ui.Home.HomePageActivity
-import java.util.Calendar
 
 class RegisterVaccineActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterVaccineBinding
