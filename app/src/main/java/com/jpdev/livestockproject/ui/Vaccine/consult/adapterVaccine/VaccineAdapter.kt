@@ -23,7 +23,7 @@ class VaccineAdapter (
 
     override fun onBindViewHolder(holder: VaccineViewHolder, position: Int) {
         val item = filteredCowsList[position]
-        val key = keys[position]
+        val key = keys[cowList.indexOf(item)]
         holder.bind(item, key, userKey, farmKey)
     }
 

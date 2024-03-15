@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.jpdev.livestockproject.R
 import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityEarningLostReceiptBinding
+import java.text.DecimalFormat
 
 class EarningLostReceiptActivity : AppCompatActivity() {
 
@@ -47,22 +48,27 @@ class EarningLostReceiptActivity : AppCompatActivity() {
                 key,
                 farmKey
             ) { totalAmountPaidCompra, totalAmountPaidVenta ->
+                val formatter = DecimalFormat("#,###")
                 Log.d(
                     "TotalAmountPaidCompra",
                     "Total amount paid for compra: $totalAmountPaidCompra"
                 )
                 Log.d("TotalAmountPaidVenta", "Total amount paid for venta: $totalAmountPaidVenta")
-                binding.etWon.text = totalAmountPaidVenta.toString()
-                binding.etinvestment.text = totalAmountPaidCompra.toString()
+                val formattedVenta = formatter.format(totalAmountPaidVenta)
+                binding.etWon.text = formattedVenta.toString()
+                val formattedCompra = formatter.format(totalAmountPaidCompra)
+                binding.etinvestment.text = formattedCompra.toString()
 
                 cost = totalAmountPaidVenta - (totalAmountPaidCompra + totalVaccineCost)
+
+                val formattedCost = formatter.format(cost)
 
                 if (cost == 0.0) {
                     binding.etAbstract.text = getString(R.string.AbstractNothing)
                 } else if (cost > 0.0) {
-                    binding.etAbstract.text = getString(R.string.AbstractWon) + " $cost"
+                    binding.etAbstract.text = getString(R.string.AbstractWon) + " $formattedCost"
                 } else if (cost < 0.0) {
-                    binding.etAbstract.text = getString(R.string.AbstractLost) + " $cost"
+                    binding.etAbstract.text = getString(R.string.AbstractLost) + " $formattedCost"
                 }
 
             }

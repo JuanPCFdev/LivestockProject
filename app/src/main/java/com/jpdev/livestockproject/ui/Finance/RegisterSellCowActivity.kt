@@ -8,6 +8,7 @@ import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityRegisterSellCowBinding
 import com.jpdev.livestockproject.domain.model.Cattle
 import com.jpdev.livestockproject.domain.model.Receipt
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -28,6 +29,7 @@ class RegisterSellCowActivity : AppCompatActivity() {
         firebaseInstance = FirebaseInstance(this)
         printInfo(user, farmKey, cowKey)
         initListeners(user,farmKey, cowKey)
+        calculatePrice(user,farmKey, cowKey)
     }
 
     private fun printInfo(user: String?, farmKey: String?, cowKey: String?) {
@@ -113,7 +115,20 @@ class RegisterSellCowActivity : AppCompatActivity() {
     }
 
     private fun calculatePrice(user : String?, farmKey: String?, cowKey: String?){
-        var cost : Double
-        
+        firebaseInstance.getCowDetails(user, farmKey, cowKey){
+            firebaseInstance.getVaccineCostForSingleCow(user, farmKey, cowKey){totalVaccineCost ->
+                firebaseInstance.getCountOfAliveAndUnsoldCows(user, farmKey){totalCowActive ->
+                    firebaseInstance.getSumReceiptCowSingle(user, farmKey, cowKey){sumReceipt ->
+                    val costCow: Double = it.cost
+                    val prom = sumReceipt/totalCowActive
+                    val sum = costCow+totalVaccineCost+prom
+                        val formatter = DecimalFormat("#,###")
+                        val formattedSum = formatter.format(sum)
+                        binding.tvPriceEstimate.text = "Lo gastado aproximadamente en el animal fue: $formattedSum"
+
+                    }
+                }
+            }
+        }
     }
 }

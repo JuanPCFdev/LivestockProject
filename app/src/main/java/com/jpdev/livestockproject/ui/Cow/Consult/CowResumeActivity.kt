@@ -18,6 +18,7 @@ import com.jpdev.livestockproject.ui.Cow.HomeCow.HomeCowActivity
 import com.jpdev.livestockproject.ui.Cow.Lifting.EditDelete.EditDeleteLiftingActivity
 import com.jpdev.livestockproject.ui.Cow.Monta.ConsultMontaActivity
 import com.jpdev.livestockproject.ui.Home.HomePageActivity
+import java.text.DecimalFormat
 
 class CowResumeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCowResumeBinding
@@ -381,8 +382,10 @@ class CowResumeActivity : AppCompatActivity() {
             if (receipts.isNotEmpty()) {
                 val receiptOfCow = receipts.find { it.nameReceipt.contains(cow.marking) }
                 if (receiptOfCow != null) {
+                    val formatter = DecimalFormat("#,###")
+                    val formattedVenta = formatter.format(receiptOfCow.amountPaid)
                     val textReceipt =
-                        "Fecha de la venta : ${receiptOfCow.date}.\nValor de la venta : ${receiptOfCow.amountPaid}.\nComprador : ${receiptOfCow.name}.\nTelefono Comprador : ${receiptOfCow.tel}.\n"
+                        "Fecha de la venta : ${receiptOfCow.date}.\nValor de la venta : ${formattedVenta}.\nComprador : ${receiptOfCow.name}.\nTelefono Comprador : ${receiptOfCow.tel}.\n"
                     showInfoDetails(textReceipt, false)
                 }
             }
