@@ -7,7 +7,12 @@
     android:background="@color/background_app"
     tools:context=".ui.User.Register.RegisterUserActivity">
 
+    <include
+        android:id="@+id/viewToolBar"
+        layout="@layout/view_tool_bar" />
+
     <TextView
+        android:id="@+id/txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/RegisterUser_Title"
@@ -17,7 +22,7 @@
         app:layout_constraintBottom_toTopOf="@id/cardRegister"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/viewToolBar"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardRegister"
@@ -26,10 +31,10 @@
         android:layout_marginHorizontal="25dp"
         android:backgroundTint="@color/background_card"
         app:cardCornerRadius="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/img"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/txt">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -120,19 +125,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnAlreadyRegistered"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:backgroundTint="#CECECE"
-                android:text="@string/RegisterUser_AlreadyRegistered"
-                android:textColor="@color/button_login_special"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:cornerRadius="15dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnRegister"
+                android:id="@+id/btnRegisterUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -140,13 +133,14 @@
                 android:backgroundTint="@color/button_red"
                 android:text="@string/LogIn_Register"
                 android:textStyle="bold"
-                app:cornerRadius="15dp" />
+                app:cornerRadius="5dp" />
 
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
     <ImageView
+        android:id="@+id/img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/cow_icon"

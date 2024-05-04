@@ -1,11 +1,10 @@
 package com.jpdev.livestockproject.ui.User.Register
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.renderscript.Sampler.Value
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -22,7 +21,6 @@ class RegisterUserActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterUserBinding.inflate(layoutInflater)
-        supportActionBar?.hide()
         setContentView(binding.root)
         firebaseInstance = FirebaseInstance(this)
         getId()
@@ -30,10 +28,10 @@ class RegisterUserActivity : AppCompatActivity() {
     }
 
     private fun initListeners(){
-        binding.btnRegister.setOnClickListener {
+        binding.btnRegisterUser.setOnClickListener {
             Register()
         }
-        binding.btnAlreadyRegistered.setOnClickListener {
+        binding.viewToolBar.back.setOnClickListener {
             goToLogin()
         }
     }

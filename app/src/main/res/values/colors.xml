@@ -20,4 +20,5 @@
     <color name="help">#D7B0B8B3</color>
     <color name="gray">#D75D5E5D</color>
     <color name="item">#2B2A2A</color>
+    <color name="toolBar">#687E7C</color>
 </resources>
