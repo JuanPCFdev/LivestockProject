@@ -123,7 +123,7 @@ class CowDetailsLiftingActivity : AppCompatActivity() {
             listOf(* weightList), SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "Peso de la Vaca"
         )
 
-        val series1Format = LineAndPointFormatter(Color.BLUE, Color.BLACK, Color.GREEN, null)
+        val series1Format = LineAndPointFormatter(Color.BLUE, Color.BLACK, Color.GRAY, null)
         series1Format.interpolationParams = CatmullRomInterpolator.Params(10,
             CatmullRomInterpolator.Type.Centripetal)
 
