@@ -4,15 +4,15 @@ import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import com.jpdev.livestockproject.databinding.ActivityLogInBinding
 import com.jpdev.livestockproject.data.network.FirebaseInstance
+import com.jpdev.livestockproject.databinding.ActivityLogInBinding
 import com.jpdev.livestockproject.domain.model.User
 import com.jpdev.livestockproject.ui.Farm.consult.FarmActivity
 import com.jpdev.livestockproject.ui.User.Register.RegisterUserActivity
@@ -24,11 +24,8 @@ class LogInActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLogInBinding.inflate(layoutInflater)
-        supportActionBar?.hide()
         setContentView(binding.root)
-
         firebaseInstance = FirebaseInstance(this)
-
         if(isNetworkAvailable()){
             getUsers()
             initListeners()
@@ -117,7 +114,6 @@ class LogInActivity : AppCompatActivity() {
         val intent = Intent(this,FarmActivity::class.java)
         intent.putExtra("userKey",key)
         startActivity(intent)
-        finish()
     }
     private fun openVideo(url: String) {
         try {

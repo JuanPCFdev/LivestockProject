@@ -5,16 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_app"
-    android:gravity="center"
     android:orientation="vertical"
     tools:context=".ui.Home.HomePageActivity">
+
+    <include
+        android:id="@+id/viewToolBar"
+        layout="@layout/view_tool_bar"/>
+
 
     <TextView
         android:id="@+id/titleHomePage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginVertical="30dp"
         android:textColor="@color/black"
-        android:textSize="40sp"
+        android:textSize="35sp"
         android:textStyle="bold"
         tools:text="@string/HomePage_Title" />
 
@@ -28,8 +34,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/btnConsultFarm"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
             android:layout_marginHorizontal="16dp"
             app:cardBackgroundColor="@color/homepage_card"
             app:cardCornerRadius="16dp">
@@ -45,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/HomePage_Farm"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
+                    android:textSize="25sp"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -59,8 +65,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/btnConsultUser"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
             android:layout_marginHorizontal="16dp"
             app:cardBackgroundColor="@color/homepage_card"
             app:cardCornerRadius="16dp">
@@ -76,7 +82,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/HomePage_User"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
+                    android:textSize="25sp"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -99,8 +105,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/btnConsultCow"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
             android:layout_marginHorizontal="16dp"
             app:cardBackgroundColor="@color/homepage_card"
             app:cardCornerRadius="16dp">
@@ -116,7 +122,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/HomePage_Cows"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
+                    android:textSize="25sp"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -130,8 +136,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/btnConsultFinance"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
             android:layout_marginHorizontal="16dp"
             app:cardBackgroundColor="@color/homepage_card"
             app:cardCornerRadius="16dp">
@@ -147,7 +153,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/HomePage_Finance"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
+                    android:textSize="25sp"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -170,8 +176,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/btnConsultVaccine"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
             android:layout_marginHorizontal="16dp"
             app:cardBackgroundColor="@color/homepage_card"
             app:cardCornerRadius="16dp">
@@ -187,7 +193,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/HomePage_Vaccine"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
+                    android:textSize="25sp"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -201,8 +207,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/btnConsultHelp"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
             android:layout_marginHorizontal="16dp"
             app:cardBackgroundColor="@color/homepage_card"
             app:cardCornerRadius="16dp">
@@ -218,7 +224,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/HomePage_Help"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
+                    android:textSize="25sp"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -234,11 +240,5 @@
     </LinearLayout>
 
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:background="@drawable/cow_icon"
-        android:scaleType="centerCrop" />
 
 </LinearLayout>

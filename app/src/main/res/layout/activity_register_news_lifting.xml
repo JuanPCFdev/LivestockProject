@@ -4,33 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingVertical="30dp"
     android:background="@color/background_app"
     tools:context=".ui.Cow.Lifting.Register.RegisterNewsLiftingActivity">
+
+    <include
+        android:id="@+id/viewToolBar"
+        layout="@layout/view_tool_bar" />
+
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="registrar novedad"
+        tools:text="Registrar pesaje"
         android:layout_marginVertical="20dp"
         android:textColor="@color/black"
+        android:textAlignment="center"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/card"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/viewToolBar"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginVertical="20dp"
+        android:layout_marginVertical="30dp"
         android:backgroundTint="@color/background_card"
         app:cardCornerRadius="20dp"
-        app:layout_constraintBottom_toTopOf="@id/llButtons"
+        app:layout_constraintBottom_toTopOf="@id/btnSaveChanges"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle">
 
         <LinearLayout
@@ -54,6 +59,8 @@
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:maxLength="25"
+                    android:clickable="false"
+                    android:focusable="false"
                     android:maxLines="1"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -105,38 +112,25 @@
 
     </androidx.cardview.widget.CardView>
 
-    <LinearLayout
-        android:id="@+id/llButtons"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="40dp"
-        android:layout_marginHorizontal="16dp"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/card">
 
         <Button
             android:id="@+id/btnSaveChanges"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="10dp"
-            android:backgroundTint="@color/blue"
-            android:text="Guardar Cambios" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnHomePage"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:backgroundTint="@color/button_red"
-            android:text="@string/FarmEditDelete_HomePage"
-            app:cornerRadius="15dp" />
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginVertical="20dp"
+            android:backgroundTint="@color/blue"
+            android:text="Guardar Cambios"
+            app:layout_constraintTop_toBottomOf="@+id/card"/>
 
-    </LinearLayout>
+
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/cow_icon"
+        android:layout_marginVertical="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -7,6 +7,10 @@
     android:background="@color/background_app"
     tools:context=".ui.Finance.SellCowActivity">
 
+    <include
+        android:id="@+id/viewToolBar"
+        layout="@layout/view_tool_bar" />
+
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
@@ -16,19 +20,20 @@
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/card"
+        app:layout_constraintTop_toBottomOf="@+id/viewToolBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
         android:backgroundTint="@color/background_card"
         app:cardCornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/title"
+        app:layout_constraintTop_toBottomOf="@+id/title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -65,6 +70,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:inputType="text"
+                    android:clickable="false"
+                    android:focusable="false"
                     android:maxLength="20"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -166,14 +173,6 @@
                 android:backgroundTint="@color/button_red"
                 android:text="@string/SellCow_Save" />
 
-            <Button
-                android:id="@+id/btnHomePage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="15dp"
-                android:backgroundTint="@color/blue"
-                android:text="@string/FarmEditDelete_HomePage" />
 
         </LinearLayout>
 

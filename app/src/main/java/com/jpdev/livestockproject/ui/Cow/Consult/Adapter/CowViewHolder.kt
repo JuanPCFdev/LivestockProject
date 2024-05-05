@@ -5,12 +5,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.jpdev.livestockproject.databinding.ItemCowBinding
 import com.jpdev.livestockproject.domain.model.Cattle
-import com.jpdev.livestockproject.ui.Cow.Breeding.EditDelete.EditDeleteBreedingCowActivity
-import com.jpdev.livestockproject.ui.Cow.Consult.CowDetailsBreedingActivity
-import com.jpdev.livestockproject.ui.Cow.Consult.CowDetailsLiftingActivity
 import com.jpdev.livestockproject.ui.Cow.Consult.CowResumeActivity
-import com.jpdev.livestockproject.ui.Cow.Lifting.EditDelete.EditDeleteLiftingActivity
-import com.jpdev.livestockproject.ui.Home.HomePageActivity
 
 class CowViewHolder(view: View) : ViewHolder(view) {
 

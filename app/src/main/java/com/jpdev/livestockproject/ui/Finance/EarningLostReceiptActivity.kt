@@ -14,6 +14,7 @@ class EarningLostReceiptActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEarningLostReceiptBinding
     private lateinit var firebaseInstance: FirebaseInstance
     private var cost: Double = 0.0
+    val formatter = DecimalFormat("#,###")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEarningLostReceiptBinding.inflate(layoutInflater)
@@ -28,27 +29,26 @@ class EarningLostReceiptActivity : AppCompatActivity() {
     }
 
     private fun initComponents(key: String?, farmKey: String?) {
-        binding.btnHomePage.setOnClickListener {
+        binding.viewToolBar.back.setOnClickListener {
             val intent = Intent(this, FinanceActivity::class.java)
             intent.putExtra("userKey", key)
             intent.putExtra("farmKey", farmKey)
             startActivity(intent)
-
             finish()
         }
-
         calculateFinances(key, farmKey)
 
     }
 
     private fun calculateFinances(key: String?, farmKey: String?) {
         firebaseInstance.getTotalVaccineCostForAllCows(key, farmKey) { totalVaccineCost ->
-            binding.etVaccine.text = totalVaccineCost.toString()
+            val formattedvaccine = formatter.format(totalVaccineCost)
+            binding.etVaccine.text = formattedvaccine
             firebaseInstance.getSumOfAmountPaidByReceiptType(
                 key,
                 farmKey
             ) { totalAmountPaidCompra, totalAmountPaidVenta ->
-                val formatter = DecimalFormat("#,###")
+
                 Log.d(
                     "TotalAmountPaidCompra",
                     "Total amount paid for compra: $totalAmountPaidCompra"

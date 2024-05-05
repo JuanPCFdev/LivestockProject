@@ -1,15 +1,13 @@
 package com.jpdev.livestockproject.ui.Finance
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.jpdev.livestockproject.R
 import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityReceiptHistoryBinding
 import com.jpdev.livestockproject.domain.model.Receipt
 import com.jpdev.livestockproject.ui.Finance.historyReceiptAdapter.AdapterReceipt
-import com.jpdev.livestockproject.ui.Finance.sellAdapter.AdapterSell
 
 class ReceiptHistoryActivity : AppCompatActivity() {
 
@@ -30,7 +28,7 @@ class ReceiptHistoryActivity : AppCompatActivity() {
 
     private fun initComponents(key: String?, farmKey: String?) {
         getReceipts(key, farmKey)
-        binding.btnReturn.setOnClickListener {
+        binding.viewToolBar.back.setOnClickListener {
             val intent = Intent(this, FinanceActivity::class.java)
             intent.putExtra("userKey",key)
             intent.putExtra("farmKey",farmKey)

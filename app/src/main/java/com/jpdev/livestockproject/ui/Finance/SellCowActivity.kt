@@ -28,7 +28,7 @@ class SellCowActivity : AppCompatActivity() {
 
     private fun initComponents(key: String?, farmKey: String?) {
         getListCows(key,farmKey)
-        binding.btnReturnHome.setOnClickListener {
+        binding.viewToolBar.back.setOnClickListener {
             val intent = Intent(this, FinanceActivity::class.java)
             intent.putExtra("userKey",key)
             intent.putExtra("farmKey",farmKey)

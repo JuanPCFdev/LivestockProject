@@ -27,7 +27,7 @@ class FarmRegisterActivity : AppCompatActivity() {
         binding.btnRegisterFarm.setOnClickListener{
             registerFarm()
         }
-        binding.btnReturnFarm.setOnClickListener{
+        binding.viewToolBar.back.setOnClickListener {
             if (key != null) {
                 goFarm(key)
             }

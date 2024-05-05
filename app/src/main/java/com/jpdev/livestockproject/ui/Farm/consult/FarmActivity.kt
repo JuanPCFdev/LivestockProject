@@ -3,6 +3,7 @@ package com.jpdev.livestockproject.ui.Farm.consult
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jpdev.livestockproject.R
 import com.jpdev.livestockproject.data.network.FirebaseInstance
@@ -10,6 +11,7 @@ import com.jpdev.livestockproject.databinding.ActivityFarmBinding
 import com.jpdev.livestockproject.domain.model.Farm
 import com.jpdev.livestockproject.ui.Farm.consult.adapterFarm.adapterFarm
 import com.jpdev.livestockproject.ui.Farm.register.FarmRegisterActivity
+import com.jpdev.livestockproject.ui.User.LogIn.LogInActivity
 
 class FarmActivity : AppCompatActivity() {
     private lateinit var binding : ActivityFarmBinding
@@ -47,6 +49,10 @@ class FarmActivity : AppCompatActivity() {
         binding.btnRegisterFarm.setOnClickListener{
             val intent = Intent(this, FarmRegisterActivity::class.java)
             intent.putExtra("userKey",key)
+            startActivity(intent)
+        }
+        binding.viewToolBar.back.setOnClickListener{
+            val intent = Intent(this, LogInActivity::class.java)
             startActivity(intent)
             finish()
         }

@@ -5,8 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_app"
-    android:padding="15dp"
     tools:context=".ui.Cow.Corral.CorralActivity">
+
+    <include
+        android:id="@+id/viewToolBar"
+        layout="@layout/view_tool_bar" />
 
     <TextView
         android:id="@+id/tvRegisteredCows"
@@ -15,18 +18,19 @@
         android:text="Corral"
         android:textAlignment="center"
         android:textColor="@color/black"
+        android:layout_marginVertical="10dp"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/viewToolBar" />
 
     <TextView
         android:id="@+id/tvDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:text="Acá encontrará a las crias de las vacas que aún no tiene un fin, para ver la información detallada de la vaca consulte en la lupa, para editar los datos de click en el lapiz."
+        android:text="Acá encontrará a las crias de las vacas que aún no tiene un fin."
         android:textAlignment="center"
         android:textColor="@color/gray"
         android:textStyle="bold"
@@ -38,6 +42,7 @@
         android:id="@+id/cvRecycler"
         android:layout_width="0dp"
         android:layout_height="450dp"
+        android:layout_marginHorizontal="20dp"
         app:cardCornerRadius="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,19 +63,11 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/button_red"
         android:text="Registrar ganado"
+        android:layout_marginVertical="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cvRecycler" />
 
-    <Button
-        android:id="@+id/btnBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/button_red"
-        android:text="VOLVER"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRegisterCow" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

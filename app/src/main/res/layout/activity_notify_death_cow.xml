@@ -7,8 +7,11 @@
     android:background="@color/background_app"
     android:gravity="top|center"
     android:orientation="vertical"
-    android:padding="15dp"
     tools:context=".ui.Cow.Death.NotifyDeathCow">
+
+    <include
+        android:id="@+id/viewToolBar"
+        layout="@layout/view_tool_bar" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -22,7 +25,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="15dp"
+        android:layout_margin="20dp"
         android:backgroundTint="@color/background_card"
         app:cardCornerRadius="15dp">
 

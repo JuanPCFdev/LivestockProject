@@ -1,16 +1,15 @@
 package com.jpdev.livestockproject.ui.Cow.Lifting.Register
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityRegisterCowBinding
 import com.jpdev.livestockproject.domain.model.Cattle
 import com.jpdev.livestockproject.domain.model.DatePickerFragment
 import com.jpdev.livestockproject.domain.model.Receipt
 import com.jpdev.livestockproject.ui.Cow.Lifting.Consult.ConsultCowLiftingActivity
-import com.jpdev.livestockproject.ui.Home.HomePageActivity
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -37,23 +36,14 @@ class RegisterCowActivity : AppCompatActivity() {
         binding.btnRegisterCow.setOnClickListener {
             if (validateCredentials()) {
                 registerReceiptCow(user, farm)
-
-                val intent = Intent(this, ConsultCowLiftingActivity::class.java)
-                intent.putExtra("userKey", user.toString())
-                intent.putExtra("farmKey", farm.toString())
-                startActivity(intent)
-                finish()
+                back(user, farm)
             } else {
                 Toast.makeText(this, "Falta por llenar algún dato", Toast.LENGTH_SHORT).show()
             }
         }
 
-        binding.btnHome.setOnClickListener {
-            val intent = Intent(this, HomePageActivity::class.java)
-            intent.putExtra("userKey", user.toString())
-            intent.putExtra("farmKey", farm.toString())
-            startActivity(intent)
-            finish()
+        binding.viewToolBar.back.setOnClickListener {
+            back(user, farm)
         }
 
         binding.etBirthday.setOnClickListener {
@@ -141,5 +131,12 @@ class RegisterCowActivity : AppCompatActivity() {
         return success
     }
 
+    private fun back(user: String?, farm: String?) {
+        val intent = Intent(this, ConsultCowLiftingActivity::class.java)
+        intent.putExtra("userKey", user.toString())
+        intent.putExtra("farmKey", farm.toString())
+        startActivity(intent)
+        finish()
+    }
 
 }

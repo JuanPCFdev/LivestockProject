@@ -6,18 +6,22 @@
     android:background="@color/background_app"
     tools:context=".ui.Farm.register.FarmRegisterActivity">
 
+    <include
+        android:id="@+id/viewToolBar"
+        layout="@layout/view_tool_bar" />
+
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/FarmRegister_Title"
         android:textColor="@color/black"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/cardRegister"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/viewToolBar" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardRegister"
@@ -105,17 +109,6 @@
                 android:maxLength="3"
                 android:maxLines="1"
                 android:singleLine="true" />
-
-            <Button
-                android:id="@+id/btnReturnFarm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#CECECE"
-                android:text="@string/FarmRegister_Return"
-                android:textColor="@color/button_login_special"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
 
             <Button
                 android:id="@+id/btnRegisterFarm"
