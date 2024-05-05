@@ -7,9 +7,11 @@
     android:background="@color/background_app"
     android:gravity="center|top"
     android:orientation="vertical"
-    android:padding="15dp"
     tools:context=".ui.Vaccine.register.RegisterVaccineActivity">
 
+    <include
+        android:id="@+id/viewToolBar"
+        layout="@layout/view_tool_bar" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -23,7 +25,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+        android:layout_margin="20dp"
         app:cardCornerRadius="15dp">
 
         <LinearLayout
@@ -104,19 +106,11 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnRegisterVaccine"
-        android:layout_width="175dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
         android:backgroundTint="@color/button_red"
         android:text="Registar"
-        app:cornerRadius="15dp" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnHomePage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/button_red"
-        android:text="Pagina Principal"
-        app:cornerRadius="15dp" />
-
+        app:cornerRadius="5dp" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

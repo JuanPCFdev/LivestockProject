@@ -25,7 +25,7 @@ class HelpActivity : AppCompatActivity() {
     }
 
     private fun initListeners(key:String?, farmKey: String?) {
-        binding.btnBack.setOnClickListener {
+        binding.viewToolBar.back.setOnClickListener {
             val intent = Intent(this, HomePageActivity::class.java)
             intent.putExtra("userKey",key)
             intent.putExtra("farmKey",farmKey)
@@ -35,12 +35,10 @@ class HelpActivity : AppCompatActivity() {
         binding.btnCowVideo.setOnClickListener {
             val youtubeVideoCow = "https://www.youtube.com/watch?v=ZN1POCHP-rY&ab_channel=mr.J"
             openVideo(youtubeVideoCow)
-
         }
         binding.btnVaccineVideo.setOnClickListener {
             val youtubeVideoVaccine = "https://www.youtube.com/watch?v=1CUAuxWFus4&ab_channel=mr.J"
             openVideo(youtubeVideoVaccine)
-
         }
         binding.btnFinanceVideo.setOnClickListener {
             val youtubeVideoFinance = "https://www.youtube.com/watch?v=LkWkbKM2MYw&ab_channel=mr.J"
@@ -55,7 +53,6 @@ class HelpActivity : AppCompatActivity() {
             intent.putExtra("userKey",key)
             intent.putExtra("farmKey",farmKey)
             startActivity(intent)
-            finish()
         }
     }
     private fun openVideo(url: String) {

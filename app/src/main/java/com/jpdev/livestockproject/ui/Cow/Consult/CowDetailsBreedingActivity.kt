@@ -84,7 +84,7 @@ class CowDetailsBreedingActivity : AppCompatActivity() {
     }
 
     private fun initListeners(user: String?, farm: String?, cow: String?) {
-        binding.btnBack.setOnClickListener {
+        binding.viewToolBar.back.setOnClickListener {
             val intent = Intent(this, CowResumeActivity::class.java)
             intent.putExtra("userKey", user.toString())
             intent.putExtra("farmKey", farm.toString())
@@ -98,7 +98,6 @@ class CowDetailsBreedingActivity : AppCompatActivity() {
             intent.putExtra("farmKey", farm.toString())
             intent.putExtra("cowKey", cow.toString())
             startActivity(intent)
-            finish()
         }
 
     }

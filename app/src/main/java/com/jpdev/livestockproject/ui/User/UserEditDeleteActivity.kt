@@ -13,6 +13,7 @@ import com.jpdev.livestockproject.domain.model.Farm
 import com.jpdev.livestockproject.domain.model.User
 import com.jpdev.livestockproject.ui.Farm.consult.FarmActivity
 import com.jpdev.livestockproject.ui.Home.HomePageActivity
+import com.jpdev.livestockproject.ui.User.Consult.UserActivity
 import com.jpdev.livestockproject.ui.User.LogIn.LogInActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -36,8 +37,8 @@ class UserEditDeleteActivity : AppCompatActivity() {
     }
 
     private fun initListeners(key: String?, farmKey: String?) {
-        binding.btnHomePage.setOnClickListener {
-            val intent = Intent(this, HomePageActivity::class.java)
+        binding.viewToolBar.back.setOnClickListener {
+            val intent = Intent(this, UserActivity::class.java)
             intent.putExtra("userKey",key)
             intent.putExtra("farmKey",farmKey)
             startActivity(intent)
@@ -62,7 +63,7 @@ class UserEditDeleteActivity : AppCompatActivity() {
 
         Toast.makeText(this,"Se han actualizado los datos",Toast.LENGTH_SHORT).show()
 
-        val intent = Intent(this, HomePageActivity::class.java)
+        val intent = Intent(this, UserActivity::class.java)
         intent.putExtra("userKey",key)
         intent.putExtra("farmKey",farmKey)
         startActivity(intent)

@@ -1,6 +1,5 @@
 package com.jpdev.livestockproject.ui.Cow.Breeding.Register
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -10,7 +9,6 @@ import com.jpdev.livestockproject.databinding.ActivityRegisterCowBreedingBinding
 import com.jpdev.livestockproject.domain.model.Cattle
 import com.jpdev.livestockproject.domain.model.DatePickerFragment
 import com.jpdev.livestockproject.ui.Cow.Breeding.Consult.ConsultCowBreedingActivity
-import com.jpdev.livestockproject.ui.Home.HomePageActivity
 import java.util.Calendar
 
 class RegisterCowBreedingActivity : AppCompatActivity() {
@@ -36,8 +34,8 @@ class RegisterCowBreedingActivity : AppCompatActivity() {
             registerCow(user, farm)
         }
 
-        binding.btnHome.setOnClickListener {
-            val intent = Intent(this, HomePageActivity::class.java)
+        binding.viewToolBar.back.setOnClickListener {
+            val intent = Intent(this, ConsultCowBreedingActivity::class.java)
             intent.putExtra("userKey", user)
             intent.putExtra("farmKey", farm)
             startActivity(intent)
@@ -53,6 +51,7 @@ class RegisterCowBreedingActivity : AppCompatActivity() {
         val datePicker = DatePickerFragment { day, month, year -> onDateSelected(day, month, year) }
         datePicker.show(supportFragmentManager, "Fecha de Nacimiento")
     }
+
     private fun onDateSelected(day: Int, month: Int, year: Int) {
         val mes = month + 1
         binding.etBirthday.setText("$day/$mes/$year")

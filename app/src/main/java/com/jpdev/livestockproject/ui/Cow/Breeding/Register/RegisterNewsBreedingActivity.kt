@@ -47,8 +47,8 @@ class RegisterNewsBreedingActivity : AppCompatActivity() {
     }
 
     private fun initListeners(user: String?, farm: String?, cow: String?) {
-        binding.btnHomePage.setOnClickListener {
-            goToHome(user,farm)
+        binding.viewToolBar.back.setOnClickListener {
+            back(user,farm, cow)
         }
         binding.btnSaveChanges.setOnClickListener {
             saveNews(user, farm, cow)
@@ -68,7 +68,7 @@ class RegisterNewsBreedingActivity : AppCompatActivity() {
             )
             firebaseInstance.registerNewsBreeding(New, user, farm, cow)
             Toast.makeText(this, "Novedad registrada", Toast.LENGTH_SHORT).show()
-            goToHome(user, farm)
+            back(user, farm, cow)
 
         }else{
             Toast.makeText(this, "Debe de rellenar todos los datos", Toast.LENGTH_SHORT).show()
@@ -126,10 +126,11 @@ class RegisterNewsBreedingActivity : AppCompatActivity() {
         return validate
     }
 
-    private fun goToHome(user: String?, farmKey: String?) {
-        val intent = Intent(this, HomePageActivity::class.java)
+    private fun back(user: String?, farmKey: String?,cowKey: String?) {
+        val intent = Intent(this, CowDetailsBreedingActivity::class.java)
         intent.putExtra("userKey", user)
         intent.putExtra("farmKey", farmKey)
+        intent.putExtra("cowKey", cowKey)
         startActivity(intent)
         finish()
     }

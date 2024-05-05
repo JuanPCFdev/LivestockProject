@@ -19,7 +19,7 @@ class VaccineViewHolder(view:View) : ViewHolder(view) {
         binding.tvMarking.text = cow.marking
         binding.tvGender.text = cow.gender
 
-        binding.consult.setOnClickListener {
+        binding.cvCow.setOnClickListener {
             val intent = Intent(context, RvVaccineActivity::class.java)
             intent.putExtra("userKey",user)
             intent.putExtra("farmKey",farmKey)

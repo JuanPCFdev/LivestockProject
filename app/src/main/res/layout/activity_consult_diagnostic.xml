@@ -5,8 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_app"
-    android:padding="15dp"
     tools:context=".ui.Diagnostic.ConsultDiagnosticActivity">
+
+    <include
+        android:id="@+id/viewToolBar"
+        layout="@layout/view_tool_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tvRegisteredCows"/>
 
     <TextView
         android:id="@+id/tvRegisteredCows"
@@ -19,13 +26,13 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/viewToolBar" />
 
     <TextView
         android:id="@+id/tvDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="20dp"
         android:text="A continuacion podra observar varios consejos para personas que se quieren dedicar a la ganaderia"
         android:textAlignment="center"
         android:textColor="@color/gray"
@@ -37,7 +44,8 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cvRecycler"
         android:layout_width="0dp"
-        android:layout_height="500dp"
+        android:layout_height="0dp"
+        android:layout_margin="20dp"
         app:cardCornerRadius="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,18 +59,5 @@
             android:layout_height="match_parent"
             android:layout_margin="5dp" />
     </androidx.cardview.widget.CardView>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnHome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:backgroundTint="@color/button_red"
-        android:text="Volver"
-        app:cornerRadius="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cvRecycler" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

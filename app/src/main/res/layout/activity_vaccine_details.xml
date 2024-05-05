@@ -7,8 +7,11 @@
     android:background="@color/background_app"
     android:gravity="top|center"
     android:orientation="vertical"
-    android:padding="10dp"
     tools:context=".ui.Vaccine.consult.VaccineDetailsActivity">
+
+    <include
+        android:id="@+id/viewToolBar"
+        layout="@layout/view_tool_bar" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -21,8 +24,8 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:layout_margin="10dp"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
         app:cardBackgroundColor="@color/background_card"
         app:cardCornerRadius="25dp">
 
@@ -37,14 +40,5 @@
             tools:text="asd" />
 
     </androidx.cardview.widget.CardView>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnHome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:text="Pagina Principal"
-        app:backgroundTint="@color/button_red"
-        app:cornerRadius="15dp" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
