@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityHomePageBinding
 import com.jpdev.livestockproject.ui.Cow.HomeCow.HomeCowActivity
+import com.jpdev.livestockproject.ui.Farm.consult.FarmActivity
 import com.jpdev.livestockproject.ui.Farm.deleteEdit.FarmEditDeleteActivity
 import com.jpdev.livestockproject.ui.Finance.FinanceActivity
 import com.jpdev.livestockproject.ui.Update.HelpActivity
@@ -25,7 +26,6 @@ class HomePageActivity : AppCompatActivity() {
         setContentView(binding.root)
         firebaseInstance = FirebaseInstance(this)
 
-        //Obteniendo los datos de la granja que me estan pasando
         firebaseInstance.getFarmDetails(key.toString(),farmKey.toString()){
             binding.titleHomePage.text = it?.nameFarm
         }
@@ -40,40 +40,41 @@ class HomePageActivity : AppCompatActivity() {
             intent.putExtra("userKey",key)
             intent.putExtra("farmKey",farmKey)
             startActivity(intent)
-            finish()
         }
         binding.btnConsultUser.setOnClickListener {
             val intent = Intent(this, UserActivity::class.java)
             intent.putExtra("userKey",key)
             intent.putExtra("farmKey",farmKey)
             startActivity(intent)
-            finish()
         }
         binding.btnConsultCow.setOnClickListener {
             val intent = Intent(this, HomeCowActivity::class.java)
             intent.putExtra("userKey",key)
             intent.putExtra("farmKey",farmKey)
             startActivity(intent)
-            finish()
         }
         binding.btnConsultFinance.setOnClickListener {
             val intent = Intent(this, FinanceActivity::class.java)
             intent.putExtra("userKey",key)
             intent.putExtra("farmKey",farmKey)
             startActivity(intent)
-            finish()
         }
         binding.btnConsultVaccine.setOnClickListener {
             val intent = Intent(this, ConsultVaccineActivity::class.java)
-            intent.putExtra("userKey",key)
-            intent.putExtra("farmKey",farmKey)
+            intent.putExtra("userKey", key)
+            intent.putExtra("farmKey", farmKey)
             startActivity(intent)
-            finish()
         }
         binding.btnConsultHelp.setOnClickListener {
             val intent = Intent(this, HelpActivity::class.java)
-            intent.putExtra("userKey",key)
-            intent.putExtra("farmKey",farmKey)
+            intent.putExtra("userKey", key)
+            intent.putExtra("farmKey", farmKey)
+            startActivity(intent)
+        }
+
+        binding.viewToolBar.back.setOnClickListener {
+            val intent = Intent(this, FarmActivity::class.java)
+            intent.putExtra("userKey", key)
             startActivity(intent)
             finish()
         }

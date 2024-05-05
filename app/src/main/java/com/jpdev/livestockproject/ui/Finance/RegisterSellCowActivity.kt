@@ -40,42 +40,41 @@ class RegisterSellCowActivity : AppCompatActivity() {
 
     private fun initListeners(user: String?, farmKey: String?, cowKey: String?) {
         binding.btnSaveSell.setOnClickListener {
-            createReceipt(user, farmKey)
-            updateCow(user, farmKey, cowKey)
+            createReceipt(user, farmKey,cowKey)
         }
-        binding.btnHomePage.setOnClickListener {
-            val intent = Intent(this, SellCowActivity::class.java)
-            intent.putExtra("userKey", user)
-            intent.putExtra("farmKey", farmKey)
-            startActivity(intent)
-            finish()
+        binding.viewToolBar.back.setOnClickListener {
+            back(user,farmKey)
         }
     }
 
-    private fun createReceipt(key: String?, farmKey: String?){
+    private fun createReceipt(key: String?, farmKey: String?, cowKey: String?){
         val currentDate = Date()
-        val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
         val formattedDate = dateFormat.format(currentDate)
-        if(validateCredentials()){
-            val receipt = Receipt(
-                0,
-                binding.etMarcacion.text.toString(),
-                binding.etPrecioVenta.text.toString().toDouble(),
-                formattedDate,
-                "Venta ganado",
-                binding.etNombreComprador.text.toString(),
-                binding.etTelComprador.text.toString()
-            )
+        if(binding.etPeso.text.toString().isNotBlank() &&
+            binding.etPrecioVenta.text.toString().isNotBlank()&&
+            binding.etNombreComprador.text.toString().isNotBlank()&&
+            binding.etTelComprador.text.toString().isNotBlank()){
+            val peso = binding.etPeso.text.toString().toIntOrNull()
+            val precioVenta = binding.etPrecioVenta.text.toString().toDoubleOrNull()
 
-            firebaseInstance.registerReceiptBuy(receipt,key,farmKey)
-            Toast.makeText(this, "Se creo el recibo correctamente", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, SellCowActivity::class.java)
-            intent.putExtra("userKey",key)
-            intent.putExtra("farmKey",farmKey)
-            startActivity(intent)
-            finish()
-        }else{
-            Toast.makeText(this, "Falta por llenar algun dato", Toast.LENGTH_SHORT).show()
+            if (peso != null && precioVenta != null) {
+                    val receipt = Receipt(
+                        0,
+                        binding.etMarcacion.text.toString(),
+                        precioVenta,
+                        formattedDate,
+                        "Venta ganado",
+                        binding.etNombreComprador.text.toString(),
+                        binding.etTelComprador.text.toString()
+                    )
+                    firebaseInstance.registerReceiptBuy(receipt,key,farmKey)
+                    updateCow(key, farmKey, cowKey)
+                    Toast.makeText(this, "Se creo el recibo correctamente", Toast.LENGTH_SHORT).show()
+                    back(key,farmKey)
+                } else {
+                    Toast.makeText(this, "Falta por llenar algun dato", Toast.LENGTH_SHORT).show()
+            }
         }
     }
   private fun updateCow(user : String?, farmKey: String?, cowKey: String?){
@@ -100,19 +99,7 @@ class RegisterSellCowActivity : AppCompatActivity() {
         }
 
     }
-    private fun validateCredentials():Boolean {
-        var success = false
 
-        if(binding.etPeso.text.toString().isNotEmpty()
-            && binding.etPrecioVenta.text.toString().isNotEmpty()
-            && binding.etNombreComprador.text.toString().isNotEmpty()
-            && binding.etTelComprador.text.toString().isNotEmpty()
-        ){
-            success = true
-        }
-
-        return success
-    }
 
     private fun calculatePrice(user : String?, farmKey: String?, cowKey: String?){
         firebaseInstance.getCowDetails(user, farmKey, cowKey){
@@ -130,5 +117,13 @@ class RegisterSellCowActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun back(user : String?, farmKey: String?){
+        val intent = Intent(this, SellCowActivity::class.java)
+        intent.putExtra("userKey",user)
+        intent.putExtra("farmKey",farmKey)
+        startActivity(intent)
+        finish()
     }
 }

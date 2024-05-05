@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_app"
     android:orientation="vertical"
     tools:context=".ui.Finance.ReceiptHistoryActivity">
+
+    <include
+        android:id="@+id/viewToolBar"
+        layout="@layout/view_tool_bar" />
 
     <TextView
         android:layout_width="match_parent"
@@ -18,9 +21,18 @@
         android:textSize="25sp"
         android:textStyle="bold" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="16dp"
+        android:gravity="center"
+        android:text="Seleccione el recibo que desee consultar"
+        android:textColor="@color/gray"
+        android:textSize="15sp" />
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="550dp"
+        android:layout_height="500dp"
         android:layout_margin="16dp">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -28,14 +40,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </androidx.cardview.widget.CardView>
-
-    <Button
-        android:id="@+id/btnReturn"
-        android:backgroundTint="@color/button_red"
-        android:layout_gravity="center"
-        android:text="@string/ReceiptHistory_return"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
 
 
 </LinearLayout>

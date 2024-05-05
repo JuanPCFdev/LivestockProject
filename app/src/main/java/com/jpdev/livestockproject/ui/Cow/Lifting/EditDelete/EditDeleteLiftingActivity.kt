@@ -1,17 +1,15 @@
 package com.jpdev.livestockproject.ui.Cow.Lifting.EditDelete
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.jpdev.livestockproject.R
+import androidx.appcompat.app.AppCompatActivity
 import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityEditDeleteLiftingBinding
 import com.jpdev.livestockproject.domain.model.Cattle
 import com.jpdev.livestockproject.ui.Cow.Consult.CowResumeActivity
 import com.jpdev.livestockproject.ui.Cow.Death.NotifyDeathCow
-import com.jpdev.livestockproject.ui.Home.HomePageActivity
 
 class EditDeleteLiftingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditDeleteLiftingBinding
@@ -39,23 +37,17 @@ class EditDeleteLiftingActivity : AppCompatActivity() {
             saveChanges(user, farmKey, cowKey)
         }
         binding.btnDeleteCow.setOnClickListener {
-            deleteCow(user,farmKey,cowKey)
+            deleteCow(user, farmKey, cowKey)
         }
         binding.btnNotifyDeath.setOnClickListener {
-            val intent = Intent(this,NotifyDeathCow::class.java)
+            val intent = Intent(this, NotifyDeathCow::class.java)
             intent.putExtra("userKey", user)
             intent.putExtra("farmKey", farmKey)
-            intent.putExtra("cowKey",cowKey)
+            intent.putExtra("cowKey", cowKey)
             startActivity(intent)
-            finish()
         }
-        binding.btnBack.setOnClickListener {
-            val intent = Intent(this,CowResumeActivity::class.java)
-            intent.putExtra("userKey", user)
-            intent.putExtra("farmKey", farmKey)
-            intent.putExtra("cowKey",cowKey)
-            startActivity(intent)
-            finish()
+        binding.viewToolBar.back.setOnClickListener {
+            back(user, farmKey, cowKey)
         }
     }
 
@@ -77,14 +69,10 @@ class EditDeleteLiftingActivity : AppCompatActivity() {
         )
 
         firebaseInstance.editCow(updatedCow, user, farmKey, cowKey)
-
+        back(user, farmKey, cowKey)
         Toast.makeText(this, "Se han actualizado los datos", Toast.LENGTH_SHORT).show()
 
-        val intent = Intent(this, HomePageActivity::class.java)
-        intent.putExtra("userKey", user)
-        intent.putExtra("farmKey", farmKey)
-        startActivity(intent)
-        finish()
+
     }
 
     private fun printInfo(user: String?, farmKey: String?, cowKey: String?) {
@@ -113,11 +101,7 @@ class EditDeleteLiftingActivity : AppCompatActivity() {
                     // Eliminar la vaca y el recibo
                 firebaseInstance.deleteReceiptAndCowByCommonName(user, farmKey, nameReceiptCow)
 
-                val intent = Intent(this, HomePageActivity::class.java)
-                intent.putExtra("userKey", user)
-                intent.putExtra("farmKey", farmKey)
-                startActivity(intent)
-                finish()
+                back(user, farmKey, cowKey)
 
                 Toast.makeText(
                     this@EditDeleteLiftingActivity,
@@ -132,5 +116,14 @@ class EditDeleteLiftingActivity : AppCompatActivity() {
             val alertDialog: AlertDialog = builder.create()
             alertDialog.show()
         }
+    }
+
+    private fun back(user: String?, farmKey: String?, cowKey: String?) {
+        val intent = Intent(this, CowResumeActivity::class.java)
+        intent.putExtra("userKey", user)
+        intent.putExtra("farmKey", farmKey)
+        intent.putExtra("cowKey", cowKey)
+        startActivity(intent)
+        finish()
     }
 }

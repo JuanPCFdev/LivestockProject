@@ -24,23 +24,20 @@ class FinanceActivity : AppCompatActivity() {
             intent.putExtra("userKey", key)
             intent.putExtra("farmKey", farmKey)
             startActivity(intent)
-            finish()
         }
         binding.btnBuy.setOnClickListener {
             val intent = Intent(this, BuyActivity::class.java)
             intent.putExtra("userKey", key)
             intent.putExtra("farmKey", farmKey)
             startActivity(intent)
-            finish()
         }
         binding.btnSold.setOnClickListener {
             val intent = Intent(this, SellCowActivity::class.java)
             intent.putExtra("userKey", key)
             intent.putExtra("farmKey", farmKey)
             startActivity(intent)
-            finish()
         }
-        binding.btnReturnHome.setOnClickListener {
+        binding.viewToolBar.back.setOnClickListener {
             val intent = Intent(this, HomePageActivity::class.java)
             intent.putExtra("userKey", key)
             intent.putExtra("farmKey", farmKey)
@@ -52,7 +49,6 @@ class FinanceActivity : AppCompatActivity() {
             intent.putExtra("userKey", key)
             intent.putExtra("farmKey", farmKey)
             startActivity(intent)
-            finish()
         }
     }
 }

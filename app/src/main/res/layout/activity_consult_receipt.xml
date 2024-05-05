@@ -6,6 +6,10 @@
     android:background="@color/background_app"
     tools:context=".ui.Farm.register.FarmRegisterActivity">
 
+    <include
+        android:id="@+id/viewToolBar"
+        layout="@layout/view_tool_bar"/>
+
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
@@ -46,13 +50,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/llButtons2"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardDetailsReceipt">
 
         <Button
             android:id="@+id/btnEdit"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginHorizontal="20dp"
@@ -61,34 +65,17 @@
 
         <Button
             android:id="@+id/btnDelete"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginHorizontal="20dp"
             android:backgroundTint="@color/button_red"
             android:text="@string/EditDeleteReceipt_delete" />
 
+
+
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/llButtons2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llButtons">
 
-
-        <Button
-            android:id="@+id/btnHomePage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:backgroundTint="@color/blue"
-            android:gravity="center"
-            android:text="@string/FarmEditDelete_HomePage" />
-
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

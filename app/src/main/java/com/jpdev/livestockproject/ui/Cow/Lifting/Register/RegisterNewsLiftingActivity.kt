@@ -8,9 +8,9 @@ import com.jpdev.livestockproject.R
 import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityRegisterNewsLiftingBinding
 import com.jpdev.livestockproject.domain.model.Cattle
+import com.jpdev.livestockproject.domain.model.DatePickerFragment
 import com.jpdev.livestockproject.domain.model.LiftingPerformance
 import com.jpdev.livestockproject.ui.Cow.Consult.CowDetailsLiftingActivity
-import com.jpdev.livestockproject.ui.Home.HomePageActivity
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -36,10 +36,10 @@ class RegisterNewsLiftingActivity : AppCompatActivity() {
 
     private fun printInfo(user: String?, farm: String?, cow: String?) {
         val currentDate = Date()
-        val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
         val formattedDate = dateFormat.format(currentDate)
         firebaseInstance.getCowDetails(user, farm, cow) {
-            val details = getString(R.string.consult_estadis_title) + " ${it.marking}"
+            val details = getString(R.string.register_news) + " ${it.marking}"
             binding.tvTitle.text = details
             binding.etdate.setText(formattedDate)
             binding.etWeight.setText(it.weight.toString())
@@ -47,12 +47,26 @@ class RegisterNewsLiftingActivity : AppCompatActivity() {
     }
 
     private fun initListeners(user: String?, farm: String?, cow: String?) {
-        binding.btnHomePage.setOnClickListener {
-            goToHome(user, farm)
+        binding.viewToolBar.back.setOnClickListener {
+            back(user, farm, cow)
         }
         binding.btnSaveChanges.setOnClickListener {
             saveNews(user, farm, cow)
         }
+        binding.date.setOnClickListener {
+            showDatePickerDialog()
+        }
+    }
+
+    private fun showDatePickerDialog() {
+        val datePicker = DatePickerFragment { day, month, year -> onDateSelected(day, month, year) }
+        datePicker.show(supportFragmentManager, "Fecha de Nacimiento")
+    }
+
+    private fun onDateSelected(day: Int, month: Int, year: Int) {
+        val mes = month + 1
+        binding.etdate.setText("$day/$mes/$year")
+
     }
 
     private fun saveNews(user: String?, farm: String?, cow: String?) {
@@ -65,12 +79,7 @@ class RegisterNewsLiftingActivity : AppCompatActivity() {
 
             firebaseInstance.registerNewsLifting(New, user, farm, cow)
             Toast.makeText(this, "Novedad registrada", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, CowDetailsLiftingActivity::class.java)
-            intent.putExtra("userKey", user)
-            intent.putExtra("farmKey", farm)
-            intent.putExtra("cowKey", cow.toString())
-            startActivity(intent)
-            finish()
+            back(user, farm, cow)
 
             firebaseInstance.getCowDetails(user, farm, cow) {
                 val editCow = Cattle(
@@ -110,10 +119,11 @@ class RegisterNewsLiftingActivity : AppCompatActivity() {
         return validate
     }
 
-    private fun goToHome(user: String?, farmKey: String?) {
-        val intent = Intent(this, HomePageActivity::class.java)
+    private fun back(user: String?, farmKey: String?, cow: String?) {
+        val intent = Intent(this, CowDetailsLiftingActivity::class.java)
         intent.putExtra("userKey", user)
         intent.putExtra("farmKey", farmKey)
+        intent.putExtra("cowKey", cow.toString())
         startActivity(intent)
         finish()
     }

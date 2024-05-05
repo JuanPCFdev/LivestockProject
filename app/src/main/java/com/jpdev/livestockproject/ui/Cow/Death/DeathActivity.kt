@@ -32,7 +32,7 @@ class DeathActivity : AppCompatActivity() {
 
     private fun initListeners(user: String?, farm: String?) {
         getListCows(user, farm)
-        binding.btnBack.setOnClickListener {
+        binding.viewToolBar.back.setOnClickListener {
             val intent = Intent(this, HomeCowActivity::class.java)
             intent.putExtra("userKey", user.toString())
             intent.putExtra("farmKey", farm.toString())

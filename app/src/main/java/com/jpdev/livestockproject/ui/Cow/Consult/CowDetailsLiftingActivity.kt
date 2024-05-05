@@ -54,10 +54,11 @@ class CowDetailsLiftingActivity : AppCompatActivity() {
     }
 
     private fun initListeners(user: String?, farmKey: String?, cowKey: String?) {
-        binding.btnBack.setOnClickListener {
-            val intent = Intent(this, HomeCowActivity::class.java)
+        binding.viewToolBar.back.setOnClickListener {
+            val intent = Intent(this, CowResumeActivity::class.java)
             intent.putExtra("userKey", user)
             intent.putExtra("farmKey", farmKey)
+            intent.putExtra("cowKey", cowKey)
             startActivity(intent)
             finish()
         }
@@ -67,7 +68,6 @@ class CowDetailsLiftingActivity : AppCompatActivity() {
             intent.putExtra("farmKey", farmKey)
             intent.putExtra("cowKey", cowKey)
             startActivity(intent)
-            finish()
         }
     }
 

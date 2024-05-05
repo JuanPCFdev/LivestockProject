@@ -1,17 +1,15 @@
 package com.jpdev.livestockproject.ui.Cow.Lifting.Consult
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.jpdev.livestockproject.R
 import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityConsultCowLiftingBinding
 import com.jpdev.livestockproject.domain.model.Cattle
 import com.jpdev.livestockproject.ui.Cow.Consult.Adapter.CowAdapter
 import com.jpdev.livestockproject.ui.Cow.HomeCow.HomeCowActivity
 import com.jpdev.livestockproject.ui.Cow.Lifting.Register.RegisterCowActivity
-import com.jpdev.livestockproject.ui.Home.HomePageActivity
 
 class ConsultCowLiftingActivity : AppCompatActivity() {
 
@@ -37,15 +35,14 @@ class ConsultCowLiftingActivity : AppCompatActivity() {
         getListCows(user,farm)
         binding.btnRegisterCow.setOnClickListener {
             val intent = Intent(this, RegisterCowActivity::class.java)
-            intent.putExtra("userKey",user.toString())
-            intent.putExtra("farmKey",farm.toString())
+            intent.putExtra("userKey", user.toString())
+            intent.putExtra("farmKey", farm.toString())
             startActivity(intent)
-            finish()
         }
-        binding.btnHome.setOnClickListener {
+        binding.viewToolBar.back.setOnClickListener {
             val intent = Intent(this, HomeCowActivity::class.java)
-            intent.putExtra("userKey",user.toString())
-            intent.putExtra("farmKey",farm.toString())
+            intent.putExtra("userKey", user.toString())
+            intent.putExtra("farmKey", farm.toString())
             startActivity(intent)
             finish()
         }

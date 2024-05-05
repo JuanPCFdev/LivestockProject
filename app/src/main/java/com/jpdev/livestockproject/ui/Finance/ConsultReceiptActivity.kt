@@ -1,14 +1,12 @@
 package com.jpdev.livestockproject.ui.Finance
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.jpdev.livestockproject.R
+import androidx.appcompat.app.AppCompatActivity
 import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityConsultReceiptBinding
-import com.jpdev.livestockproject.ui.Home.HomePageActivity
 
 class ConsultReceiptActivity : AppCompatActivity() {
 
@@ -27,24 +25,19 @@ class ConsultReceiptActivity : AppCompatActivity() {
         initComponents(key,farmKey,receiptKey)
     }
 
-    private fun initComponents(key: String?,farmKey: String?,receiptKey: String?){
+    private fun initComponents(key: String?,farmKey: String?,receiptKey: String?) {
         binding.btnDelete.setOnClickListener {
-            deleteReceipt(key,farmKey,receiptKey)
+            deleteReceipt(key, farmKey, receiptKey)
         }
-        binding.btnHomePage.setOnClickListener {
-            val intent = Intent(this, ReceiptHistoryActivity::class.java)
-            intent.putExtra("userKey",key)
-            intent.putExtra("farmKey",farmKey)
-            startActivity(intent)
-            finish()
+        binding.viewToolBar.back.setOnClickListener {
+            back(key, farmKey)
         }
         binding.btnEdit.setOnClickListener {
             val intent = Intent(this, EditDeleteReceiptActivity::class.java)
-            intent.putExtra("userKey",key)
-            intent.putExtra("farmKey",farmKey)
+            intent.putExtra("userKey", key)
+            intent.putExtra("farmKey", farmKey)
             intent.putExtra("ReceiptKey", receiptKey)
             startActivity(intent)
-            finish()
         }
         binding.cardDetailsReceipt
     }
@@ -86,11 +79,7 @@ class ConsultReceiptActivity : AppCompatActivity() {
                    }
                }
 
-               val intent = Intent(this, HomePageActivity::class.java)
-               intent.putExtra("userKey", user)
-               intent.putExtra("farmKey", farmKey)
-               startActivity(intent)
-               finish()
+               back(user, farmKey)
 
                Toast.makeText(
                    this@ConsultReceiptActivity,
@@ -106,4 +95,12 @@ class ConsultReceiptActivity : AppCompatActivity() {
            alertDialog.show()
        }
    }
+
+    private fun back(user: String?, farmKey: String?) {
+        val intent = Intent(this, ReceiptHistoryActivity::class.java)
+        intent.putExtra("userKey", user)
+        intent.putExtra("farmKey", farmKey)
+        startActivity(intent)
+        finish()
+    }
 }

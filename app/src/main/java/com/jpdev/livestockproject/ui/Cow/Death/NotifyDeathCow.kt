@@ -1,11 +1,11 @@
 package com.jpdev.livestockproject.ui.Cow.Death
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.ContextThemeWrapper
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.jpdev.livestockproject.R
 import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityNotifyDeathCowBinding
@@ -13,12 +13,9 @@ import com.jpdev.livestockproject.domain.model.Cattle
 import com.jpdev.livestockproject.domain.model.DatePickerFragment
 import com.jpdev.livestockproject.domain.model.DeathDetails
 import com.jpdev.livestockproject.ui.Cow.Breeding.EditDelete.EditDeleteBreedingCowActivity
-import com.jpdev.livestockproject.ui.Cow.Consult.CowDetailsBreedingActivity
-import com.jpdev.livestockproject.ui.Cow.Consult.CowDetailsLiftingActivity
 import com.jpdev.livestockproject.ui.Cow.Corral.CorralActivity
 import com.jpdev.livestockproject.ui.Cow.HomeCow.HomeCowActivity
 import com.jpdev.livestockproject.ui.Cow.Lifting.EditDelete.EditDeleteLiftingActivity
-import com.jpdev.livestockproject.ui.Home.HomePageActivity
 import java.util.Calendar
 
 class NotifyDeathCow : AppCompatActivity() {
@@ -111,45 +108,38 @@ class NotifyDeathCow : AppCompatActivity() {
 
             when (it.type) {
                 "Lifting" -> {
-                    val btnBack = Button(ContextThemeWrapper(this, R.style.ButtonStyle))
-                    btnBack.text = "Volver"
-                    btnBack.setOnClickListener {
+                    binding.viewToolBar.back.setOnClickListener {
                         val intent = Intent(this, EditDeleteLiftingActivity::class.java)
                         intent.putExtra("userKey", user)
                         intent.putExtra("farmKey", farm)
                         intent.putExtra("cowKey", cow)
-                        this.startActivity(intent)
-                        this.finish()
+                        startActivity(intent)
+                        finish()
                     }
-                    binding.lledit.addView(btnBack)
+
                 }
 
                 "Breeding" -> {
-                    val btnBack = Button(ContextThemeWrapper(this, R.style.ButtonStyle))
-                    btnBack.text = "Volver"
-                    btnBack.setOnClickListener {
+                    binding.viewToolBar.back.setOnClickListener {
                         val intent = Intent(this, EditDeleteBreedingCowActivity::class.java)
                         intent.putExtra("userKey", user)
                         intent.putExtra("farmKey", farm)
                         intent.putExtra("cowKey", cow)
-                        this.startActivity(intent)
-                        this.finish()
+                        startActivity(intent)
+                        finish()
                     }
-                    binding.lledit.addView(btnBack)
                 }
 
                 "corral" -> {
-                    val btnBack = Button(ContextThemeWrapper(this, R.style.ButtonStyle))
-                    btnBack.text = "Volver"
-                    btnBack.setOnClickListener {
+                    binding.viewToolBar.back.setOnClickListener {
                         val intent = Intent(this, CorralActivity::class.java)
                         intent.putExtra("userKey", user)
                         intent.putExtra("farmKey", farm)
                         intent.putExtra("cowKey", cow)
-                        this.startActivity(intent)
-                        this.finish()
+                        startActivity(intent)
+                        finish()
                     }
-                    binding.lledit.addView(btnBack)
+
                 }
 
             }

@@ -6,8 +6,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityBuyBinding
+import com.jpdev.livestockproject.domain.model.DatePickerFragment
 import com.jpdev.livestockproject.domain.model.Receipt
-import com.jpdev.livestockproject.ui.Cow.Lifting.Register.RegisterCowActivity
+import java.util.Calendar
 
 class BuyActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBuyBinding
@@ -23,24 +24,31 @@ class BuyActivity : AppCompatActivity() {
     }
 
     private fun initComponents(key: String?, farmKey: String?) {
-        binding.btnReturnHome.setOnClickListener {
+        binding.viewToolBar.back.setOnClickListener {
             val intent = Intent(this, FinanceActivity::class.java)
-            intent.putExtra("userKey",key)
-            intent.putExtra("farmKey",farmKey)
-            startActivity(intent)
-            finish()
-        }
-        binding.btnBuyCow.setOnClickListener {
-            val intent = Intent(this, RegisterCowActivity::class.java)
-            intent.putExtra("userKey",key)
-            intent.putExtra("farmKey",farmKey)
+            intent.putExtra("userKey", key)
+            intent.putExtra("farmKey", farmKey)
             startActivity(intent)
             finish()
         }
         binding.btnSaveBuy.setOnClickListener {
-            createReceipt(key,farmKey)
+            createReceipt(key, farmKey)
+        }
+        binding.etFechaCompra.setOnClickListener{
+            showDatePickerDialog()
         }
     }
+
+    private fun showDatePickerDialog() {
+        val datePicker = DatePickerFragment { day, month, year -> onDateSelected(day, month, year) }
+        datePicker.show(supportFragmentManager, "Fecha de Nacimiento")
+    }
+    private fun onDateSelected(day: Int, month: Int, year: Int) {
+        val mes = month + 1
+        binding.etFechaCompra.setText("$day/$mes/$year")
+
+    }
+
 
     private fun createReceipt(key: String?, farmKey: String?){
         if(validateCredentials()){

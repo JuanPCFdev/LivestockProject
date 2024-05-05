@@ -7,6 +7,10 @@
     android:background="@color/background_app"
     tools:context=".ui.Farm.consult.FarmActivity">
 
+    <include
+        android:id="@+id/viewToolBar"
+        layout="@layout/view_tool_bar" />
+
     <LinearLayout
         android:id="@+id/llfirst"
         android:layout_width="match_parent"
@@ -14,7 +18,7 @@
         android:layout_margin="20dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/cvHome"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/viewToolBar">
 
         <TextView
             android:id="@+id/tvTitle"
@@ -52,14 +56,15 @@
             android:padding="16dp" />
     </androidx.cardview.widget.CardView>
 
-    <Button
-        android:id="@+id/btnReturnHome"
-        android:layout_width="match_parent"
+    <ImageView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:backgroundTint="@color/button_red"
-        android:text="@string/ReceiptHistory_return"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        android:layout_marginVertical="30dp"
+        android:layout_gravity="center"
+        android:background="@drawable/cow_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
