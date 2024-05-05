@@ -26,8 +26,8 @@ class DiagnosticDetailsActivity : AppCompatActivity() {
     }
 
     private fun initListeners(user: String?, farmKey: String?) {
-        binding.btnBack.setOnClickListener {
-            val intent = Intent(this, HomePageActivity::class.java)
+        binding.viewToolBar.back.setOnClickListener {
+            val intent = Intent(this, ConsultDiagnosticActivity::class.java)
             intent.putExtra("userKey", user)
             intent.putExtra("farmKey", farmKey)
             startActivity(intent)

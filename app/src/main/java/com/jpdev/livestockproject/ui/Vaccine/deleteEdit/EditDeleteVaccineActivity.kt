@@ -9,6 +9,7 @@ import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityEditDeleteVaccineBinding
 import com.jpdev.livestockproject.domain.model.Vaccine
 import com.jpdev.livestockproject.ui.Home.HomePageActivity
+import com.jpdev.livestockproject.ui.Vaccine.consult.rvVaccine.RvVaccineActivity
 
 class EditDeleteVaccineActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditDeleteVaccineBinding
@@ -38,17 +39,13 @@ class EditDeleteVaccineActivity : AppCompatActivity() {
     ) {
         setData(user, farmKey, cowKey, vaccineKey)
         binding.btnSave.setOnClickListener {
-            saveChanges(user,farmKey,cowKey,vaccineKey)
+            saveChanges(user, farmKey, cowKey, vaccineKey)
         }
         binding.btnDelete.setOnClickListener {
             deleteVaccine(user, farmKey, cowKey, vaccineKey)
         }
-        binding.btnHomePage.setOnClickListener {
-            val intent = Intent(this, HomePageActivity::class.java)
-            intent.putExtra("userKey", user)
-            intent.putExtra("farmKey", farmKey)
-            startActivity(intent)
-            finish()
+        binding.viewToolBar.back.setOnClickListener {
+            back(user, farmKey, cowKey)
         }
     }
 
@@ -61,8 +58,8 @@ class EditDeleteVaccineActivity : AppCompatActivity() {
         }
     }
 
-    private fun saveChanges(user: String?, farmKey: String?, cowKey: String?, vaccineKey: String?){
-        val  updatedVaccine = Vaccine(
+    private fun saveChanges(user: String?, farmKey: String?, cowKey: String?, vaccineKey: String?) {
+        val updatedVaccine = Vaccine(
             0,
             binding.tieVaccineName.text.toString(),
             binding.tieVaccineCost.text.toString().toDouble(),
@@ -70,15 +67,12 @@ class EditDeleteVaccineActivity : AppCompatActivity() {
             binding.tieVaccineSupplier.text.toString()
         )
 
-        firebaseInstance.editVaccine(updatedVaccine,user,farmKey,cowKey,vaccineKey)
+        firebaseInstance.editVaccine(updatedVaccine, user, farmKey, cowKey, vaccineKey)
 
-        Toast.makeText(this,"Se han actualizado los datos",Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Se han actualizado los datos", Toast.LENGTH_SHORT).show()
 
-        val intent = Intent(this, HomePageActivity::class.java)
-        intent.putExtra("userKey",user)
-        intent.putExtra("farmKey",farmKey)
-        startActivity(intent)
-        finish()
+        back(user, farmKey, cowKey)
+
     }
 
     private fun deleteVaccine(
@@ -94,11 +88,7 @@ class EditDeleteVaccineActivity : AppCompatActivity() {
         builder.setPositiveButton("Sí") { _, _ ->
             firebaseInstance.deleteVaccine(user, farmKey, cowKey, vaccineKey)
 
-            val intent = Intent(this, HomePageActivity::class.java)
-            intent.putExtra("userKey", user)
-            intent.putExtra("farmKey", farmKey)
-            startActivity(intent)
-            finish()
+            back(user, farmKey, cowKey)
 
             Toast.makeText(
                 this@EditDeleteVaccineActivity,
@@ -111,5 +101,14 @@ class EditDeleteVaccineActivity : AppCompatActivity() {
         }
         val alertDialog: AlertDialog = builder.create()
         alertDialog.show()
+    }
+
+    private fun back(user: String?, farmKey: String?, cowKey: String?) {
+        val intent = Intent(this, RvVaccineActivity::class.java)
+        intent.putExtra("userKey", user)
+        intent.putExtra("farmKey", farmKey)
+        intent.putExtra("cowKey", cowKey)
+        startActivity(intent)
+        finish()
     }
 }

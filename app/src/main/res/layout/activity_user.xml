@@ -7,8 +7,12 @@
     android:background="@color/background_app"
     android:gravity="center|top"
     android:orientation="vertical"
-    android:padding="10dp"
     tools:context=".ui.User.Consult.UserActivity">
+
+    <include
+        android:id="@+id/viewToolBar"
+        layout="@layout/view_tool_bar"/>
+
 
     <TextView
         android:id="@+id/tvUserName"
@@ -16,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:textColor="@color/black"
-        android:textSize="35dp"
+        android:textSize="30dp"
         android:textStyle="bold"
         tools:text="Nombre de usuario" />
 
@@ -29,13 +33,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/ic_user" />
+
     </androidx.cardview.widget.CardView>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:layout_margin="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
         android:text="@string/RegisterUser_Name"
         android:textColor="@color/gray"
         android:textSize="25dp"
@@ -46,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginVertical="5dp"
-        app:cardCornerRadius="15dp">
+        app:cardCornerRadius="5dp">
 
         <TextView
             android:id="@+id/tvName"
@@ -62,7 +68,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:layout_margin="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
         android:text="@string/RegisterUser_Phone"
         android:textColor="@color/gray"
         android:textSize="25sp"
@@ -73,7 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginVertical="5dp"
-        app:cardCornerRadius="15dp">
+        app:cardCornerRadius="5dp">
 
         <TextView
             android:id="@+id/tvPhone"
@@ -87,20 +94,13 @@
 
     <Button
         android:id="@+id/btnEditInfo"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:backgroundTint="@color/button_red"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="5dp"
+        android:backgroundTint="@color/blue"
         android:text="@string/User_EditInfo"
         android:textColor="@color/background_app" />
-
-    <Button
-        android:id="@+id/btnGoToHome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:backgroundTint="@color/button_red"
-        android:text="@string/User_goToHomePage" />
 
     <ImageView
         android:layout_width="wrap_content"

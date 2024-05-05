@@ -46,9 +46,8 @@ class EditDeleteBreedingCowActivity : AppCompatActivity() {
             intent.putExtra("farmKey", farmKey)
             intent.putExtra("cowKey", cowKey)
             startActivity(intent)
-            finish()
         }
-        binding.btnBack.setOnClickListener {
+        binding.viewToolBar.back.setOnClickListener {
             val intent = Intent(this, CowResumeActivity::class.java)
             intent.putExtra("userKey", user)
             intent.putExtra("farmKey", farmKey)
@@ -79,9 +78,10 @@ class EditDeleteBreedingCowActivity : AppCompatActivity() {
 
         Toast.makeText(this, "Se han actualizado los datos", Toast.LENGTH_SHORT).show()
 
-        val intent = Intent(this, HomePageActivity::class.java)
+        val intent = Intent(this, CowResumeActivity::class.java)
         intent.putExtra("userKey", user)
         intent.putExtra("farmKey", farmKey)
+        intent.putExtra("cowKey", cowKey)
         startActivity(intent)
         finish()
     }

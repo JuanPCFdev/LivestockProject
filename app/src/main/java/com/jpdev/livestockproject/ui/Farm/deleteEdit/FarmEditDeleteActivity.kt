@@ -39,13 +39,7 @@ class FarmEditDeleteActivity : AppCompatActivity() {
         binding.btnDelete.setOnClickListener{
             deleteFarm(key, farmKey)
         }
-        binding.btnRegisterFarm.setOnClickListener{
-            val intent = Intent(this, FarmRegisterActivity::class.java)
-            intent.putExtra("userKey",key)
-            startActivity(intent)
-            finish()
-        }
-        binding.btnHomePage.setOnClickListener{
+        binding.viewToolBar.back.setOnClickListener{
             val intent = Intent(this, HomePageActivity::class.java)
             intent.putExtra("userKey",key)
             intent.putExtra("farmKey",farmKey)

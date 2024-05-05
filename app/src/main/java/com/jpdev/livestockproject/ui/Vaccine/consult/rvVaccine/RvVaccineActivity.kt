@@ -11,6 +11,7 @@ import com.jpdev.livestockproject.domain.model.Cattle
 import com.jpdev.livestockproject.domain.model.Vaccine
 import com.jpdev.livestockproject.ui.Cow.Consult.Adapter.CowAdapter
 import com.jpdev.livestockproject.ui.Home.HomePageActivity
+import com.jpdev.livestockproject.ui.Vaccine.consult.ConsultVaccineActivity
 import com.jpdev.livestockproject.ui.Vaccine.consult.rvVaccine.adapterRvVaccine.RvVaccineAdapter
 import com.jpdev.livestockproject.ui.Vaccine.register.RegisterVaccineActivity
 
@@ -41,10 +42,9 @@ class RvVaccineActivity : AppCompatActivity() {
             intent.putExtra("farmKey",farm.toString())
             intent.putExtra("cowKey",cowKey.toString())
             startActivity(intent)
-            finish()
         }
-        binding.btnHome.setOnClickListener {
-            val intent = Intent(this, HomePageActivity::class.java)
+        binding.viewToolBar.back.setOnClickListener {
+            val intent = Intent(this, ConsultVaccineActivity::class.java)
             intent.putExtra("userKey",user.toString())
             intent.putExtra("farmKey",farm.toString())
             startActivity(intent)

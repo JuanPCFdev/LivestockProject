@@ -9,6 +9,7 @@ import com.jpdev.livestockproject.databinding.ActivityRegisterVaccineBinding
 import com.jpdev.livestockproject.domain.model.DatePickerFragment
 import com.jpdev.livestockproject.domain.model.Vaccine
 import com.jpdev.livestockproject.ui.Home.HomePageActivity
+import com.jpdev.livestockproject.ui.Vaccine.consult.rvVaccine.RvVaccineActivity
 
 class RegisterVaccineActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterVaccineBinding
@@ -32,8 +33,8 @@ class RegisterVaccineActivity : AppCompatActivity() {
         binding.btnRegisterVaccine.setOnClickListener {
             registerVaccine(user, farmKey, cowKey)
         }
-        binding.btnHomePage.setOnClickListener {
-            goToHome(user, farmKey)
+        binding.viewToolBar.back.setOnClickListener {
+            back(user, farmKey, cowKey)
         }
         binding.tieVaccineDate.setOnClickListener {
             showDatePickerDialog()
@@ -50,10 +51,11 @@ class RegisterVaccineActivity : AppCompatActivity() {
         binding.tieVaccineDate.setText("$day/$mes/$year")
     }
 
-    private fun goToHome(user: String?, farmKey: String?) {
-        val intent = Intent(this, HomePageActivity::class.java)
+    private fun back(user: String?, farmKey: String?, cowKey: String?) {
+        val intent = Intent(this, RvVaccineActivity::class.java)
         intent.putExtra("userKey", user)
         intent.putExtra("farmKey", farmKey)
+        intent.putExtra("cowKey", cowKey)
         startActivity(intent)
         finish()
     }
@@ -66,7 +68,7 @@ class RegisterVaccineActivity : AppCompatActivity() {
             && binding.tieVaccineSupplier.toString().isNotEmpty()
         ) {
             validate = true
-        }else{
+        } else {
             Toast.makeText(this, "Debe de rellenar todos los datos", Toast.LENGTH_SHORT).show()
         }
         return validate
@@ -84,11 +86,11 @@ class RegisterVaccineActivity : AppCompatActivity() {
                 binding.tieVaccineCost.text.toString().toInt().toDouble(),
                 binding.tieVaccineDate.text.toString(),
                 binding.tieVaccineSupplier.text.toString()
-                )
+            )
 
-            firebaseInstance.registerVaccine(vaccine,user,farmKey,cowKey)
+            firebaseInstance.registerVaccine(vaccine, user, farmKey, cowKey)
             Toast.makeText(this, "Vacuna registrada", Toast.LENGTH_SHORT).show()
-            goToHome(user,farmKey)
+            back(user, farmKey, cowKey)
         } else {
             Toast.makeText(this, "Debe de rellenar todos los datos", Toast.LENGTH_SHORT).show()
         }
