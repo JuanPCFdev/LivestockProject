@@ -35,7 +35,6 @@ class HomeCowActivity : AppCompatActivity() {
             intent.putExtra("userKey", key)
             intent.putExtra("farmKey", farmKey)
             startActivity(intent)
-            finish()
         }
 
         binding.btnConsultLifting.setOnClickListener {
@@ -43,7 +42,6 @@ class HomeCowActivity : AppCompatActivity() {
             intent.putExtra("userKey", key)
             intent.putExtra("farmKey", farmKey)
             startActivity(intent)
-            finish()
         }
 
         binding.btnConsultCalf.setOnClickListener {
@@ -51,23 +49,20 @@ class HomeCowActivity : AppCompatActivity() {
             intent.putExtra("userKey", key)
             intent.putExtra("farmKey", farmKey)
             startActivity(intent)
-            finish()
         }
         binding.btnDead.setOnClickListener {
             val intent = Intent(this, DeathActivity::class.java)
             intent.putExtra("userKey", key)
             intent.putExtra("farmKey", farmKey)
             startActivity(intent)
-            finish()
         }
         binding.btnSold.setOnClickListener {
             val intent = Intent(this, SoldActivity::class.java)
             intent.putExtra("userKey", key)
             intent.putExtra("farmKey", farmKey)
             startActivity(intent)
-            finish()
         }
-        binding.btnBack.setOnClickListener {
+        binding.viewToolBar.back.setOnClickListener {
             val intent = Intent(this, HomePageActivity::class.java)
             intent.putExtra("userKey", key)
             intent.putExtra("farmKey", farmKey)
