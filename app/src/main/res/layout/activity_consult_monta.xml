@@ -5,8 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_app"
-    android:padding="15dp"
     tools:context=".ui.Cow.Monta.ConsultMontaActivity">
+
+    <include
+        android:id="@+id/viewToolBar"
+        layout="@layout/view_tool_bar" />
+
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="0dp"
@@ -14,11 +18,12 @@
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="25sp"
+        android:layout_margin="20dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="Historial montas" />
+        android:text="Historial montas"
+        app:layout_constraintTop_toBottomOf="@+id/viewToolBar"/>
 
     <TextView
         android:id="@+id/tvDescription"
@@ -72,15 +77,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cvRecycler1" />
 
-        <Button
-            android:id="@+id/btnBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/button_red"
-            android:text="Volver"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnRegisterCow" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.constraintlayout.widget.ConstraintLayout>

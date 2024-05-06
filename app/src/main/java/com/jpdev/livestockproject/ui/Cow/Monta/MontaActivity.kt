@@ -16,7 +16,6 @@ class MontaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMontaBinding.inflate(layoutInflater)
-        supportActionBar?.hide()
         setContentView(binding.root)
         firebaseInstance = FirebaseInstance(this)
 
@@ -28,7 +27,7 @@ class MontaActivity : AppCompatActivity() {
     }
 
     private fun initListeners(user: String?, farm: String?, cowKey: String?) {
-        binding.btnBack.setOnClickListener {
+        binding.viewToolBar.back.setOnClickListener {
             goBack(user,farm,cowKey)
         }
         binding.btnRegister.setOnClickListener {

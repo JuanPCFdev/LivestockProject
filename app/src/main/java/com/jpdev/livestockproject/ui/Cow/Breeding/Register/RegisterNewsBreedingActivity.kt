@@ -9,8 +9,8 @@ import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityRegisterNewsBreedingBinding
 import com.jpdev.livestockproject.domain.model.BreedingPerformance
 import com.jpdev.livestockproject.domain.model.Cattle
-import com.jpdev.livestockproject.ui.Cow.Consult.CowDetailsBreedingActivity
-import com.jpdev.livestockproject.ui.Home.HomePageActivity
+import com.jpdev.livestockproject.domain.model.DatePickerFragment
+import com.jpdev.livestockproject.ui.Cow.HomeCow.HomeCowActivity
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -35,9 +35,10 @@ class RegisterNewsBreedingActivity : AppCompatActivity() {
         printInfo(user, farm, cow)
     }
 
+
     private fun printInfo(user: String?, farm: String?, cow: String?) {
         val currentDate = Date()
-        val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
         val formattedDate = dateFormat.format(currentDate)
         firebaseInstance.getCowDetails(user, farm, cow) {
             val details = getString(R.string.consult_estadis_title) + " ${it.marking}"
@@ -48,16 +49,45 @@ class RegisterNewsBreedingActivity : AppCompatActivity() {
 
     private fun initListeners(user: String?, farm: String?, cow: String?) {
         binding.viewToolBar.back.setOnClickListener {
-            back(user,farm, cow)
+            back(user, farm)
         }
         binding.btnSaveChanges.setOnClickListener {
             saveNews(user, farm, cow)
             saveCow(user, farm, cow)
         }
+        binding.etBirthday.setOnClickListener {
+            showDatePickerDialog()
+        }
+        binding.etInsemination.setOnClickListener {
+            showDatePickerDialog2()
+        }
+    }
+
+    private fun showDatePickerDialog() {
+        val datePicker = DatePickerFragment { day, month, year -> onDateSelected(day, month, year) }
+        datePicker.show(supportFragmentManager, "Fecha de Nacimiento")
+    }
+
+    private fun onDateSelected(day: Int, month: Int, year: Int) {
+        val mes = month + 1
+        binding.etBirthday.setText("$day/$mes/$year")
+
+    }
+
+    private fun showDatePickerDialog2() {
+        val datePicker =
+            DatePickerFragment { day, month, year -> onDateSelected2(day, month, year) }
+        datePicker.show(supportFragmentManager, "Fecha")
+    }
+
+    private fun onDateSelected2(day: Int, month: Int, year: Int) {
+        val mes = month + 1
+        binding.etInsemination.setText("$day/$mes/$year")
+
     }
 
     private fun saveNews(user: String?, farm: String?, cow: String?) {
-        if(validateCredentials()){
+        if (validateCredentials()) {
             val New = BreedingPerformance(
                 binding.etBirthday.text.toString(),
                 binding.etInsemination.text.toString(),
@@ -68,7 +98,7 @@ class RegisterNewsBreedingActivity : AppCompatActivity() {
             )
             firebaseInstance.registerNewsBreeding(New, user, farm, cow)
             Toast.makeText(this, "Novedad registrada", Toast.LENGTH_SHORT).show()
-            back(user, farm, cow)
+            back(user, farm)
 
         }else{
             Toast.makeText(this, "Debe de rellenar todos los datos", Toast.LENGTH_SHORT).show()
@@ -96,15 +126,11 @@ class RegisterNewsBreedingActivity : AppCompatActivity() {
                     false
                 )
 
-            firebaseInstance.registerCow(Cow, user, farm)}
-
-            val intent = Intent(this, CowDetailsBreedingActivity::class.java)
-            intent.putExtra("userKey", user.toString())
-            intent.putExtra("farmKey", farm.toString())
-            intent.putExtra("cowKey", cow.toString())
-
-            startActivity(intent)
-            finish()
+                firebaseInstance.registerCow(Cow, user, farm)
+            }
+            back(user, farm)
+            Toast.makeText(this, "Registro de vaca de vaca de corral exitoso", Toast.LENGTH_SHORT)
+                .show()
         } else {
             Toast.makeText(this, "Falta por llenar algun dato", Toast.LENGTH_SHORT).show()
         }
@@ -126,11 +152,10 @@ class RegisterNewsBreedingActivity : AppCompatActivity() {
         return validate
     }
 
-    private fun back(user: String?, farmKey: String?,cowKey: String?) {
-        val intent = Intent(this, CowDetailsBreedingActivity::class.java)
+    private fun back(user: String?, farmKey: String?) {
+        val intent = Intent(this, HomeCowActivity::class.java)
         intent.putExtra("userKey", user)
         intent.putExtra("farmKey", farmKey)
-        intent.putExtra("cowKey", cowKey)
         startActivity(intent)
         finish()
     }

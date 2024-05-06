@@ -1,17 +1,13 @@
 package com.jpdev.livestockproject.ui.Cow.Monta
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.jpdev.livestockproject.R
 import com.jpdev.livestockproject.data.network.FirebaseInstance
 import com.jpdev.livestockproject.databinding.ActivityConsultMontaBinding
-import com.jpdev.livestockproject.databinding.ActivityMontaBinding
 import com.jpdev.livestockproject.domain.model.Insemination
-import com.jpdev.livestockproject.domain.model.LiftingPerformance
 import com.jpdev.livestockproject.ui.Cow.Consult.AdapterInsemination.InseminationAdapter
-import com.jpdev.livestockproject.ui.Cow.Consult.AdapterNewsLifting.LiftingAdapter
 import com.jpdev.livestockproject.ui.Cow.Consult.CowResumeActivity
 
 class ConsultMontaActivity : AppCompatActivity() {
@@ -36,7 +32,7 @@ class ConsultMontaActivity : AppCompatActivity() {
 
     private fun initListeners(user: String?, farm: String?, cow: String?){
         getListCowInseminations(user.toString(), farm.toString(), cow.toString())
-        binding.btnBack.setOnClickListener {
+        binding.viewToolBar.back.setOnClickListener {
             val intent = Intent(this, CowResumeActivity::class.java)
             intent.putExtra("userKey", user.toString())
             intent.putExtra("farmKey", farm.toString())
@@ -50,7 +46,6 @@ class ConsultMontaActivity : AppCompatActivity() {
             intent.putExtra("farmKey", farm.toString())
             intent.putExtra("cowKey", cow.toString())
             startActivity(intent)
-            finish()
         }
 
     }
