@@ -37,7 +37,7 @@ class BuyActivity : AppCompatActivity() {
 
     private fun showDatePickerDialog() {
         val datePicker = DatePickerFragment { day, month, year -> onDateSelected(day, month, year) }
-        datePicker.show(supportFragmentManager, "Fecha de Nacimiento")
+        datePicker.show(supportFragmentManager, "Fecha compra")
     }
     private fun onDateSelected(day: Int, month: Int, year: Int) {
         val mes = month + 1

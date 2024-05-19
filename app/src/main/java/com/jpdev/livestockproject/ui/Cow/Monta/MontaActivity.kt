@@ -16,7 +16,6 @@ class MontaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMontaBinding.inflate(layoutInflater)
-        supportActionBar?.hide()
         setContentView(binding.root)
         firebaseInstance = FirebaseInstance(this)
 
