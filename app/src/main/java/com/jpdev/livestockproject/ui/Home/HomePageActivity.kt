@@ -73,9 +73,6 @@ class HomePageActivity : AppCompatActivity() {
         }
 
         binding.viewToolBar.back.setOnClickListener {
-            val intent = Intent(this, FarmActivity::class.java)
-            intent.putExtra("userKey", key)
-            startActivity(intent)
             finish()
         }
 

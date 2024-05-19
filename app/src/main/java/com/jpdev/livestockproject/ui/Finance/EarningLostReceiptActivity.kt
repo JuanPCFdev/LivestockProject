@@ -30,10 +30,6 @@ class EarningLostReceiptActivity : AppCompatActivity() {
 
     private fun initComponents(key: String?, farmKey: String?) {
         binding.viewToolBar.back.setOnClickListener {
-            val intent = Intent(this, FinanceActivity::class.java)
-            intent.putExtra("userKey", key)
-            intent.putExtra("farmKey", farmKey)
-            startActivity(intent)
             finish()
         }
         calculateFinances(key, farmKey)

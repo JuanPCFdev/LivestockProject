@@ -29,10 +29,6 @@ class ReceiptHistoryActivity : AppCompatActivity() {
     private fun initComponents(key: String?, farmKey: String?) {
         getReceipts(key, farmKey)
         binding.viewToolBar.back.setOnClickListener {
-            val intent = Intent(this, FinanceActivity::class.java)
-            intent.putExtra("userKey",key)
-            intent.putExtra("farmKey",farmKey)
-            startActivity(intent)
             finish()
         }
     }

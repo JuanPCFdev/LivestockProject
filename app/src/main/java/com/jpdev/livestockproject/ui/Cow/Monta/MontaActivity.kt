@@ -28,7 +28,7 @@ class MontaActivity : AppCompatActivity() {
 
     private fun initListeners(user: String?, farm: String?, cowKey: String?) {
         binding.viewToolBar.back.setOnClickListener {
-            goBack(user,farm,cowKey)
+            finish()
         }
         binding.btnRegister.setOnClickListener {
             registerInsemination(user,farm,cowKey)
@@ -61,19 +61,10 @@ class MontaActivity : AppCompatActivity() {
 
             firebaseInstance.registerInsemination(insemination,user,farmKey,cowKey)
             Toast.makeText(this, "Inseminacion registrada", Toast.LENGTH_SHORT).show()
-            goBack(user,farmKey,cowKey)
+            finish()
         } else {
             Toast.makeText(this, "Debe de rellenar todos los datos", Toast.LENGTH_SHORT).show()
         }
-    }
-
-    private fun goBack(user: String?, farm: String?, cowKey: String?){
-        val intent = Intent(this, ConsultMontaActivity::class.java)
-        intent.putExtra("userKey", user.toString())
-        intent.putExtra("farmKey", farm.toString())
-        intent.putExtra("cowKey", cowKey.toString())
-        startActivity(intent)
-        finish()
     }
 
     private fun validateCredentials(): Boolean {

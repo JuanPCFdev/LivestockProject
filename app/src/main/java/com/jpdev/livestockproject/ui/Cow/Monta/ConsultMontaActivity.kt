@@ -33,11 +33,6 @@ class ConsultMontaActivity : AppCompatActivity() {
     private fun initListeners(user: String?, farm: String?, cow: String?){
         getListCowInseminations(user.toString(), farm.toString(), cow.toString())
         binding.viewToolBar.back.setOnClickListener {
-            val intent = Intent(this, CowResumeActivity::class.java)
-            intent.putExtra("userKey", user.toString())
-            intent.putExtra("farmKey", farm.toString())
-            intent.putExtra("cowKey", cow.toString())
-            startActivity(intent)
             finish()
         }
         binding.btnRegisterMonta.setOnClickListener {

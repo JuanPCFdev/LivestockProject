@@ -55,11 +55,6 @@ class CowDetailsLiftingActivity : AppCompatActivity() {
 
     private fun initListeners(user: String?, farmKey: String?, cowKey: String?) {
         binding.viewToolBar.back.setOnClickListener {
-            val intent = Intent(this, CowResumeActivity::class.java)
-            intent.putExtra("userKey", user)
-            intent.putExtra("farmKey", farmKey)
-            intent.putExtra("cowKey", cowKey)
-            startActivity(intent)
             finish()
         }
         binding.btnRegisterWeight.setOnClickListener {

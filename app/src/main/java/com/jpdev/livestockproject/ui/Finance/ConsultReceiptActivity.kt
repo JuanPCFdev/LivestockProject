@@ -30,7 +30,7 @@ class ConsultReceiptActivity : AppCompatActivity() {
             deleteReceipt(key, farmKey, receiptKey)
         }
         binding.viewToolBar.back.setOnClickListener {
-            back(key, farmKey)
+            back()
         }
         binding.btnEdit.setOnClickListener {
             val intent = Intent(this, EditDeleteReceiptActivity::class.java)
@@ -79,7 +79,7 @@ class ConsultReceiptActivity : AppCompatActivity() {
                    }
                }
 
-               back(user, farmKey)
+               back()
 
                Toast.makeText(
                    this@ConsultReceiptActivity,
@@ -96,11 +96,7 @@ class ConsultReceiptActivity : AppCompatActivity() {
        }
    }
 
-    private fun back(user: String?, farmKey: String?) {
-        val intent = Intent(this, ReceiptHistoryActivity::class.java)
-        intent.putExtra("userKey", user)
-        intent.putExtra("farmKey", farmKey)
-        startActivity(intent)
+    private fun back() {
         finish()
     }
 }

@@ -48,42 +48,53 @@ class EditDeleteBreedingCowActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.viewToolBar.back.setOnClickListener {
+            finish()
+        }
+    }
+
+    private fun validateCredentials():Boolean{
+        return !(binding.etMarking.text.isNullOrEmpty() ||
+                binding.etBirthday.text.isNullOrEmpty() ||
+                binding.etWeight.text.isNullOrEmpty() ||
+                binding.etAge.text.isNullOrEmpty() ||
+                binding.etBreed.text.isNullOrEmpty() ||
+                binding.etState.text.isNullOrEmpty() ||
+                binding.etGender.text.isNullOrEmpty())
+    }
+
+    private fun saveChanges(user: String?, farmKey: String?, cowKey: String?) {
+
+        if(validateCredentials()){
+            val updatedCow = Cattle(
+                0,
+                binding.etMarking.text.toString(),
+                binding.etBirthday.text.toString(),
+                binding.etWeight.text.toString().toInt(),
+                binding.etAge.text.toString().toInt(),
+                binding.etBreed.text.toString(),
+                binding.etState.text.toString(),
+                binding.etGender.text.toString(),
+                "Breeding",
+                binding.etMother.text.toString(),
+                binding.etFather.text.toString(),
+                0.0,
+                false
+            )
+
+            firebaseInstance.editCow(updatedCow, user, farmKey, cowKey)
+
+            Toast.makeText(this, "Se han actualizado los datos", Toast.LENGTH_SHORT).show()
+
             val intent = Intent(this, CowResumeActivity::class.java)
             intent.putExtra("userKey", user)
             intent.putExtra("farmKey", farmKey)
             intent.putExtra("cowKey", cowKey)
             startActivity(intent)
             finish()
+        }else{
+            Toast.makeText(this, "Debe de llenar todos los espacios obligatorios", Toast.LENGTH_SHORT).show()
         }
-    }
 
-    private fun saveChanges(user: String?, farmKey: String?, cowKey: String?) {
-        val updatedCow = Cattle(
-            0,
-            binding.etMarking.text.toString(),
-            binding.etBirthday.text.toString(),
-            binding.etWeight.text.toString().toInt(),
-            binding.etAge.text.toString().toInt(),
-            binding.etBreed.text.toString(),
-            binding.etState.text.toString(),
-            binding.etGender.text.toString(),
-            "Breeding",
-            binding.etMother.text.toString(),
-            binding.etFather.text.toString(),
-            0.0,
-            false
-        )
-
-        firebaseInstance.editCow(updatedCow, user, farmKey, cowKey)
-
-        Toast.makeText(this, "Se han actualizado los datos", Toast.LENGTH_SHORT).show()
-
-        val intent = Intent(this, CowResumeActivity::class.java)
-        intent.putExtra("userKey", user)
-        intent.putExtra("farmKey", farmKey)
-        intent.putExtra("cowKey", cowKey)
-        startActivity(intent)
-        finish()
     }
 
     private fun printInfo(user: String?, farmKey: String?, cowKey: String?) {

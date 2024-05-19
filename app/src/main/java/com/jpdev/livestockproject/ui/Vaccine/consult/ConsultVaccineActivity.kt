@@ -35,10 +35,6 @@ class ConsultVaccineActivity : AppCompatActivity() {
     private fun initListeners(user:String?,farm:String?){
         getListCows(user,farm)
         binding.viewToolBar.back.setOnClickListener {
-            val intent = Intent(this, HomePageActivity::class.java)
-            intent.putExtra("userKey",user.toString())
-            intent.putExtra("farmKey",farm.toString())
-            startActivity(intent)
             finish()
         }
     }

@@ -36,14 +36,14 @@ class RegisterCowActivity : AppCompatActivity() {
         binding.btnRegisterCow.setOnClickListener {
             if (validateCredentials()) {
                 registerReceiptCow(user, farm)
-                back(user, farm)
+                back()
             } else {
                 Toast.makeText(this, "Falta por llenar algún dato", Toast.LENGTH_SHORT).show()
             }
         }
 
         binding.viewToolBar.back.setOnClickListener {
-            back(user, farm)
+            back()
         }
 
         binding.etBirthday.setOnClickListener {
@@ -131,11 +131,7 @@ class RegisterCowActivity : AppCompatActivity() {
         return success
     }
 
-    private fun back(user: String?, farm: String?) {
-        val intent = Intent(this, ConsultCowLiftingActivity::class.java)
-        intent.putExtra("userKey", user.toString())
-        intent.putExtra("farmKey", farm.toString())
-        startActivity(intent)
+    private fun back() {
         finish()
     }
 

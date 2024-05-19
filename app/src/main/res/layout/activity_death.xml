@@ -15,7 +15,7 @@
         android:id="@+id/tvRegisteredCows"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Muerte bovina"
+        android:text="@string/bovine_death"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="25sp"
@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:text="Para consultar la causa de muerte seleccione el animal"
+        android:text="@string/text_consult_bovine_death"
         android:textAlignment="center"
         android:textColor="@color/gray"
         android:textStyle="bold"
@@ -56,9 +56,5 @@
             android:layout_height="match_parent"
             android:layout_margin="5dp" />
     </androidx.cardview.widget.CardView>
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

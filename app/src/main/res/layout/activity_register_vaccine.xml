@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:text="Registro de Vacuna"
+        android:text="@string/register_vaccine"
         android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold" />
@@ -39,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:hint="Nombre de Vacuna"
+                android:hint="@string/vaccine_name"
                 android:padding="10dp"
                 app:boxBackgroundColor="@android:color/transparent">
 
@@ -55,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:hint="Valor de la Vacuna"
+                android:hint="@string/vaccine_cost"
                 android:padding="10dp"
                 app:boxBackgroundColor="@android:color/transparent">
 
@@ -71,7 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:hint="Fecha"
+                android:hint="@string/date"
                 android:padding="10dp"
                 app:boxBackgroundColor="@android:color/transparent">
 
@@ -89,7 +89,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:hint="Suministrador"
+                android:hint="@string/supplier"
                 android:padding="10dp"
                 app:boxBackgroundColor="@android:color/transparent">
 
@@ -110,7 +110,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:backgroundTint="@color/button_red"
-        android:text="Registar"
+        android:text="@string/register"
         app:cornerRadius="5dp" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

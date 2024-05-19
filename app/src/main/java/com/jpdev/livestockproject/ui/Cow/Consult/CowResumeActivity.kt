@@ -55,6 +55,9 @@ class CowResumeActivity : AppCompatActivity() {
     }
 
     private fun initListeners(user: String?, farm: String?, cow: String?) {
+        binding.viewToolBar.back.setOnClickListener {
+            finish()
+        }
         binding.btnConsultVaccine.setOnClickListener {
             showVaccine(user, farm, cow)
         }

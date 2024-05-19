@@ -49,7 +49,7 @@ class RegisterNewsBreedingActivity : AppCompatActivity() {
 
     private fun initListeners(user: String?, farm: String?, cow: String?) {
         binding.viewToolBar.back.setOnClickListener {
-            back(user, farm)
+            finish()
         }
         binding.btnSaveChanges.setOnClickListener {
             saveNews(user, farm, cow)
@@ -98,8 +98,7 @@ class RegisterNewsBreedingActivity : AppCompatActivity() {
             )
             firebaseInstance.registerNewsBreeding(New, user, farm, cow)
             Toast.makeText(this, "Novedad registrada", Toast.LENGTH_SHORT).show()
-            back(user, farm)
-
+            back()
         }else{
             Toast.makeText(this, "Debe de rellenar todos los datos", Toast.LENGTH_SHORT).show()
         }
@@ -126,11 +125,9 @@ class RegisterNewsBreedingActivity : AppCompatActivity() {
                     false
                 )
 
-                firebaseInstance.registerCow(Cow, user, farm)
-            }
-            back(user, farm)
-            Toast.makeText(this, "Registro de vaca de vaca de corral exitoso", Toast.LENGTH_SHORT)
-                .show()
+            firebaseInstance.registerCow(Cow, user, farm)}
+            finish()
+            Toast.makeText(this, "Registro de vaca de vaca de corral exitoso", Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(this, "Falta por llenar algun dato", Toast.LENGTH_SHORT).show()
         }
@@ -151,12 +148,8 @@ class RegisterNewsBreedingActivity : AppCompatActivity() {
         }
         return validate
     }
-
-    private fun back(user: String?, farmKey: String?) {
-        val intent = Intent(this, HomeCowActivity::class.java)
-        intent.putExtra("userKey", user)
-        intent.putExtra("farmKey", farmKey)
-        startActivity(intent)
+    
+    private fun back() {
         finish()
     }
 }

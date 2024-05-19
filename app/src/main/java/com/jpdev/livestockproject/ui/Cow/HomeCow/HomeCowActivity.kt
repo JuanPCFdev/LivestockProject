@@ -62,11 +62,12 @@ class HomeCowActivity : AppCompatActivity() {
             intent.putExtra("farmKey", farmKey)
             startActivity(intent)
         }
+
+        binding.btnBack.setOnClickListener {
+            finish()
+        }
+        
         binding.viewToolBar.back.setOnClickListener {
-            val intent = Intent(this, HomePageActivity::class.java)
-            intent.putExtra("userKey", key)
-            intent.putExtra("farmKey", farmKey)
-            startActivity(intent)
             finish()
         }
     }

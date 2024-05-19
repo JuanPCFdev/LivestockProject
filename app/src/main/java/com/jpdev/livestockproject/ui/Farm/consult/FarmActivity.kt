@@ -52,8 +52,6 @@ class FarmActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.viewToolBar.back.setOnClickListener{
-            val intent = Intent(this, LogInActivity::class.java)
-            startActivity(intent)
             finish()
         }
     }

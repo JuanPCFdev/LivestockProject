@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="16dp"
         android:gravity="center"
-        android:text="Seleccione el recibo que desee consultar"
+        android:text="@string/select_receipt_to_consult"
         android:textColor="@color/gray"
         android:textSize="15sp" />
 

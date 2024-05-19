@@ -43,7 +43,7 @@ class RegisterSellCowActivity : AppCompatActivity() {
             createReceipt(user, farmKey,cowKey)
         }
         binding.viewToolBar.back.setOnClickListener {
-            back(user,farmKey)
+            back()
         }
     }
 
@@ -71,7 +71,7 @@ class RegisterSellCowActivity : AppCompatActivity() {
                     firebaseInstance.registerReceiptBuy(receipt,key,farmKey)
                     updateCow(key, farmKey, cowKey)
                     Toast.makeText(this, "Se creo el recibo correctamente", Toast.LENGTH_SHORT).show()
-                    back(key,farmKey)
+                    back()
                 } else {
                     Toast.makeText(this, "Falta por llenar algun dato", Toast.LENGTH_SHORT).show()
             }
@@ -119,11 +119,7 @@ class RegisterSellCowActivity : AppCompatActivity() {
         }
     }
 
-    private fun back(user : String?, farmKey: String?){
-        val intent = Intent(this, SellCowActivity::class.java)
-        intent.putExtra("userKey",user)
-        intent.putExtra("farmKey",farmKey)
-        startActivity(intent)
+    private fun back(){
         finish()
     }
 }

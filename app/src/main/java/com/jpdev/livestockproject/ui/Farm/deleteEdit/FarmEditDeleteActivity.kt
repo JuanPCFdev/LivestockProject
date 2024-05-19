@@ -40,10 +40,6 @@ class FarmEditDeleteActivity : AppCompatActivity() {
             deleteFarm(key, farmKey)
         }
         binding.viewToolBar.back.setOnClickListener{
-            val intent = Intent(this, HomePageActivity::class.java)
-            intent.putExtra("userKey",key)
-            intent.putExtra("farmKey",farmKey)
-            startActivity(intent)
             finish()
         }
     }
@@ -119,10 +115,6 @@ class FarmEditDeleteActivity : AppCompatActivity() {
                             "Información de la finca actualizada exitosamente",
                             Toast.LENGTH_SHORT
                         ).show()
-                        val intent = Intent(this, HomePageActivity::class.java)
-                        intent.putExtra("userKey", key)
-                        intent.putExtra("farmKey", farmKey)
-                        startActivity(intent)
                         finish()
                     } else {
                         Toast.makeText(

@@ -83,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
                     android:layout_weight="1"
-                    android:hint="Fecha parto"
+                    android:hint="@string/birth_date"
                     android:padding="5dp"
                     app:boxBackgroundColor="@android:color/transparent">
 
@@ -138,7 +138,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
                     android:layout_weight="1"
-                    android:hint="Inseminación"
+                    android:hint="@string/insemination"
                     android:padding="5dp"
                     app:boxBackgroundColor="@android:color/transparent">
 
@@ -192,7 +192,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
                     android:layout_weight="1"
-                    android:hint="Genero"
+                    android:hint="@string/gender"
                     android:padding="5dp"
                     app:boxBackgroundColor="@android:color/transparent">
 
@@ -215,7 +215,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:hint="Dieta durante el embarazo"
+                android:hint="@string/pregnancy_diet"
                 app:boxBackgroundColor="@android:color/transparent">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -235,7 +235,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Seleccione una opción en caso de haber presentado alguna de estas opciones"
+                android:text="@string/text_select_option"
                 android:textColor="@color/gray"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -244,7 +244,7 @@
                 android:id="@+id/chkIsSick"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="¿La cria nació enferma?"
+                android:text="@string/dead_baby_question"
                 android:textSize="18sp"
                 android:textColor="@color/black"
                 app:layout_constraintTop_toBottomOf="@+id/card"
@@ -255,7 +255,7 @@
                 android:id="@+id/chkIsDead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="¿La cria murió?"
+                android:text="@string/dead_baby_question"
                 android:textSize="18sp"
                 android:textColor="@color/black"
                 app:layout_constraintTop_toBottomOf="@+id/card"
@@ -275,7 +275,7 @@
             android:layout_gravity="center"
             android:layout_margin="20dp"
             android:backgroundTint="@color/blue"
-            android:text="Guardar Cambios"
+            android:text="@string/save_changes"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>

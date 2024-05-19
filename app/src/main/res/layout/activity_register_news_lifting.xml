@@ -50,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
-                android:hint="Fecha toma de peso"
+                android:hint="@string/date_take_weight"
                 app:boxBackgroundColor="@android:color/transparent">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -121,7 +121,7 @@
             android:layout_marginHorizontal="30dp"
             android:layout_marginVertical="20dp"
             android:backgroundTint="@color/blue"
-            android:text="Guardar Cambios"
+            android:text="@string/save_changes"
             app:layout_constraintTop_toBottomOf="@+id/card"/>
 
 

@@ -23,13 +23,13 @@ class EditDeleteReceiptActivity : AppCompatActivity() {
         val key = intent.extras?.getString("userKey")
         val farmKey = intent.extras?.getString("farmKey")
         val receiptKey = intent.extras?.getString("ReceiptKey")
-        printInfo(key,farmKey,receiptKey)
-        initlistenener(key,farmKey,receiptKey)
+        printInfo(key, farmKey, receiptKey)
+        initlistenener(key, farmKey, receiptKey)
     }
 
     private fun initlistenener(key: String?, farmKey: String?, receiptKey: String?) {
         binding.viewToolBar.back.setOnClickListener {
-            back(key, farmKey, receiptKey)
+            back()
         }
         binding.btnEdit.setOnClickListener {
             editReceipt(key, farmKey, receiptKey)
@@ -59,9 +59,15 @@ class EditDeleteReceiptActivity : AppCompatActivity() {
         }
     }
 
+    private fun validateCredentials(): Boolean {
+        return !(binding.etReceiptData.text.isNullOrBlank() ||
+                binding.etReceiptPrice.text.isNullOrBlank() ||
+                binding.etReceiptName.text.isNullOrBlank())
+    }
+
     private fun editReceipt(key: String?, farmKey: String?, receiptKey: String?) {
         firebaseInstance.getReceiptDetails(key, farmKey, receiptKey) { originalReceipt ->
-            Log.d("OriginalReceiptType", originalReceipt?.javaClass?.simpleName ?: "null")
+            Log.d("OriginalReceiptType", originalReceipt.javaClass.simpleName ?: "null")
             val updatedName = binding.etReceiptName.text.toString()
             val updatedPrice = binding.etReceiptPrice.text.toString().toDouble()
             val updatedData = binding.etReceiptData.text.toString()
@@ -71,22 +77,30 @@ class EditDeleteReceiptActivity : AppCompatActivity() {
                 originalReceipt.date != updatedData
             ) {
 
-                val updatedReceipt = Receipt(
-                    0,
-                    updatedName,
-                    updatedPrice,
-                    updatedData,
-                    originalReceipt.receiptType,
-                    originalReceipt.name,
-                    originalReceipt.tel
-                )
-                firebaseInstance.editReceipt(updatedReceipt, key, farmKey, receiptKey)
-                Toast.makeText(
-                    this@EditDeleteReceiptActivity,
-                    "Información del recibo actualizada exitosamente",
-                    Toast.LENGTH_SHORT
-                ).show()
-                back(key, farmKey, receiptKey)
+                if (validateCredentials()) {
+                    val updatedReceipt = Receipt(
+                        0,
+                        updatedName,
+                        updatedPrice,
+                        updatedData,
+                        originalReceipt.receiptType,
+                        originalReceipt.name,
+                        originalReceipt.tel
+                    )
+                    firebaseInstance.editReceipt(updatedReceipt, key, farmKey, receiptKey)
+                    Toast.makeText(
+                        this@EditDeleteReceiptActivity,
+                        "Información del recibo actualizada exitosamente",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    back()
+                } else {
+                    Toast.makeText(
+                        this@EditDeleteReceiptActivity,
+                        "Debe de llenar los campos obligatorios",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
 
             } else {
                 Toast.makeText(this, "No se realizaron cambios", Toast.LENGTH_SHORT).show()
@@ -94,12 +108,7 @@ class EditDeleteReceiptActivity : AppCompatActivity() {
         }
     }
 
-    private fun back(key: String?, farmKey: String?, receiptKey: String?) {
-        val intent = Intent(this, ConsultReceiptActivity::class.java)
-        intent.putExtra("userKey", key)
-        intent.putExtra("farmKey", farmKey)
-        intent.putExtra("ReceiptKey", receiptKey)
-        startActivity(intent)
+    private fun back() {
         finish()
     }
 }

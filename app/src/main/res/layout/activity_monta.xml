@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:text="Registro de Monta"
+        android:text="@string/ride_register"
         android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold" />
@@ -25,7 +25,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+        android:layout_margin="20dp"
         app:cardCornerRadius="15dp">
 
         <LinearLayout
@@ -41,7 +41,7 @@
                 android:layout_margin="10dp"
                 android:clickable="false"
                 android:focusable="false"
-                android:hint="Fecha de Inseminación"
+                android:hint="@string/insemination_date"
                 android:padding="10dp"
                 app:boxBackgroundColor="@android:color/transparent">
 
@@ -59,7 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:hint="Descripcion de la Inseminación"
+                android:hint="@string/description_insemination"
                 android:padding="10dp"
                 app:boxBackgroundColor="@android:color/transparent">
 
@@ -75,7 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:hint="Procedencia del esperma"
+                android:hint="@string/origin_sperm"
                 android:padding="10dp"
                 app:boxBackgroundColor="@android:color/transparent">
 
@@ -93,11 +93,12 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnRegister"
-        android:layout_width="175dp"
+        android:layout_width="match_parent"
+        android:layout_margin="20dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/button_red"
-        android:text="Registar"
-        app:cornerRadius="15dp" />
+        android:text="@string/register"
+        app:cornerRadius="5dp" />
 
     <ImageView
         android:layout_width="wrap_content"

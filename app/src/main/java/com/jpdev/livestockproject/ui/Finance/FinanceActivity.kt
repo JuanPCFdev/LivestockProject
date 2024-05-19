@@ -38,10 +38,6 @@ class FinanceActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.viewToolBar.back.setOnClickListener {
-            val intent = Intent(this, HomePageActivity::class.java)
-            intent.putExtra("userKey", key)
-            intent.putExtra("farmKey", farmKey)
-            startActivity(intent)
             finish()
         }
         binding.btnEarningsLost.setOnClickListener {
