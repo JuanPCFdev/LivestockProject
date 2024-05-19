@@ -38,10 +38,6 @@ class UserEditDeleteActivity : AppCompatActivity() {
 
     private fun initListeners(key: String?, farmKey: String?) {
         binding.viewToolBar.back.setOnClickListener {
-            val intent = Intent(this, UserActivity::class.java)
-            intent.putExtra("userKey",key)
-            intent.putExtra("farmKey",farmKey)
-            startActivity(intent)
             finish()
         }
         binding.btnSaveChanges.setOnClickListener {
@@ -52,22 +48,27 @@ class UserEditDeleteActivity : AppCompatActivity() {
         }
     }
 
+    private fun validateCredentials():Boolean{
+        return !(binding.etUsername.text.isNullOrEmpty() ||
+                binding.etPassword.text.isNullOrEmpty() ||
+                binding.etPhone.text.isNullOrEmpty())
+    }
+
     private fun saveChanges(key:String?,farmKey:String?){
 
-        val updatedUser = User(id,
-            binding.etUsername.text.toString(),
-            binding.etPassword.text.toString(),
-            binding.etPhone.text.toString())
+        if(validateCredentials()){
+            val updatedUser = User(id,
+                binding.etUsername.text.toString(),
+                binding.etPassword.text.toString(),
+                binding.etPhone.text.toString())
 
-        firebaseInstance.editUser(updatedUser, key)
+            firebaseInstance.editUser(updatedUser, key)
+            Toast.makeText(this,"Se han actualizado los datos",Toast.LENGTH_SHORT).show()
+            finish()
+        }else{
+            Toast.makeText(this,"Debe de llenar los campos obligatorios",Toast.LENGTH_SHORT).show()
+        }
 
-        Toast.makeText(this,"Se han actualizado los datos",Toast.LENGTH_SHORT).show()
-
-        val intent = Intent(this, UserActivity::class.java)
-        intent.putExtra("userKey",key)
-        intent.putExtra("farmKey",farmKey)
-        startActivity(intent)
-        finish()
     }
 
     private fun deleteUser(key:String?){

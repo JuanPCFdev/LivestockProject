@@ -23,7 +23,7 @@ class FarmRegisterActivity : AppCompatActivity() {
         initListeners()
     }
     private fun initListeners(){
-        var key = intent.extras?.getString("userKey")
+        val key = intent.extras?.getString("userKey")
         binding.btnRegisterFarm.setOnClickListener{
             registerFarm()
         }
@@ -41,7 +41,7 @@ class FarmRegisterActivity : AppCompatActivity() {
         finish()
     }
     private fun registerFarm(){
-        var key = intent.extras?.getString("userKey")
+        val key = intent.extras?.getString("userKey")
         try {
             if(validateData()){
                 val newFarm = Farm(
@@ -69,19 +69,19 @@ class FarmRegisterActivity : AppCompatActivity() {
     private fun validateData():Boolean{
         var success = true
 
-        if(binding.etFarmName.text.toString().isNullOrEmpty()){
+        if(binding.etFarmName.text.toString().isEmpty()){
             Toast.makeText(this, "Nombre invalido", Toast.LENGTH_SHORT).show()
             success = false
         }
-        if(binding.etFarmAddres.text.toString().isNullOrEmpty()){
+        if(binding.etFarmAddres.text.toString().isEmpty()){
             Toast.makeText(this, "Telefono invalido", Toast.LENGTH_SHORT).show()
             success = false
         }
-        if(binding.etFarmCapacity.text.toString().isNullOrEmpty()){
+        if(binding.etFarmCapacity.text.toString().isEmpty()){
             Toast.makeText(this, "Contraseña invalida", Toast.LENGTH_SHORT).show()
             success = false
         }
-        if(binding.etFarmHectares.text.toString().isNullOrEmpty()){
+        if(binding.etFarmHectares.text.toString().isEmpty()){
             Toast.makeText(this, "Confirmacion invalida", Toast.LENGTH_SHORT).show()
             success = false
         }

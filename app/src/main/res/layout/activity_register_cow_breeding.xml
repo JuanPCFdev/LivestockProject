@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="15dp"
-        android:text="Registrar Ganado de Cría"
+        android:text="@string/register_breeding_cow"
         android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold" />
@@ -205,7 +205,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Opcionales"
+                android:text="@string/optional"
                 android:textColor="@color/gray"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -222,7 +222,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
                     android:layout_weight="1"
-                    android:hint="Madre"
+                    android:hint="@string/mother"
                     android:padding="5dp"
                     app:boxBackgroundColor="@android:color/transparent">
 
@@ -245,7 +245,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
                     android:layout_weight="1"
-                    android:hint="Padre"
+                    android:hint="@string/father"
                     android:padding="5dp"
                     app:boxBackgroundColor="@android:color/transparent">
 

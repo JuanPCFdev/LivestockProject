@@ -4,9 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_app"
-    android:gravity="center"
+    android:gravity="center|top"
     android:orientation="vertical"
     tools:context=".ui.Cow.Consult.CowResumeActivity">
+
+    <include
+        android:id="@+id/viewToolBar"
+        layout="@layout/view_tool_bar"/>
 
     <TextView
         android:id="@+id/tvTitle"
@@ -48,19 +52,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/button_red"
-            android:text="Consultar vacunas"
+            android:text="@string/consult_vaccines"
             android:textColor="@color/white" />
 
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btnBack"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:backgroundTint="@color/button_gray"
-        android:text="Volver"
-        android:textColor="@color/black" />
 
 </LinearLayout>

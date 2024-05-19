@@ -52,8 +52,7 @@ class CowResumeActivity : AppCompatActivity() {
     }
 
     private fun initListeners(user: String?, farm: String?, cow: String?) {
-        binding.btnBack.setOnClickListener {
-            goToHome(user, farm)
+        binding.viewToolBar.back.setOnClickListener {
             finish()
         }
         binding.btnConsultVaccine.setOnClickListener {
@@ -426,11 +425,4 @@ class CowResumeActivity : AppCompatActivity() {
         alertDialog.show()
     }
 
-    private fun goToHome(user: String?, farmKey: String?) {
-        val intent = Intent(this, HomeCowActivity::class.java)
-        intent.putExtra("userKey", user)
-        intent.putExtra("farmKey", farmKey)
-        startActivity(intent)
-        finish()
-    }
 }

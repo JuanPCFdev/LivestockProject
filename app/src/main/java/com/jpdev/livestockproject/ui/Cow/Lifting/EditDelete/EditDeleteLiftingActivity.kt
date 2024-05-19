@@ -47,32 +47,45 @@ class EditDeleteLiftingActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.viewToolBar.back.setOnClickListener {
-            back(user, farmKey, cowKey)
+            back()
         }
     }
 
     private fun saveChanges(user: String?, farmKey: String?, cowKey: String?) {
-        val updatedCow = Cattle(
-            0,
-            binding.etMarking.text.toString(),
-            binding.etBirthday.text.toString(),
-            binding.etWeight.text.toString().toInt(),
-            binding.etAge.text.toString().toInt(),
-            binding.etBreed.text.toString(),
-            "Propio",
-            binding.etGender.text.toString(),
-            "Lifting",
-            "",
-            "",
-            binding.etCost.text.toString().toDouble(),
-            binding.radioButtonYes.isChecked
-        )
 
-        firebaseInstance.editCow(updatedCow, user, farmKey, cowKey)
-        back(user, farmKey, cowKey)
-        Toast.makeText(this, "Se han actualizado los datos", Toast.LENGTH_SHORT).show()
+        if(validateCredentials()){
+            val updatedCow = Cattle(
+                0,
+                binding.etMarking.text.toString(),
+                binding.etBirthday.text.toString(),
+                binding.etWeight.text.toString().toInt(),
+                binding.etAge.text.toString().toInt(),
+                binding.etBreed.text.toString(),
+                "Propio",
+                binding.etGender.text.toString(),
+                "Lifting",
+                "",
+                "",
+                binding.etCost.text.toString().toDouble(),
+                binding.radioButtonYes.isChecked
+            )
 
+            firebaseInstance.editCow(updatedCow, user, farmKey, cowKey)
+            back()
+            Toast.makeText(this, "Se han actualizado los datos", Toast.LENGTH_SHORT).show()
+        }else{
+            Toast.makeText(this, "Debe de llenar todos los campos obligatorios", Toast.LENGTH_SHORT).show()
+        }
+    }
 
+    private fun validateCredentials():Boolean{
+        return !(binding.etMarking.text.isNullOrEmpty() ||
+                binding.etBirthday.text.isNullOrEmpty() ||
+                binding.etWeight.text.isNullOrEmpty() ||
+                binding.etAge.text.isNullOrEmpty() ||
+                binding.etBreed.text.isNullOrEmpty() ||
+                binding.etGender.text.isNullOrEmpty() ||
+                binding.etCost.text.isNullOrEmpty() )
     }
 
     private fun printInfo(user: String?, farmKey: String?, cowKey: String?) {
@@ -101,7 +114,7 @@ class EditDeleteLiftingActivity : AppCompatActivity() {
                     // Eliminar la vaca y el recibo
                 firebaseInstance.deleteReceiptAndCowByCommonName(user, farmKey, nameReceiptCow)
 
-                back(user, farmKey, cowKey)
+                back()
 
                 Toast.makeText(
                     this@EditDeleteLiftingActivity,
@@ -118,12 +131,7 @@ class EditDeleteLiftingActivity : AppCompatActivity() {
         }
     }
 
-    private fun back(user: String?, farmKey: String?, cowKey: String?) {
-        val intent = Intent(this, CowResumeActivity::class.java)
-        intent.putExtra("userKey", user)
-        intent.putExtra("farmKey", farmKey)
-        intent.putExtra("cowKey", cowKey)
-        startActivity(intent)
+    private fun back() {
         finish()
     }
 }

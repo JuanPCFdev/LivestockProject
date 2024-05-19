@@ -209,7 +209,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/breed"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
                     android:layout_weight="1"
@@ -234,7 +234,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="¿Castrado?"
+                android:text="@string/castrated_question"
                 android:textColor="@color/black"
                 android:textSize="17sp"
                 android:textStyle="bold"/>
@@ -251,13 +251,13 @@
                     android:id="@+id/radioButtonYes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sí" />
+                    android:text="@string/yes" />
 
                 <RadioButton
                     android:id="@+id/radioButtonNo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="No" />
+                    android:text="@string/no" />
             </RadioGroup>
 
         </LinearLayout>

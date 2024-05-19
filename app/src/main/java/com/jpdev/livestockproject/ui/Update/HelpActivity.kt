@@ -26,10 +26,6 @@ class HelpActivity : AppCompatActivity() {
 
     private fun initListeners(key:String?, farmKey: String?) {
         binding.viewToolBar.back.setOnClickListener {
-            val intent = Intent(this, HomePageActivity::class.java)
-            intent.putExtra("userKey",key)
-            intent.putExtra("farmKey",farmKey)
-            startActivity(intent)
             finish()
         }
         binding.btnCowVideo.setOnClickListener {

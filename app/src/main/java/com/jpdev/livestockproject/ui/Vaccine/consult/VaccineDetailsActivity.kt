@@ -25,16 +25,11 @@ class VaccineDetailsActivity : AppCompatActivity() {
         val vaccine = intent.extras?.getString("vaccineKey")
 
         setData(user, farmKey, cowKey, vaccine)
-        initListeners(user, farmKey, cowKey)
+        initListeners()
     }
 
-    private fun initListeners(user: String?, farm: String?, cow: String?) {
+    private fun initListeners() {
         binding.viewToolBar.back.setOnClickListener {
-            val intent = Intent(this, RvVaccineActivity::class.java)
-            intent.putExtra("userKey", user)
-            intent.putExtra("farmKey", farm)
-            intent.putExtra("cowKey", cow)
-            startActivity(intent)
             finish()
         }
     }

@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="15dp"
-        android:text="Notificar Muerte de la Vaca"
+        android:text="@string/notify_death"
         android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold" />
@@ -47,7 +47,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
                     android:layout_weight="1"
-                    android:hint="Fecha de Muerte"
+                    android:hint="@string/death_date"
                     android:padding="5dp"
                     app:boxBackgroundColor="@android:color/transparent">
 
@@ -80,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
                     android:layout_weight="1"
-                    android:hint="Causa de Muerte"
+                    android:hint="@string/cause_death"
                     android:padding="5dp"
                     app:boxBackgroundColor="@android:color/transparent">
 
@@ -107,11 +107,11 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/deathDescription"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
                     android:layout_weight="1"
-                    android:hint="Descripcion de la muerte"
+                    android:hint="@string/death_description"
                     android:padding="5dp"
                     app:boxBackgroundColor="@android:color/transparent">
 
@@ -147,7 +147,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
             android:backgroundTint="@color/button_red"
-            android:text="Confirmar" />
+            android:text="@string/confirm" />
 
     </LinearLayout>
 

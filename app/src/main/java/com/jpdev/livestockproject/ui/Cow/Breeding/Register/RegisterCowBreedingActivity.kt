@@ -35,10 +35,6 @@ class RegisterCowBreedingActivity : AppCompatActivity() {
         }
 
         binding.viewToolBar.back.setOnClickListener {
-            val intent = Intent(this, ConsultCowBreedingActivity::class.java)
-            intent.putExtra("userKey", user)
-            intent.putExtra("farmKey", farm)
-            startActivity(intent)
             finish()
         }
 
@@ -128,10 +124,6 @@ class RegisterCowBreedingActivity : AppCompatActivity() {
 
             firebaseInstance.registerCow(cow, user, farm)
 
-            val intent = Intent(this, ConsultCowBreedingActivity::class.java)
-            intent.putExtra("userKey", user.toString())
-            intent.putExtra("farmKey", farm.toString())
-            startActivity(intent)
             finish()
         }
 

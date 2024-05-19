@@ -54,12 +54,6 @@ class NotifyDeathCow : AppCompatActivity() {
         val mes = month + 1
         binding.etDeathDate.setText("$day/$mes/$year")
 
-        val birthDate = Calendar.getInstance().apply {
-            set(Calendar.YEAR, year)
-            set(Calendar.MONTH, month)
-            set(Calendar.DAY_OF_MONTH, day)
-        }
-
     }
     private fun saveChangeCowDeath(user: String?, farmKey: String?, cowKey: String?) {
 

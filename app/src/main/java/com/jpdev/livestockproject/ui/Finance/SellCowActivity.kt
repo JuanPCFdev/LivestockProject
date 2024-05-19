@@ -29,24 +29,18 @@ class SellCowActivity : AppCompatActivity() {
     private fun initComponents(key: String?, farmKey: String?) {
         getListCows(key,farmKey)
         binding.viewToolBar.back.setOnClickListener {
-            val intent = Intent(this, FinanceActivity::class.java)
-            intent.putExtra("userKey",key)
-            intent.putExtra("farmKey",farmKey)
-            startActivity(intent)
             finish()
         }
     }
     private fun getListCows(user:String?,farm:String?){
         firebaseInstance.getUserCows(user.toString(),farm.toString()){ cows, keys ->
-            if (cows != null) {
-                cows?.let {
-                    cowList.clear()
-                    cowList.addAll(cows)
-                    keys?.let {
-                        cowKeys.clear()
-                        cowKeys.addAll(keys)
-                        setUpRecyclerView(user.toString(),farm.toString())
-                    }
+            cows?.let {
+                cowList.clear()
+                cowList.addAll(cows)
+                keys?.let {
+                    cowKeys.clear()
+                    cowKeys.addAll(keys)
+                    setUpRecyclerView(user.toString(),farm.toString())
                 }
             }
         }

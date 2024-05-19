@@ -34,7 +34,7 @@ class RegisterVaccineActivity : AppCompatActivity() {
             registerVaccine(user, farmKey, cowKey)
         }
         binding.viewToolBar.back.setOnClickListener {
-            back(user, farmKey, cowKey)
+            back()
         }
         binding.tieVaccineDate.setOnClickListener {
             showDatePickerDialog()
@@ -51,12 +51,7 @@ class RegisterVaccineActivity : AppCompatActivity() {
         binding.tieVaccineDate.setText("$day/$mes/$year")
     }
 
-    private fun back(user: String?, farmKey: String?, cowKey: String?) {
-        val intent = Intent(this, RvVaccineActivity::class.java)
-        intent.putExtra("userKey", user)
-        intent.putExtra("farmKey", farmKey)
-        intent.putExtra("cowKey", cowKey)
-        startActivity(intent)
+    private fun back() {
         finish()
     }
 
@@ -90,7 +85,7 @@ class RegisterVaccineActivity : AppCompatActivity() {
 
             firebaseInstance.registerVaccine(vaccine, user, farmKey, cowKey)
             Toast.makeText(this, "Vacuna registrada", Toast.LENGTH_SHORT).show()
-            back(user, farmKey, cowKey)
+            back()
         } else {
             Toast.makeText(this, "Debe de rellenar todos los datos", Toast.LENGTH_SHORT).show()
         }

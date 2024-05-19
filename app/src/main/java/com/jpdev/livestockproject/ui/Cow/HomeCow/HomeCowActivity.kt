@@ -68,10 +68,6 @@ class HomeCowActivity : AppCompatActivity() {
             finish()
         }
         binding.btnBack.setOnClickListener {
-            val intent = Intent(this, HomePageActivity::class.java)
-            intent.putExtra("userKey", key)
-            intent.putExtra("farmKey", farmKey)
-            startActivity(intent)
             finish()
         }
     }

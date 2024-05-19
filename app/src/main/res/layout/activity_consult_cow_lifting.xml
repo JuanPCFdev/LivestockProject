@@ -15,7 +15,7 @@
         android:id="@+id/tvRegisteredCows"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Ganado de Levante"
+        android:text="@string/lifting_cows"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:layout_margin="10dp"
@@ -64,7 +64,7 @@
         android:backgroundTint="@color/button_red"
         android:layout_marginVertical="10dp"
         android:layout_marginHorizontal="20dp"
-        android:text="Registrar Ganado"
+        android:text="@string/register_cow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cvRecycler" />

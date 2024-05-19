@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="15dp"
-        android:text="Editar o Eliminar Ganado"
+        android:text="@string/edit_and_delete_cow"
         android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold"
@@ -241,7 +241,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="¿Castrado?"
+                android:text="@string/castrated_question"
                 android:textColor="@color/black"
                 android:textSize="17sp"
                 android:textStyle="bold" />
@@ -258,13 +258,13 @@
                     android:id="@+id/radioButtonYes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sí" />
+                    android:text="@string/yes" />
 
                 <RadioButton
                     android:id="@+id/radioButtonNo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="No" />
+                    android:text="@string/no" />
             </RadioGroup>
 
         </LinearLayout>
@@ -286,7 +286,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/blue"
-            android:text="Guardar Cambios"
+            android:text="@string/save_changes"
             app:cornerRadius="5dp" />
 
         <com.google.android.material.button.MaterialButton
@@ -294,7 +294,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/button_red"
-            android:text="Eliminar"
+            android:text="@string/delete"
             app:cornerRadius="5dp" />
 
         <com.google.android.material.button.MaterialButton
@@ -302,7 +302,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/button_red"
-            android:text="Notificar Muerte"
+            android:text="@string/notify_death"
             app:cornerRadius="5dp" />
     </LinearLayout>
 

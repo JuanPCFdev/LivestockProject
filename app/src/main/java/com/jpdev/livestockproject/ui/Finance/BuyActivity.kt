@@ -25,10 +25,6 @@ class BuyActivity : AppCompatActivity() {
 
     private fun initComponents(key: String?, farmKey: String?) {
         binding.viewToolBar.back.setOnClickListener {
-            val intent = Intent(this, FinanceActivity::class.java)
-            intent.putExtra("userKey", key)
-            intent.putExtra("farmKey", farmKey)
-            startActivity(intent)
             finish()
         }
         binding.btnSaveBuy.setOnClickListener {
@@ -64,10 +60,6 @@ class BuyActivity : AppCompatActivity() {
 
             firebaseInstance.registerReceiptBuy(receipt,key,farmKey)
             Toast.makeText(this, "Se creo el recibo correctamente", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, FinanceActivity::class.java)
-            intent.putExtra("userKey",key)
-            intent.putExtra("farmKey",farmKey)
-            startActivity(intent)
             finish()
         }else{
             Toast.makeText(this, "Falta por llenar algun dato", Toast.LENGTH_SHORT).show()

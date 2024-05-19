@@ -40,10 +40,6 @@ class UserActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.viewToolBar.back.setOnClickListener {
-            val intent = Intent(this,HomePageActivity::class.java)
-            intent.putExtra("userKey",key)
-            intent.putExtra("farmKey",keyFarm)
-            startActivity(intent)
             finish()
         }
     }
