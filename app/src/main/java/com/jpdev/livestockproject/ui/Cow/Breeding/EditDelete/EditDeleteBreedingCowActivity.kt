@@ -48,6 +48,11 @@ class EditDeleteBreedingCowActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.viewToolBar.back.setOnClickListener {
+            val intent = Intent(this,CowResumeActivity::class.java)
+            intent.putExtra("userKey",user)
+            intent.putExtra("farmKey",farmKey)
+            intent.putExtra("cowKey",cowKey)
+            startActivity(intent)
             finish()
         }
     }
@@ -84,12 +89,6 @@ class EditDeleteBreedingCowActivity : AppCompatActivity() {
             firebaseInstance.editCow(updatedCow, user, farmKey, cowKey)
 
             Toast.makeText(this, "Se han actualizado los datos", Toast.LENGTH_SHORT).show()
-
-            val intent = Intent(this, CowResumeActivity::class.java)
-            intent.putExtra("userKey", user)
-            intent.putExtra("farmKey", farmKey)
-            intent.putExtra("cowKey", cowKey)
-            startActivity(intent)
             finish()
         }else{
             Toast.makeText(this, "Debe de llenar todos los espacios obligatorios", Toast.LENGTH_SHORT).show()
@@ -120,17 +119,12 @@ class EditDeleteBreedingCowActivity : AppCompatActivity() {
 
         builder.setPositiveButton("Sí") { _, _ ->
             firebaseInstance.deleteCow(user, farmKey, cowKey)
-            val intent = Intent(this, ConsultCowBreedingActivity::class.java)
-            intent.putExtra("userKey", user)
-            intent.putExtra("farmKey", farmKey)
-            startActivity(intent)
-            finish()
-
             Toast.makeText(
                 this@EditDeleteBreedingCowActivity,
                 "Vaca eliminada exitosamente",
                 Toast.LENGTH_SHORT
             ).show()
+            finish()
         }
         builder.setNegativeButton("No") { _, _ ->
             // No hace nada

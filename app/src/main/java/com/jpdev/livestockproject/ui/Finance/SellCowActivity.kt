@@ -26,6 +26,16 @@ class SellCowActivity : AppCompatActivity() {
         initComponents(key, farmKey)
     }
 
+    override fun onResume() {
+        super.onResume()
+        binding = ActivitySellCowBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        firebaseInstance = FirebaseInstance(this)
+        val key = intent.extras?.getString("userKey")
+        val farmKey = intent.extras?.getString("farmKey")
+        initComponents(key, farmKey)
+    }
+
     private fun initComponents(key: String?, farmKey: String?) {
         getListCows(key,farmKey)
         binding.viewToolBar.back.setOnClickListener {

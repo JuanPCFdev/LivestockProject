@@ -45,6 +45,30 @@ class FarmActivity : AppCompatActivity() {
         initListeners(key)
     }
 
+    override fun onResume() {
+        super.onResume()
+        binding = ActivityFarmBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        firebaseInstance = FirebaseInstance(this)
+        val key = intent.extras?.getString("userKey")
+        key?.let {
+            firebaseInstance.getUserFarms(it) { farms, keys ->
+                farms?.let {
+                    farmList.clear()
+                    farmList.addAll(farms)
+                    keys?.let {
+                        farmKeys.clear()
+                        farmKeys.addAll(keys)
+                    }
+                    adapter.notifyDataSetChanged()
+                }
+            }
+        }
+
+        setUpRecyclerView()
+        initListeners(key)
+    }
+
     private fun initListeners(key: String?){
         binding.btnRegisterFarm.setOnClickListener{
             val intent = Intent(this, FarmRegisterActivity::class.java)

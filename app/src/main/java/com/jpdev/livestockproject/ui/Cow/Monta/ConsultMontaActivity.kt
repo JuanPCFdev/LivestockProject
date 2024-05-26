@@ -30,9 +30,28 @@ class ConsultMontaActivity : AppCompatActivity() {
         initListeners(user,farm,cow)
     }
 
+    override fun onResume() {
+        super.onResume()
+        supportActionBar?.hide()
+        binding = ActivityConsultMontaBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val user = intent.extras?.getString("userKey")
+        val farm = intent.extras?.getString("farmKey")
+        val cow = intent.extras?.getString("cowKey")
+
+        firebaseInstance = FirebaseInstance(this)
+        initListeners(user,farm,cow)
+    }
+
     private fun initListeners(user: String?, farm: String?, cow: String?){
         getListCowInseminations(user.toString(), farm.toString(), cow.toString())
         binding.viewToolBar.back.setOnClickListener {
+            val intent = Intent(this,CowResumeActivity::class.java)
+            intent.putExtra("userKey",user)
+            intent.putExtra("farmKey",farm)
+            intent.putExtra("cowKey",cow)
+            startActivity(intent)
             finish()
         }
         binding.btnRegisterMonta.setOnClickListener {

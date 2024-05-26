@@ -1,5 +1,6 @@
 package com.jpdev.livestockproject.ui.Vaccine.consult
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -32,6 +33,18 @@ class ConsultVaccineActivity : AppCompatActivity() {
         initListeners(user,farm)
     }
 
+    override fun onResume() {
+        super.onResume()
+        binding = ActivityConsultVaccineBinding.inflate(layoutInflater)
+        supportActionBar?.hide()
+        setContentView(binding.root)
+
+        val user = intent.extras?.getString("userKey")
+        val farm = intent.extras?.getString("farmKey")
+
+        initListeners(user,farm)
+    }
+
     private fun initListeners(user:String?,farm:String?){
         getListCows(user,farm)
         binding.viewToolBar.back.setOnClickListener {
@@ -56,7 +69,7 @@ class ConsultVaccineActivity : AppCompatActivity() {
         }
     }
 
-    private fun setUpRecyclerView(user:String?,farm:String?){
+    private fun setUpRecyclerView(user:String?, farm:String?){
         adapter = VaccineAdapter(cowList,cowKeys,user.toString(),farm.toString())
         binding.rvCows.adapter = adapter
         binding.rvCows.layoutManager = LinearLayoutManager(this)

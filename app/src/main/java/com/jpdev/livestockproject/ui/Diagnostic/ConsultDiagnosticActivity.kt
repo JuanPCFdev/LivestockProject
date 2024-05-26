@@ -28,7 +28,19 @@ class ConsultDiagnosticActivity : AppCompatActivity() {
         val farm = intent.extras?.getString("farmKey")
 
         initListeners(user, farm)
+    }
 
+    override fun onResume() {
+        super.onResume()
+
+        binding = ActivityConsultDiagnosticBinding.inflate(layoutInflater)
+        supportActionBar?.hide()
+        setContentView(binding.root)
+        firebaseInstance = FirebaseInstance(this)
+        val user = intent.extras?.getString("userKey")
+        val farm = intent.extras?.getString("farmKey")
+
+        initListeners(user, farm)
     }
 
     private fun initListeners(user: String?, farm: String?) {

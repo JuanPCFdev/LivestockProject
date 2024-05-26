@@ -13,6 +13,7 @@ import com.jpdev.livestockproject.domain.model.Cattle
 import com.jpdev.livestockproject.domain.model.DatePickerFragment
 import com.jpdev.livestockproject.domain.model.DeathDetails
 import com.jpdev.livestockproject.ui.Cow.Breeding.EditDelete.EditDeleteBreedingCowActivity
+import com.jpdev.livestockproject.ui.Cow.Consult.CowResumeActivity
 import com.jpdev.livestockproject.ui.Cow.Corral.CorralActivity
 import com.jpdev.livestockproject.ui.Cow.HomeCow.HomeCowActivity
 import com.jpdev.livestockproject.ui.Cow.Lifting.EditDelete.EditDeleteLiftingActivity
@@ -34,7 +35,6 @@ class NotifyDeathCow : AppCompatActivity() {
         firebaseInstance = FirebaseInstance(this)
 
         initListeners(user, farmKey, cowKey)
-        insertButtom(user, farmKey, cowKey)
     }
 
     private fun initListeners(user: String?, farmKey: String?, cowKey: String?){
@@ -43,6 +43,14 @@ class NotifyDeathCow : AppCompatActivity() {
         }
         binding.etDeathDate.setOnClickListener {
             showDatePickerDialog()
+        }
+        binding.viewToolBar.back.setOnClickListener {
+            val intent = Intent(this,CowResumeActivity::class.java)
+            intent.putExtra("userKey",user)
+            intent.putExtra("farmKey",farmKey)
+            intent.putExtra("cowKey",cowKey)
+            startActivity(intent)
+            finish()
         }
     }
 
@@ -81,63 +89,11 @@ class NotifyDeathCow : AppCompatActivity() {
                 it.cost,
                 it.castrated
             )
-
             firebaseInstance.editCow(updatedCow, user, farmKey, cowKey)
-
         }
-
-
 
         Toast.makeText(this, "Se ha notificado muerte", Toast.LENGTH_SHORT).show()
-
-        val intent = Intent(this, HomeCowActivity::class.java)
-        intent.putExtra("userKey", user)
-        intent.putExtra("farmKey", farmKey)
-        startActivity(intent)
         finish()
-    }
-
-    private fun insertButtom(user: String?, farm: String?, cow: String?) {
-        firebaseInstance.getCowDetails(user, farm, cow) {
-
-            when (it.type) {
-                "Lifting" -> {
-                    binding.viewToolBar.back.setOnClickListener {
-                        val intent = Intent(this, EditDeleteLiftingActivity::class.java)
-                        intent.putExtra("userKey", user)
-                        intent.putExtra("farmKey", farm)
-                        intent.putExtra("cowKey", cow)
-                        startActivity(intent)
-                        finish()
-                    }
-
-                }
-
-                "Breeding" -> {
-                    binding.viewToolBar.back.setOnClickListener {
-                        val intent = Intent(this, EditDeleteBreedingCowActivity::class.java)
-                        intent.putExtra("userKey", user)
-                        intent.putExtra("farmKey", farm)
-                        intent.putExtra("cowKey", cow)
-                        startActivity(intent)
-                        finish()
-                    }
-                }
-
-                "corral" -> {
-                    binding.viewToolBar.back.setOnClickListener {
-                        val intent = Intent(this, CorralActivity::class.java)
-                        intent.putExtra("userKey", user)
-                        intent.putExtra("farmKey", farm)
-                        intent.putExtra("cowKey", cow)
-                        startActivity(intent)
-                        finish()
-                    }
-
-                }
-
-            }
-        }
     }
 
 }

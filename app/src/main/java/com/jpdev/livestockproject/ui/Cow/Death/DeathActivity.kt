@@ -30,6 +30,21 @@ class DeathActivity : AppCompatActivity() {
         initListeners(user, farm)
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        binding = ActivityDeathBinding.inflate(layoutInflater)
+        supportActionBar?.hide()
+        setContentView(binding.root)
+
+        val user = intent.extras?.getString("userKey")
+        val farm = intent.extras?.getString("farmKey")
+
+        firebaseInstance = FirebaseInstance(this)
+
+        initListeners(user, farm)
+    }
+
     private fun initListeners(user: String?, farm: String?) {
         getListCows(user, farm)
         binding.viewToolBar.back.setOnClickListener {

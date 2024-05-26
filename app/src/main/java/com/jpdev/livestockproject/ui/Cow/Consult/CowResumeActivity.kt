@@ -112,43 +112,100 @@ class CowResumeActivity : AppCompatActivity() {
         }
     }
 
+    private fun buttonsForLifting(user: String?, farm: String?, cow: String?){
+
+        val btnEdit = Button(ContextThemeWrapper(this, R.style.ButtonStyle))
+        btnEdit.text = "Editar Informacion"
+        btnEdit.setOnClickListener {
+            val intent = Intent(this, EditDeleteLiftingActivity::class.java)
+            intent.putExtra("userKey", user)
+            intent.putExtra("farmKey", farm)
+            intent.putExtra("cowKey", cow)
+            this.startActivity(intent)
+            this.finish()
+        }
+        binding.lledit.addView(btnEdit)
+
+        val btnWeight = Button(ContextThemeWrapper(this, R.style.ButtonStyle))
+        btnWeight.text = "Consultar Pesaje"
+        btnWeight.setOnClickListener {
+            val intent = Intent(this, CowDetailsLiftingActivity::class.java)
+            intent.putExtra("userKey", user)
+            intent.putExtra("farmKey", farm)
+            intent.putExtra("cowKey", cow)
+            this.startActivity(intent)
+            this.finish()
+        }
+        binding.lledit.addView(btnWeight)
+    }
+
+    private fun buttonsForBreeding(user: String?, farm: String?, cow: String?){
+
+        val btnEditCowBreeding = Button(ContextThemeWrapper(this, R.style.ButtonStyle))
+        btnEditCowBreeding.text = "Editar Informacion"
+        btnEditCowBreeding.setOnClickListener {
+            val intent = Intent(this, EditDeleteBreedingCowActivity::class.java)
+            intent.putExtra("userKey", user)
+            intent.putExtra("farmKey", farm)
+            intent.putExtra("cowKey", cow)
+            this.startActivity(intent)
+            this.finish()
+        }
+        binding.lledit.addView(btnEditCowBreeding)
+
+        val btnParto = Button(ContextThemeWrapper(this, R.style.ButtonStyle))
+        btnParto.text = "Consultar partos"
+        btnParto.setOnClickListener {
+            val intent = Intent(this, CowDetailsBreedingActivity::class.java)
+            intent.putExtra("userKey", user)
+            intent.putExtra("farmKey", farm)
+            intent.putExtra("cowKey", cow)
+            this.startActivity(intent)
+            this.finish()
+        }
+        binding.lledit.addView(btnParto)
+
+        val btnMonta = Button(ContextThemeWrapper(this, R.style.ButtonStyle))
+        btnMonta.text = "Consultar Montas"
+        btnMonta.setOnClickListener {
+            val intent = Intent(this, ConsultMontaActivity::class.java)
+            intent.putExtra("userKey", user)
+            intent.putExtra("farmKey", farm)
+            intent.putExtra("cowKey", cow)
+            this.startActivity(intent)
+            this.finish()
+        }
+        binding.lledit.addView(btnMonta)
+
+        val btnWeight = Button(ContextThemeWrapper(this, R.style.ButtonStyle))
+        btnWeight.text = "Consultar Pesaje"
+        btnWeight.setOnClickListener {
+            val intent = Intent(this, CowDetailsLiftingActivity::class.java)
+            intent.putExtra("userKey", user)
+            intent.putExtra("farmKey", farm)
+            intent.putExtra("cowKey", cow)
+            this.startActivity(intent)
+            this.finish()
+        }
+        binding.lledit.addView(btnWeight)
+
+    }
+
     private fun insertButton(user: String?, farm: String?, cow: String?) {
+
         firebaseInstance.getCowDetails(user, farm, cow) {
+
             val auxCattle = it
+
             when (it.type) {
+
                 "Lifting" -> {
                     if (!(it.state == "vendido" || it.state == "Muerta")) {
-                        binding.viewToolBar.back.setOnClickListener {
-                            val intent = Intent(this, ConsultCowLiftingActivity::class.java)
-                            intent.putExtra("userKey", user)
-                            intent.putExtra("farmKey", farm)
-                            startActivity(intent)
-                            finish()
-                        }
-                        val btnEdit = Button(ContextThemeWrapper(this, R.style.ButtonStyle))
-                        btnEdit.text = "Editar Informacion"
-                        btnEdit.setOnClickListener {
-                            val intent = Intent(this, EditDeleteLiftingActivity::class.java)
-                            intent.putExtra("userKey", user)
-                            intent.putExtra("farmKey", farm)
-                            intent.putExtra("cowKey", cow)
-                            this.startActivity(intent)
-                            this.finish()
-                        }
-                        binding.lledit.addView(btnEdit)
 
-                        val btnWeight = Button(ContextThemeWrapper(this, R.style.ButtonStyle))
-                        btnWeight.text = "Consultar Pesaje"
-                        btnWeight.setOnClickListener {
-                            val intent = Intent(this, CowDetailsLiftingActivity::class.java)
-                            intent.putExtra("userKey", user)
-                            intent.putExtra("farmKey", farm)
-                            intent.putExtra("cowKey", cow)
-                            this.startActivity(intent)
-                            this.finish()
-                        }
-                        binding.lledit.addView(btnWeight)
+                        buttonsForLifting(user,farm,cow)
+
                     } else {
+
                         when (it.state) {
                             "vendido" -> {
                                 soldCow(user, farm, auxCattle)
@@ -163,61 +220,11 @@ class CowResumeActivity : AppCompatActivity() {
 
                 "Breeding" -> {
                     if (!(it.state == "vendido" || it.state == "Muerta")) {
-                        binding.viewToolBar.back.setOnClickListener {
-                            val intent = Intent(this, ConsultCowBreedingActivity::class.java)
-                            intent.putExtra("userKey", user)
-                            intent.putExtra("farmKey", farm)
-                            startActivity(intent)
-                            finish()
-                        }
-                        val btnEdit = Button(ContextThemeWrapper(this, R.style.ButtonStyle))
-                        btnEdit.text = "Editar Informacion"
-                        btnEdit.setOnClickListener {
-                            val intent = Intent(this, EditDeleteBreedingCowActivity::class.java)
-                            intent.putExtra("userKey", user)
-                            intent.putExtra("farmKey", farm)
-                            intent.putExtra("cowKey", cow)
-                            this.startActivity(intent)
-                            this.finish()
-                        }
-                        binding.lledit.addView(btnEdit)
 
-                        val btnParto = Button(ContextThemeWrapper(this, R.style.ButtonStyle))
-                        btnParto.text = "Consultar partos"
-                        btnParto.setOnClickListener {
-                            val intent = Intent(this, CowDetailsBreedingActivity::class.java)
-                            intent.putExtra("userKey", user)
-                            intent.putExtra("farmKey", farm)
-                            intent.putExtra("cowKey", cow)
-                            this.startActivity(intent)
-                            this.finish()
-                        }
-                        binding.lledit.addView(btnParto)
+                        buttonsForBreeding(user,farm,cow)
 
-                        val btnMonta = Button(ContextThemeWrapper(this, R.style.ButtonStyle))
-                        btnMonta.text = "Consultar Montas"
-                        btnMonta.setOnClickListener {
-                            val intent = Intent(this, ConsultMontaActivity::class.java)
-                            intent.putExtra("userKey", user)
-                            intent.putExtra("farmKey", farm)
-                            intent.putExtra("cowKey", cow)
-                            this.startActivity(intent)
-                            this.finish()
-                        }
-                        binding.lledit.addView(btnMonta)
-
-                        val btnWeight = Button(ContextThemeWrapper(this, R.style.ButtonStyle))
-                        btnWeight.text = "Consultar Pesaje"
-                        btnWeight.setOnClickListener {
-                            val intent = Intent(this, CowDetailsLiftingActivity::class.java)
-                            intent.putExtra("userKey", user)
-                            intent.putExtra("farmKey", farm)
-                            intent.putExtra("cowKey", cow)
-                            this.startActivity(intent)
-                            this.finish()
-                        }
-                        binding.lledit.addView(btnWeight)
                     } else {
+
                         when (it.state) {
                             "vendido" -> {
                                 soldCow(user, farm, auxCattle)
@@ -227,53 +234,18 @@ class CowResumeActivity : AppCompatActivity() {
                                 deadCow(user, farm, cow)
                             }
                         }
+
                     }
 
                 }
 
                 "corral" -> {
                     if (!(it.state == "vendido" || it.state == "Muerta")) {
-                        binding.viewToolBar.back.setOnClickListener {
-                            backCorral(user, farm)
-                        }
-                        val btnWeight = Button(ContextThemeWrapper(this, R.style.ButtonStyle))
-                        btnWeight.text = "Consultar Pesaje"
-                        btnWeight.setOnClickListener {
-                            val intent = Intent(this, CowDetailsLiftingActivity::class.java)
-                            intent.putExtra("userKey", user)
-                            intent.putExtra("farmKey", farm)
-                            intent.putExtra("cowKey", cow)
-                            this.startActivity(intent)
-                            this.finish()
-                        }
-                        binding.lledit.addView(btnWeight)
 
-                        val btnDeath = Button(ContextThemeWrapper(this, R.style.ButtonStyle))
-                        btnDeath.text = "Notificar Muerte"
-                        btnDeath.setOnClickListener {
-                            val intent = Intent(this, NotifyDeathCow::class.java)
-                            intent.putExtra("userKey", user)
-                            intent.putExtra("farmKey", farm)
-                            intent.putExtra("cowKey", cow)
-                            this.startActivity(intent)
-                            this.finish()
-                        }
-                        binding.lledit.addView(btnDeath)
+                        buttonsForCorral(user,farm,cow)
 
-                        val btnSetLifting = Button(ContextThemeWrapper(this, R.style.ButtonStyle))
-                        btnSetLifting.text = "Asignar como Levante"
-                        btnSetLifting.setOnClickListener {
-                            setLifting(user, farm, cow)
-                        }
-                        binding.lledit.addView(btnSetLifting)
-
-                        val btnSetBreeding = Button(ContextThemeWrapper(this, R.style.ButtonStyle))
-                        btnSetBreeding.text = "Asignar como Cria"
-                        btnSetBreeding.setOnClickListener {
-                            setBreeding(user, farm, cow)
-                        }
-                        binding.lledit.addView(btnSetBreeding)
                     } else {
+
                         when (it.state) {
                             "vendido" -> {
                                 soldCow(user, farm, auxCattle)
@@ -283,10 +255,53 @@ class CowResumeActivity : AppCompatActivity() {
                                 deadCow(user, farm, cow)
                             }
                         }
+
                     }
                 }
             }
         }
+    }
+
+    private fun buttonsForCorral(user: String?, farm: String?, cow: String?){
+
+        val btnWeight = Button(ContextThemeWrapper(this, R.style.ButtonStyle))
+        btnWeight.text = "Consultar Pesaje"
+        btnWeight.setOnClickListener {
+            val intent = Intent(this, CowDetailsLiftingActivity::class.java)
+            intent.putExtra("userKey", user)
+            intent.putExtra("farmKey", farm)
+            intent.putExtra("cowKey", cow)
+            this.startActivity(intent)
+            this.finish()
+        }
+        binding.lledit.addView(btnWeight)
+
+        val btnDeath = Button(ContextThemeWrapper(this, R.style.ButtonStyle))
+        btnDeath.text = "Notificar Muerte"
+        btnDeath.setOnClickListener {
+            val intent = Intent(this, NotifyDeathCow::class.java)
+            intent.putExtra("userKey", user)
+            intent.putExtra("farmKey", farm)
+            intent.putExtra("cowKey", cow)
+            this.startActivity(intent)
+            this.finish()
+        }
+        binding.lledit.addView(btnDeath)
+
+        val btnSetLifting = Button(ContextThemeWrapper(this, R.style.ButtonStyle))
+        btnSetLifting.text = "Asignar como Levante"
+        btnSetLifting.setOnClickListener {
+            setLifting(user, farm, cow)
+        }
+        binding.lledit.addView(btnSetLifting)
+
+        val btnSetBreeding = Button(ContextThemeWrapper(this, R.style.ButtonStyle))
+        btnSetBreeding.text = "Asignar como Cria"
+        btnSetBreeding.setOnClickListener {
+            setBreeding(user, farm, cow)
+        }
+        binding.lledit.addView(btnSetBreeding)
+
     }
 
     private fun setLifting(user: String?, farm: String?, cow: String?) {
@@ -296,12 +311,12 @@ class CowResumeActivity : AppCompatActivity() {
 
         builder.setPositiveButton("Sí") { _, _ ->
             firebaseInstance.editType(1, user, farm, cow)
-            backCorral(user, farm)
             Toast.makeText(
                 this@CowResumeActivity,
                 "Vaca cambiada a proposito de levante",
                 Toast.LENGTH_SHORT
             ).show()
+            finish()
         }
         builder.setNegativeButton("No") { _, _ ->
         }
@@ -316,12 +331,12 @@ class CowResumeActivity : AppCompatActivity() {
 
         builder.setPositiveButton("Sí") { _, _ ->
             firebaseInstance.editType(2, user, farm, cow)
-            backCorral(user, farm)
             Toast.makeText(
                 this@CowResumeActivity,
                 "Vaca cambiada a proposito de cría",
                 Toast.LENGTH_SHORT
             ).show()
+            finish()
         }
         builder.setNegativeButton("No") { _, _ ->
         }
@@ -443,14 +458,6 @@ class CowResumeActivity : AppCompatActivity() {
     }
 
     private fun deadCow(user: String?, farm: String?, cow: String?) {
-        binding.viewToolBar.back.setOnClickListener {
-            val intent = Intent(this, DeathActivity::class.java)
-            intent.putExtra("userKey", user)
-            intent.putExtra("farmKey", farm)
-            startActivity(intent)
-            finish()
-        }
-
         val btnDeathDetails =
             Button(ContextThemeWrapper(this, R.style.ButtonStyle))
         btnDeathDetails.text = "Consultar Muerte"
@@ -459,13 +466,4 @@ class CowResumeActivity : AppCompatActivity() {
         }
         binding.lledit.addView(btnDeathDetails)
     }
-
-    private fun backCorral(user: String?, farm: String?) {
-            intent = Intent(this, CorralActivity::class.java)
-            intent.putExtra("userKey", user)
-            intent.putExtra("farmKey", farm)
-            startActivity(intent)
-            finish()
-    }
-
 }

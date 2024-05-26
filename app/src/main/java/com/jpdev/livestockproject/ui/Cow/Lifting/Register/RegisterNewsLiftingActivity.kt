@@ -48,7 +48,7 @@ class RegisterNewsLiftingActivity : AppCompatActivity() {
 
     private fun initListeners(user: String?, farm: String?, cow: String?) {
         binding.viewToolBar.back.setOnClickListener {
-            back()
+            finish()
         }
         binding.btnSaveChanges.setOnClickListener {
             saveNews(user, farm, cow)
@@ -79,7 +79,7 @@ class RegisterNewsLiftingActivity : AppCompatActivity() {
 
             firebaseInstance.registerNewsLifting(New, user, farm, cow)
             Toast.makeText(this, "Novedad registrada", Toast.LENGTH_SHORT).show()
-            back()
+            finish()
 
             firebaseInstance.getCowDetails(user, farm, cow) {
                 val editCow = Cattle(
@@ -117,9 +117,5 @@ class RegisterNewsLiftingActivity : AppCompatActivity() {
             Toast.makeText(this, "Debe de rellenar todos los datos", Toast.LENGTH_SHORT).show()
         }
         return validate
-    }
-
-    private fun back() {
-        finish()
     }
 }

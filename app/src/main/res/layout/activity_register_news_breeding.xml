@@ -244,7 +244,7 @@
                 android:id="@+id/chkIsSick"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/dead_baby_question"
+                android:text="@string/sick_baby_question"
                 android:textSize="18sp"
                 android:textColor="@color/black"
                 app:layout_constraintTop_toBottomOf="@+id/card"

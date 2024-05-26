@@ -31,6 +31,20 @@ class ConsultCowLiftingActivity : AppCompatActivity() {
         initListeners(user,farm)
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        binding = ActivityConsultCowLiftingBinding.inflate(layoutInflater)
+        supportActionBar?.hide()
+        setContentView(binding.root)
+        firebaseInstance = FirebaseInstance(this)
+
+        val user = intent.extras?.getString("userKey")
+        val farm = intent.extras?.getString("farmKey")
+
+        initListeners(user,farm)
+    }
+
     private fun initListeners(user:String?,farm:String?){
         getListCows(user,farm)
         binding.btnRegisterCow.setOnClickListener {

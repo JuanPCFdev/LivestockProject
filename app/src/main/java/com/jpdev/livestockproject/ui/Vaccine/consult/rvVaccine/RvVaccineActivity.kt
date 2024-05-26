@@ -35,6 +35,19 @@ class RvVaccineActivity : AppCompatActivity() {
         initListeners(user,farmKey,cowKey)
     }
 
+    override fun onResume() {
+        super.onResume()
+        binding = ActivityRvVaccineBinding.inflate(layoutInflater)
+        supportActionBar?.hide()
+        setContentView(binding.root)
+
+        val user = intent.extras?.getString("userKey")
+        val farmKey = intent.extras?.getString("farmKey")
+        val cowKey = intent.extras?.getString("cowKey")
+        getListCowsVaccines(user,farmKey,cowKey)
+        initListeners(user,farmKey,cowKey)
+    }
+
     private fun initListeners(user: String?,farm: String?,cowKey: String?){
         binding.btnRegisterVaccine.setOnClickListener {
             val intent = Intent(this,RegisterVaccineActivity::class.java)
@@ -44,10 +57,6 @@ class RvVaccineActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.viewToolBar.back.setOnClickListener {
-            val intent = Intent(this, ConsultVaccineActivity::class.java)
-            intent.putExtra("userKey",user.toString())
-            intent.putExtra("farmKey",farm.toString())
-            startActivity(intent)
             finish()
         }
     }

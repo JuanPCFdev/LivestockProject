@@ -33,7 +33,23 @@ class CowDetailsBreedingActivity : AppCompatActivity() {
         initListeners(user, farm, cow)
         getListCowsNews(user, farm, cow)
         printInfo(user, farm, cow)
+    }
 
+    override fun onResume() {
+        super.onResume()
+        binding = ActivityCowDetailsBreedingBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        supportActionBar?.hide()
+
+        firebaseInstance = FirebaseInstance(this)
+
+        val user = intent.extras?.getString("userKey")
+        val farm = intent.extras?.getString("farmKey")
+        val cow = intent.extras?.getString("cowKey")
+
+        initListeners(user, farm, cow)
+        getListCowsNews(user, farm, cow)
+        printInfo(user, farm, cow)
     }
 
     private fun printDetailsInfo(user: String?, farm: String?, cow: String?) {
@@ -63,7 +79,12 @@ class CowDetailsBreedingActivity : AppCompatActivity() {
 
             aux += i.PBInitialWeight
         }
-        avgOfWeight = (aux / numberOfBirths).toDouble()
+
+        if(numberOfBirths < 1){
+            avgOfWeight = 0.0
+        }else{
+            avgOfWeight = (aux / numberOfBirths).toDouble()
+        }
 
         val textDetails = " ".repeat(8) + "ESTADISTICAS DE RENDIMIENTO.\n" +
                 "Cantidad de Partos TOTALES : $numberOfBirths.\n" +
@@ -85,6 +106,11 @@ class CowDetailsBreedingActivity : AppCompatActivity() {
 
     private fun initListeners(user: String?, farm: String?, cow: String?) {
         binding.viewToolBar.back.setOnClickListener {
+            val intent = Intent(this,CowResumeActivity::class.java)
+            intent.putExtra("userKey",user)
+            intent.putExtra("farmKey",farm)
+            intent.putExtra("cowKey",cow)
+            startActivity(intent)
             finish()
         }
         binding.btnRegisterWeight.setOnClickListener {

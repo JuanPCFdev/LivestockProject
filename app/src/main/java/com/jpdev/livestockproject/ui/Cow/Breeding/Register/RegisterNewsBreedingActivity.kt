@@ -98,7 +98,6 @@ class RegisterNewsBreedingActivity : AppCompatActivity() {
             )
             firebaseInstance.registerNewsBreeding(New, user, farm, cow)
             Toast.makeText(this, "Novedad registrada", Toast.LENGTH_SHORT).show()
-            back()
         }else{
             Toast.makeText(this, "Debe de rellenar todos los datos", Toast.LENGTH_SHORT).show()
         }
@@ -147,9 +146,5 @@ class RegisterNewsBreedingActivity : AppCompatActivity() {
             validate = true
         }
         return validate
-    }
-    
-    private fun back() {
-        finish()
     }
 }

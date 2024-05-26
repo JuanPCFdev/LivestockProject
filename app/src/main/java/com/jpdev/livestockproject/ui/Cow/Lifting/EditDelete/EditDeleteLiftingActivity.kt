@@ -47,7 +47,12 @@ class EditDeleteLiftingActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.viewToolBar.back.setOnClickListener {
-            back()
+            val intent = Intent(this,CowResumeActivity::class.java)
+            intent.putExtra("userKey",user)
+            intent.putExtra("farmKey",farmKey)
+            intent.putExtra("cowKey",cowKey)
+            startActivity(intent)
+            finish()
         }
     }
 
@@ -71,7 +76,7 @@ class EditDeleteLiftingActivity : AppCompatActivity() {
             )
 
             firebaseInstance.editCow(updatedCow, user, farmKey, cowKey)
-            back()
+            finish()
             Toast.makeText(this, "Se han actualizado los datos", Toast.LENGTH_SHORT).show()
         }else{
             Toast.makeText(this, "Debe de llenar todos los campos obligatorios", Toast.LENGTH_SHORT).show()
@@ -114,7 +119,7 @@ class EditDeleteLiftingActivity : AppCompatActivity() {
                     // Eliminar la vaca y el recibo
                 firebaseInstance.deleteReceiptAndCowByCommonName(user, farmKey, nameReceiptCow)
 
-                back()
+                finish()
 
                 Toast.makeText(
                     this@EditDeleteLiftingActivity,
@@ -129,9 +134,5 @@ class EditDeleteLiftingActivity : AppCompatActivity() {
             val alertDialog: AlertDialog = builder.create()
             alertDialog.show()
         }
-    }
-
-    private fun back() {
-        finish()
     }
 }

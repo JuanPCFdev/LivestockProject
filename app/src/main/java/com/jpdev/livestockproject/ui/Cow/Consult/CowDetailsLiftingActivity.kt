@@ -46,6 +46,22 @@ class CowDetailsLiftingActivity : AppCompatActivity() {
         initListeners(user, farmKey, cowKey)
     }
 
+    override fun onResume() {
+        super.onResume()
+        binding = ActivityCowDetailsBinding.inflate(layoutInflater)
+        supportActionBar?.hide()
+        setContentView(binding.root)
+        val user = intent.extras?.getString("userKey")
+        val farmKey = intent.extras?.getString("farmKey")
+        val cowKey = intent.extras?.getString("cowKey")
+
+        firebaseInstance = FirebaseInstance(this)
+
+        printInfo(user, farmKey, cowKey)
+        getListCowsNews(user, farmKey, cowKey)
+        initListeners(user, farmKey, cowKey)
+    }
+
     private fun printInfo(user: String?, farmKey: String?, cowKey: String?) {
         firebaseInstance.getCowDetails(user, farmKey, cowKey) {
             val details = getString(R.string.register_news) + " ${it.marking}"
@@ -55,6 +71,11 @@ class CowDetailsLiftingActivity : AppCompatActivity() {
 
     private fun initListeners(user: String?, farmKey: String?, cowKey: String?) {
         binding.viewToolBar.back.setOnClickListener {
+            val intent = Intent(this,CowResumeActivity::class.java)
+            intent.putExtra("userKey",user)
+            intent.putExtra("farmKey",farmKey)
+            intent.putExtra("cowKey",cowKey)
+            startActivity(intent)
             finish()
         }
         binding.btnRegisterWeight.setOnClickListener {
